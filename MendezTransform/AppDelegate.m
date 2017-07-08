@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Experiment.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    Experiment  *exp = [[Experiment alloc] init: @"blackwhite.png"];
+    [exp run];
     // Override point for customization after application launch.
     return YES;
 }

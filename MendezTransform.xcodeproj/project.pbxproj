@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		903772381F115D62005F1A2B /* blackwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 903772371F115D62005F1A2B /* blackwhite.png */; };
 		909CBFF81F0E8E6F005172C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFF71F0E8E6F005172C3 /* main.m */; };
 		909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */; };
 		909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFD1F0E8E6F005172C3 /* ViewController.m */; };
@@ -15,6 +16,14 @@
 		909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */; };
 		909CC0111F0E8E6F005172C3 /* MendezTransformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0101F0E8E6F005172C3 /* MendezTransformTests.m */; };
 		909CC01C1F0E8E6F005172C3 /* MendezTransformUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC01B1F0E8E6F005172C3 /* MendezTransformUITests.m */; };
+		909CC02A1F0E951A005172C3 /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0291F0E951A005172C3 /* Rotation.m */; };
+		909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC02D1F0EAC88005172C3 /* SpherePoint.m */; };
+		909CC0311F11305F005172C3 /* SphereGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0301F11305F005172C3 /* SphereGrid.m */; };
+		909CC0341F1131B7005172C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909CC0331F1131B7005172C3 /* CoreGraphics.framework */; };
+		909CC0361F1131C5005172C3 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909CC0351F1131C5005172C3 /* SceneKit.framework */; };
+		909CC0381F11427C005172C3 /* SphereFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0371F11427C005172C3 /* SphereFunction.m */; };
+		909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC03A1F114C1E005172C3 /* Mtransform.m */; };
+		909CC03F1F115642005172C3 /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC03E1F115642005172C3 /* Experiment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		903772371F115D62005F1A2B /* blackwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackwhite.png; sourceTree = "<group>"; };
 		909CBFF31F0E8E6F005172C3 /* MendezTransform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MendezTransform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CBFF71F0E8E6F005172C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		909CBFF91F0E8E6F005172C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +61,20 @@
 		909CC0171F0E8E6F005172C3 /* MendezTransformUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MendezTransformUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CC01B1F0E8E6F005172C3 /* MendezTransformUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MendezTransformUITests.m; sourceTree = "<group>"; };
 		909CC01D1F0E8E6F005172C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		909CC0291F0E951A005172C3 /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rotation.m; sourceTree = "<group>"; };
+		909CC02B1F0E9538005172C3 /* Rotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rotation.h; sourceTree = "<group>"; };
+		909CC02C1F0EAC53005172C3 /* SpherePoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpherePoint.h; sourceTree = "<group>"; };
+		909CC02D1F0EAC88005172C3 /* SpherePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpherePoint.m; sourceTree = "<group>"; };
+		909CC02F1F112FC9005172C3 /* SphereGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SphereGrid.h; sourceTree = "<group>"; };
+		909CC0301F11305F005172C3 /* SphereGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SphereGrid.m; sourceTree = "<group>"; };
+		909CC0331F1131B7005172C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		909CC0351F1131C5005172C3 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		909CC0371F11427C005172C3 /* SphereFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SphereFunction.m; sourceTree = "<group>"; };
+		909CC0391F114300005172C3 /* SphereFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SphereFunction.h; sourceTree = "<group>"; };
+		909CC03A1F114C1E005172C3 /* Mtransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mtransform.m; sourceTree = "<group>"; };
+		909CC03C1F114C93005172C3 /* Mtransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mtransform.h; sourceTree = "<group>"; };
+		909CC03D1F115605005172C3 /* Experiment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
+		909CC03E1F115642005172C3 /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909CC0361F1131C5005172C3 /* SceneKit.framework in Frameworks */,
+				909CC0341F1131B7005172C3 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +111,7 @@
 				909CC00F1F0E8E6F005172C3 /* MendezTransformTests */,
 				909CC01A1F0E8E6F005172C3 /* MendezTransformUITests */,
 				909CBFF41F0E8E6F005172C3 /* Products */,
+				909CC0321F1131B7005172C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +137,18 @@
 				909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */,
 				909CC0071F0E8E6F005172C3 /* Info.plist */,
 				909CBFF61F0E8E6F005172C3 /* Supporting Files */,
+				909CC02B1F0E9538005172C3 /* Rotation.h */,
+				909CC0291F0E951A005172C3 /* Rotation.m */,
+				909CC02C1F0EAC53005172C3 /* SpherePoint.h */,
+				909CC02D1F0EAC88005172C3 /* SpherePoint.m */,
+				909CC02F1F112FC9005172C3 /* SphereGrid.h */,
+				909CC0301F11305F005172C3 /* SphereGrid.m */,
+				909CC0391F114300005172C3 /* SphereFunction.h */,
+				909CC0371F11427C005172C3 /* SphereFunction.m */,
+				909CC03C1F114C93005172C3 /* Mtransform.h */,
+				909CC03A1F114C1E005172C3 /* Mtransform.m */,
+				909CC03D1F115605005172C3 /* Experiment.h */,
+				909CC03E1F115642005172C3 /* Experiment.m */,
 			);
 			path = MendezTransform;
 			sourceTree = "<group>";
@@ -117,6 +156,7 @@
 		909CBFF61F0E8E6F005172C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				903772371F115D62005F1A2B /* blackwhite.png */,
 				909CBFF71F0E8E6F005172C3 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +178,15 @@
 				909CC01D1F0E8E6F005172C3 /* Info.plist */,
 			);
 			path = MendezTransformUITests;
+			sourceTree = "<group>";
+		};
+		909CC0321F1131B7005172C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				909CC0351F1131C5005172C3 /* SceneKit.framework */,
+				909CC0331F1131B7005172C3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +256,7 @@
 				TargetAttributes = {
 					909CBFF21F0E8E6F005172C3 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = CZ5HK53AQ9;
 						ProvisioningStyle = Automatic;
 					};
 					909CC00B1F0E8E6F005172C3 = {
@@ -249,6 +299,7 @@
 				909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
 				909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */,
+				903772381F115D62005F1A2B /* blackwhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,8 +324,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909CC03F1F115642005172C3 /* Experiment.m in Sources */,
+				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
+				909CC02A1F0E951A005172C3 /* Rotation.m in Sources */,
+				909CC0381F11427C005172C3 /* SphereFunction.m in Sources */,
+				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
+				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
 				909CBFF81F0E8E6F005172C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CZ5HK53AQ9;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform;
@@ -435,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CZ5HK53AQ9;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform;
@@ -507,6 +566,7 @@
 				909CC0221F0E8E6F005172C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		909CC0231F0E8E6F005172C3 /* Build configuration list for PBXNativeTarget "MendezTransformTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +575,7 @@
 				909CC0251F0E8E6F005172C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		909CC0261F0E8E6F005172C3 /* Build configuration list for PBXNativeTarget "MendezTransformUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +584,7 @@
 				909CC0281F0E8E6F005172C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
