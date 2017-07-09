@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		903772381F115D62005F1A2B /* blackwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 903772371F115D62005F1A2B /* blackwhite.png */; };
+		9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723A1F120F10005F1A2B /* MendezTransformView.m */; };
+		9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723D1F12148E005F1A2B /* MendezTransformViewController.m */; };
+		903772411F127FC1005F1A2B /* MendezView.m in Sources */ = {isa = PBXBuildFile; fileRef = 903772401F127FC1005F1A2B /* MendezView.m */; };
 		909CBFF81F0E8E6F005172C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFF71F0E8E6F005172C3 /* main.m */; };
 		909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */; };
 		909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFD1F0E8E6F005172C3 /* ViewController.m */; };
@@ -45,6 +48,12 @@
 
 /* Begin PBXFileReference section */
 		903772371F115D62005F1A2B /* blackwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackwhite.png; sourceTree = "<group>"; };
+		903772391F120F10005F1A2B /* MendezTransformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezTransformView.h; sourceTree = "<group>"; };
+		9037723A1F120F10005F1A2B /* MendezTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformView.m; sourceTree = "<group>"; };
+		9037723C1F12148E005F1A2B /* MendezTransformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezTransformViewController.h; sourceTree = "<group>"; };
+		9037723D1F12148E005F1A2B /* MendezTransformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformViewController.m; sourceTree = "<group>"; };
+		9037723F1F127FC1005F1A2B /* MendezView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezView.h; sourceTree = "<group>"; };
+		903772401F127FC1005F1A2B /* MendezView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezView.m; sourceTree = "<group>"; };
 		909CBFF31F0E8E6F005172C3 /* MendezTransform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MendezTransform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CBFF71F0E8E6F005172C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		909CBFF91F0E8E6F005172C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,8 +156,14 @@
 				909CC0371F11427C005172C3 /* SphereFunction.m */,
 				909CC03C1F114C93005172C3 /* Mtransform.h */,
 				909CC03A1F114C1E005172C3 /* Mtransform.m */,
+				903772391F120F10005F1A2B /* MendezTransformView.h */,
+				9037723A1F120F10005F1A2B /* MendezTransformView.m */,
 				909CC03D1F115605005172C3 /* Experiment.h */,
 				909CC03E1F115642005172C3 /* Experiment.m */,
+				9037723C1F12148E005F1A2B /* MendezTransformViewController.h */,
+				9037723D1F12148E005F1A2B /* MendezTransformViewController.m */,
+				9037723F1F127FC1005F1A2B /* MendezView.h */,
+				903772401F127FC1005F1A2B /* MendezView.m */,
 			);
 			path = MendezTransform;
 			sourceTree = "<group>";
@@ -327,10 +342,13 @@
 				909CC03F1F115642005172C3 /* Experiment.m in Sources */,
 				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
+				9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */,
 				909CC02A1F0E951A005172C3 /* Rotation.m in Sources */,
+				9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */,
 				909CC0381F11427C005172C3 /* SphereFunction.m in Sources */,
 				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
+				903772411F127FC1005F1A2B /* MendezView.m in Sources */,
 				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
 				909CBFF81F0E8E6F005172C3 /* main.m in Sources */,
 			);
