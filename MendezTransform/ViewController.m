@@ -19,24 +19,25 @@
 
 @implementation ViewController
 
+#define Mtransform_size 200
+#define prerotate (M_PI / 2)
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    MendezView *mendezView = (MendezView *)self.view;
-    leftTransform = mendezView.leftTransform;
-    rightTransform = mendezView.rightTransform;
-    differenceTransform = mendezView.differenceTransform;
-    mirroredDifferenceTransform = mendezView.mirroredDifferenceTransform;
-    spheresView = mendezView.spheresView;
-    [mendezView resizeSubviews];
+    mendezView = (MendezView *)self.view;
     [mendezView addSelectionTarget: self action: @selector(popupImageSelection:)];
-    [self runExperiment];
+    [mendezView addAxisTarget: self action: @selector(axisChanged:)];
+    leftFunction = [[SphereFunction alloc] init];
+    rightFunction = [[SphereFunction alloc] init];
+    float   a[3] = { prerotate/sqrt(3), prerotate/sqrt(3), prerotate/sqrt(3) };
+    leftFunction.rotation = [[Rotation alloc] init: a];
+    mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
+    [self setImage: @"m42-final.jpg"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    MendezView *mendezView = (MendezView *)self.view;
-    [mendezView resizeSubviews];
 }
 
 
@@ -45,8 +46,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#define Mtransform_size 200
-
+#if 0
 - (void)runExperiment {
     NSLog(@"running experiment");
     UIImage *image = [UIImage imageNamed: @"m42-final.jpg"];
@@ -68,10 +68,16 @@
     [mirroredDifferenceTransform setDifference: result minus: result length:Mtransform_size mirror: YES];
 
 }
+#endif
+
+
 
 - (void)setImage: (NSString *)imagename {
     // XXX other classes may also need to know the new image
-    [spheresView setImage: imagename];
+    [mendezView setImage: imagename];
+    UIImage *image = [UIImage imageNamed: imagename];
+    [leftFunction setImage: image];
+    [rightFunction setImage: image];
 }
 
 - (void)popupImageSelection:(id)sender {
@@ -84,5 +90,18 @@
     presentationController.sourceView = sender;
 }
 
+
+- (void)axisChanged:(id)sender {
+    SCNVector3 axis = mendezView.axis;
+    float   v[3];
+    v[0] = axis.x;
+    v[1] = axis.y;
+    v[2] = axis.z;
+    float   *l = (float*)calloc(Mtransform_size, sizeof(float));
+    float   *r = (float*)calloc(Mtransform_size, sizeof(float));
+    [mtransform transform: l axis:v function: leftFunction];
+    [mtransform transform: r axis:v function: rightFunction];
+    [mendezView setTransforms: Mtransform_size left:l right:r];
+}
 
 @end

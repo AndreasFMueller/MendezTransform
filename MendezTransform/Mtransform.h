@@ -16,10 +16,10 @@
     float   *svalues;
 }
 
-@property (readonly) int width;
-@property (readonly) int height;
+@property (readonly) NSUInteger width;
+@property (readonly) NSUInteger height;
 
-- (id)initWidth: (int)w height:(int)h;
+- (id)initWidth: (NSUInteger)w height:(NSUInteger)h;
 - (void)dealloc;
 
 - (void)transform: (float*)data axis: (float[3])axis function: (SphereFunction*)f;

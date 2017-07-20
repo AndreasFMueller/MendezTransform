@@ -11,32 +11,66 @@
 
 @implementation SphereGrid
 
+@synthesize rotation;
+
 @synthesize width, height;
 
-- (id)initWidth: (int)_width height: (int)_height {
+- (void)resizeWidth: (NSUInteger)_width height: (NSUInteger)_height {
+    // remove data if it exists
+    if (z) { free(z); }
+    if (s) { free(s); }
+    if (xvalues) { free(xvalues); }
+    if (yvalues) { free(yvalues); }
+    
+    // check correct dimensions
+    height = _height;
+    width = _width;
+    if (0 != (_width % 8)) {
+        NSLog(@"width is not divisible by 4");
+    }
+    NSLog(@"resizing to %lu x %lu", _width, _height);
+    
+    // allocate data arrays
+    z = (float *)malloc((height + 1) * sizeof(float));
+    s = (float *)malloc((height + 1) * sizeof(float));
+    xvalues = (float *)malloc((width + 1) * sizeof(float));
+    yvalues = (float *)malloc((width + 1) * sizeof(float));
+    
+    // fill arrays
+    int thetai;
+    for (thetai = 0; thetai <= height; thetai++) {
+        float   theta = thetai * M_PI / height;
+        z[thetai] = cos(theta);
+        s[thetai] = sin(theta);
+    }
+    int phii;
+    for (phii = 0; phii <= width; phii++) {
+        float   phi = phii * 2 * M_PI / width;
+        xvalues[phii] = cos(phi);
+        yvalues[phii] = sin(phi);
+    }
+}
+
+- (id)init {
     self = [super init];
     if (self) {
-        height = _height;
-        width = _width;
-        if (0 != (_width % 8)) {
-            NSLog(@"width is not divisible by 4");
-        }
-        z = (float *)malloc((height + 1) * sizeof(float));
-        s = (float *)malloc((height + 1) * sizeof(float));
-        xvalues = (float *)malloc((width + 1) * sizeof(float));
-        yvalues = (float *)malloc((width + 1) * sizeof(float));
-        int thetai;
-        for (thetai = 0; thetai <= height; thetai++) {
-            float   theta = thetai * M_PI / height;
-            z[thetai] = cos(theta);
-            s[thetai] = sin(theta);
-        }
-        int phii;
-        for (phii = 0; phii <= width; phii++) {
-            float   phi = phii * 2 * M_PI / width;
-            xvalues[phii] = cos(phi);
-            yvalues[phii] = sin(phi);
-        }
+        z = NULL;
+        s = NULL;
+        xvalues = NULL;
+        yvalues = NULL;
+        self.rotation = nil;
+    }
+    return self;
+}
+
+- (id)initWidth: (NSUInteger)_width height: (NSUInteger)_height {
+    self = [super init];
+    if (self) {
+        z = NULL;
+        s = NULL;
+        xvalues = NULL;
+        yvalues = NULL;
+        [self resizeWidth: _width height: _height];
     }
     return self;
 }
@@ -48,55 +82,57 @@
     free(yvalues);
 }
 
-- (int)hoffset: (float)phi {
+- (NSUInteger)hoffset: (float)phi {
     int h = truncf((phi / 2 * M_PI) * width);
     return h;
 }
 
-- (int)voffset: (float)theta {
+- (NSUInteger)voffset: (float)theta {
     int v = truncf((theta / M_PI) * height);
     return v;
 }
 
-static int findinterval(float *r, float R, int min, int max) {
+static NSUInteger findinterval(float *r, float R, NSUInteger min, NSUInteger max) {
     //NSLog(@"look for %f between %d (%f) and %d (%f)", R, min, r[min], max, r[max]);
     if (1 == (max - min)) {
         return min;
     }
-    int mid = (max + min) / 2;
+    NSUInteger mid = (max + min) / 2;
     float   Rmid = r[mid];
     if ((r[min] <= R) && (R < Rmid)) {
         return findinterval(r, R, min, mid);
     }
-    int result = findinterval(r, R, mid, max);
+    NSUInteger result = findinterval(r, R, mid, max);
     //NSLog(@"result index: %d (%f)", result, r[result]);
     return result;
 }
 
-static int rfindinterval(float *r, float R, int min, int max) {
+static NSUInteger rfindinterval(float *r, float R, NSUInteger min, NSUInteger max) {
     //NSLog(@"look for %f between %d (%f) and %d (%f) (reverse)", R, min, r[min], max, r[max]);
 
     if (1 == (max - min)) {
         return min;
     }
-    int mid = (max + min) / 2;
+    NSUInteger mid = (max + min) / 2;
     float   Rmid = r[mid];
     if ((r[min] > R) && (R >= Rmid)) {
         return rfindinterval(r, R, min, mid);
     }
-    int result = rfindinterval(r, R, mid, max);
+    NSUInteger result = rfindinterval(r, R, mid, max);
     //NSLog(@"result index: %d (%f)", result, r[result]);
     return result;
 }
 
-- (int)hoffsetV: (float[3])vec {
+- (NSUInteger)hoffsetV: (float[3])vec {
+    float   w[3];
+    [self prepare: vec to: w];
     //NSLog(@"find hoffset for %f,%f,%f", vec[0], vec[1], vec[2]);
-    float l = hypotf(vec[0], vec[1]);
+    float l = hypotf(w[0], w[1]);
     if (0 == l) {
         return 0;
     }
-    float xx = vec[0] / l;
-    float yy = vec[1] / l;
+    float xx = w[0] / l;
+    float yy = w[1] / l;
     //NSLog(@"xx = %f, yy = %f", xx, yy);
     //
     if ((xx >= 0) && (yy >= 0) && (yy <= xx)) {
@@ -128,9 +164,11 @@ static int rfindinterval(float *r, float R, int min, int max) {
     return 0;
 }
 
-- (int)voffsetV: (float[3])vec {
+- (NSUInteger)voffsetV: (float[3])vec {
+    float   w[3];
+    [self prepare: vec to: w];
     //NSLog(@"find the voffset for %f,%f,%f", vec[0], vec[1], vec[2]);
-    float zz = vec[2];
+    float zz = w[2];
     return height - 1 - rfindinterval(z, zz, 0, height);
 }
 
@@ -141,6 +179,15 @@ static int rfindinterval(float *r, float R, int min, int max) {
 - (float)theta: (float[3])vec {
     return (self.height - 1 - [self voffsetV: vec]) * M_PI / self.height;
 }
+
+- (void)prepare: (float[3])v to: (float[3])w {
+    if (self.rotation) {
+        [self.rotation rotate:v to:w];
+    } else {
+        for (int i = 0; i < 3; i++) { w[i] = v[i]; }
+    }
+}
+
 
 @end
 

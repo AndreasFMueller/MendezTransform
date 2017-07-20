@@ -8,21 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
-#import "MendezTransformView.h"
-#import "SpheresView.h"
+#import "MendezView.h"
+#import "SphereFunction.h"
+#import "Mtransform.h"
 
 @interface ViewController : UIViewController {
-    IBOutlet MendezTransformView    *leftTransform;
-    IBOutlet MendezTransformView    *rightTransform;
-    IBOutlet MendezTransformView    *differenceTransform;
-    IBOutlet MendezTransformView    *mirroredDifferenceTransform;
-    IBOutlet SpheresView    *spheresView;
+    IBOutlet    MendezView  *mendezView;
+    SphereFunction  *leftFunction;
+    SphereFunction  *rightFunction;
+    Mtransform  *mtransform;
 }
-
-- (void)runExperiment;
 
 - (void)setImage: (NSString *)imagename;
 - (void)popupImageSelection: (id)sender;
+- (void)axisChanged: (id)sender;
 
 @end
 

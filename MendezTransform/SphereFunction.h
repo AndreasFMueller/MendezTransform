@@ -11,13 +11,15 @@
 
 @interface SphereFunction : SphereGrid {
     unsigned char   *imageData;
+    UIImage *image;
 }
 
 @property (readwrite,retain) UIImage    *image;
 
+- (id)init;
 - (id)init: (UIImage*)_image;
 
-- (float)valueX: (int)x Y: (int)y;
+- (float)valueX: (NSUInteger)x Y: (NSUInteger)y;
 - (float)value: (float[3])vec;
 
 - (void)dealloc;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "Rotation.h"
 
 @interface SphereGrid : NSObject {
     float  *z;
@@ -17,17 +17,24 @@
     float  *yvalues;
 }
 
-@property (readwrite) int width;
-@property (readwrite) int height;
+@property (readwrite,retain) Rotation *rotation;
 
-- (id)initWidth: (int)_width height: (int)_height;
+@property (readonly) NSUInteger width;
+@property (readonly) NSUInteger height;
+
+- (void)resizeWidth: (NSUInteger)_width height: (NSUInteger)_height;
+
+- (id)init;
+- (id)initWidth: (NSUInteger)_width height: (NSUInteger)_height;
 - (void)dealloc;
 
-- (int)hoffset: (float)phi;
-- (int)voffset: (float)theta;
+- (NSUInteger)hoffset: (float)phi;
+- (NSUInteger)voffset: (float)theta;
 
-- (int)hoffsetV: (float[3])vec;
-- (int)voffsetV: (float[3])vec;
+- (void)prepare: (float[3])v to: (float[3])w;
+
+- (NSUInteger)hoffsetV: (float[3])vec;
+- (NSUInteger)voffsetV: (float[3])vec;
 
 - (float)phi: (float[3])vec;
 - (float)theta: (float[3])vec;

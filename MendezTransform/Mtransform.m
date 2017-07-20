@@ -14,7 +14,7 @@
 
 @synthesize width, height;
 
-- (id)initWidth: (int)w height:(int)h {
+- (id)initWidth: (NSUInteger)w height:(NSUInteger)h {
     self = [super init];
     if (self) {
         width = w;

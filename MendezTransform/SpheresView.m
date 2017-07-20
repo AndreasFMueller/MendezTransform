@@ -55,11 +55,9 @@
     rightSphere = [SCNSphere sphereWithRadius: 3];
     rightSphere.segmentCount = 50;
     
-    [self setImage: @"m42-final.jpg"];
-    
     leftNode = [SCNNode nodeWithGeometry: leftSphere];
     leftNode.position = SCNVector3Make(-3.3, 0, 0);
-    leftNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 6);
+    leftNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 2);
     
     rightNode = [SCNNode nodeWithGeometry: rightSphere];
     rightNode.position = SCNVector3Make(3.3, 0, 0);
@@ -130,7 +128,8 @@
     
     // send action
     if ([target respondsToSelector: action]) {
-        [target performSelector: action];
+        NSLog(@"new axis action");
+        [target performSelector:action withObject: self];
     }
 }
 

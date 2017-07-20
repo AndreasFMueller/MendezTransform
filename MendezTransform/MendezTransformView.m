@@ -19,6 +19,7 @@
         data = NULL;
         min = -0.1;
         max = 1.1;
+        self.backgroundColor = [UIColor colorWithRed: 0.9 green:0.9 blue:1 alpha:1];
     }
     return self;
 }
@@ -55,6 +56,7 @@
             data[i] = _a[i] - _b[i];
         }
     }
+    [self setNeedsDisplay];
 }
 
 float   between(float y, float minvalue, float maxvalue) {
@@ -70,6 +72,9 @@ float   between(float y, float minvalue, float maxvalue) {
 
 - (void)drawRect:(CGRect)rect {
     NSLog(@"drawing contents of MendezTransformView (size %d)", n);
+    if (0 == n) {
+        return;
+    }
     // get dimensions for drawing
     float width = self.bounds.size.width;
     float height = self.bounds.size.height;
