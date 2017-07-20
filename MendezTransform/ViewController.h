@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
 #import "MendezTransformView.h"
+#import "SpheresView.h"
 
 @interface ViewController : UIViewController {
     IBOutlet MendezTransformView    *leftTransform;
     IBOutlet MendezTransformView    *rightTransform;
     IBOutlet MendezTransformView    *differenceTransform;
     IBOutlet MendezTransformView    *mirroredDifferenceTransform;
-    IBOutlet SCNView    *sceneView;
+    IBOutlet SpheresView    *spheresView;
 }
 
 - (void)runExperiment;

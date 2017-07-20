@@ -48,7 +48,7 @@
 
 - (void)runExperiment {
     NSLog(@"running experiment");
-    UIImage *image = [UIImage imageNamed: @"blackwhite.png"];
+    UIImage *image = [UIImage imageNamed: @"m42-final.jpg"];
     SphereFunction  *f = [[SphereFunction alloc] init: image];
     Mtransform  *M = [[Mtransform alloc] initWidth: Mtransform_size height: Mtransform_size];
     spherepoint sp;

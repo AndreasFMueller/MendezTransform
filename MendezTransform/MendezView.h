@@ -9,22 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
 #import "MendezTransformView.h"
+#import "SpheresView.h"
 
 @interface MendezView : UIView {
     UILabel *leftLabel;
     UILabel *rightLabel;
     UILabel *differenceLabel;
     UILabel *mirroredDifferenceLabel;
-    SCNScene    *scene;
     UISlider    *rotationangle;
-    
-    SCNSphere   *leftSphere;
-    SCNNode *leftNode;
-    SCNSphere   *rightSphere;
-    SCNNode *rightNode;
 }
 
-@property (retain,readwrite) SCNView *sceneView;
+@property (retain,readwrite) SpheresView *spheresView;
 @property (retain,readwrite) MendezTransformView *leftTransform;
 @property (retain,readwrite) MendezTransformView *rightTransform;
 @property (retain,readwrite) MendezTransformView *differenceTransform;
@@ -38,5 +33,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder;
 
 - (IBAction)rotate: (id)sender;
+
+- (void)setImage: (NSString*)imagename;
 
 @end

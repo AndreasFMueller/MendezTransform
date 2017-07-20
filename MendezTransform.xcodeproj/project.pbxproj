@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90311C231F20CB3C008B57F2 /* m42-final.jpg */; };
 		903772381F115D62005F1A2B /* blackwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 903772371F115D62005F1A2B /* blackwhite.png */; };
 		9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723A1F120F10005F1A2B /* MendezTransformView.m */; };
 		9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723D1F12148E005F1A2B /* MendezTransformViewController.m */; };
 		903772411F127FC1005F1A2B /* MendezView.m in Sources */ = {isa = PBXBuildFile; fileRef = 903772401F127FC1005F1A2B /* MendezView.m */; };
+		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
 		909CBFF81F0E8E6F005172C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFF71F0E8E6F005172C3 /* main.m */; };
 		909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */; };
 		909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFD1F0E8E6F005172C3 /* ViewController.m */; };
@@ -47,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90311C231F20CB3C008B57F2 /* m42-final.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-final.jpg"; sourceTree = "<group>"; };
 		903772371F115D62005F1A2B /* blackwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackwhite.png; sourceTree = "<group>"; };
 		903772391F120F10005F1A2B /* MendezTransformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezTransformView.h; sourceTree = "<group>"; };
 		9037723A1F120F10005F1A2B /* MendezTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformView.m; sourceTree = "<group>"; };
@@ -54,6 +57,8 @@
 		9037723D1F12148E005F1A2B /* MendezTransformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformViewController.m; sourceTree = "<group>"; };
 		9037723F1F127FC1005F1A2B /* MendezView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezView.h; sourceTree = "<group>"; };
 		903772401F127FC1005F1A2B /* MendezView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezView.m; sourceTree = "<group>"; };
+		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
+		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
 		909CBFF31F0E8E6F005172C3 /* MendezTransform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MendezTransform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CBFF71F0E8E6F005172C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		909CBFF91F0E8E6F005172C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -164,6 +169,8 @@
 				9037723D1F12148E005F1A2B /* MendezTransformViewController.m */,
 				9037723F1F127FC1005F1A2B /* MendezView.h */,
 				903772401F127FC1005F1A2B /* MendezView.m */,
+				906BDEFC1F20DAEC00778F44 /* SpheresView.h */,
+				906BDEFD1F20DAEC00778F44 /* SpheresView.m */,
 			);
 			path = MendezTransform;
 			sourceTree = "<group>";
@@ -171,6 +178,7 @@
 		909CBFF61F0E8E6F005172C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90311C231F20CB3C008B57F2 /* m42-final.jpg */,
 				903772371F115D62005F1A2B /* blackwhite.png */,
 				909CBFF71F0E8E6F005172C3 /* main.m */,
 			);
@@ -266,12 +274,12 @@
 		909CBFEB1F0E8E6F005172C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Andreas Müller";
 				TargetAttributes = {
 					909CBFF21F0E8E6F005172C3 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = CZ5HK53AQ9;
+						DevelopmentTeam = QR66XBP47D;
 						ProvisioningStyle = Automatic;
 					};
 					909CC00B1F0E8E6F005172C3 = {
@@ -311,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
 				909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
 				909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */,
@@ -340,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				909CC03F1F115642005172C3 /* Experiment.m in Sources */,
+				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
 				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
 				9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */,
@@ -423,6 +433,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -471,6 +482,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -499,7 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CZ5HK53AQ9;
+				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform;
@@ -511,7 +523,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CZ5HK53AQ9;
+				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform;
