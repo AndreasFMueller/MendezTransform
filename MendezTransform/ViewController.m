@@ -11,6 +11,7 @@
 #import "Mtransform.h"
 #import "SpherePoint.h"
 #import "MendezView.h"
+#import "ImageSelectionController.h"
 
 @interface ViewController ()
 
@@ -28,6 +29,7 @@
     mirroredDifferenceTransform = mendezView.mirroredDifferenceTransform;
     spheresView = mendezView.spheresView;
     [mendezView resizeSubviews];
+    [mendezView addSelectionTarget: self action: @selector(popupImageSelection:)];
     [self runExperiment];
 }
 
@@ -65,6 +67,21 @@
     [differenceTransform setDifference: result minus: result length:Mtransform_size mirror: NO];
     [mirroredDifferenceTransform setDifference: result minus: result length:Mtransform_size mirror: YES];
 
+}
+
+- (void)setImage: (NSString *)imagename {
+    // XXX other classes may also need to know the new image
+    [spheresView setImage: imagename];
+}
+
+- (void)popupImageSelection:(id)sender {
+    NSLog(@"ViewController popupImageSelection called");
+    ImageSelectionController    *imageSelectionController = [[ImageSelectionController alloc] init];
+    imageSelectionController.viewController = self;
+    imageSelectionController.modalPresentationStyle = UIModalPresentationPopover;
+    [self presentViewController: imageSelectionController animated: YES completion: nil];
+    UIPopoverPresentationController *presentationController = (UIPopoverPresentationController*)imageSelectionController.presentationController;
+    presentationController.sourceView = sender;
 }
 
 

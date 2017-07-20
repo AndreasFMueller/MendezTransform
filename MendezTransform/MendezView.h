@@ -17,6 +17,7 @@
     UILabel *differenceLabel;
     UILabel *mirroredDifferenceLabel;
     UISlider    *rotationangle;
+    UIButton    *imageSelection;
 }
 
 @property (retain,readwrite) SpheresView *spheresView;
@@ -24,7 +25,7 @@
 @property (retain,readwrite) MendezTransformView *rightTransform;
 @property (retain,readwrite) MendezTransformView *differenceTransform;
 @property (retain,readwrite) MendezTransformView *mirroredDifferenceTransform;
-@property (readwrite) SCNVector3    axis;
+@property (readonly) SCNVector3    axis;
 
 - (void)setupSubviews;
 - (void)resizeSubviews;
@@ -34,6 +35,10 @@
 
 - (IBAction)rotate: (id)sender;
 
+// stuff related to image selection
 - (void)setImage: (NSString*)imagename;
+- (void)addSelectionTarget: (id)target action: (SEL)action;
+
+// stuff related to the touch interactions to determine the axis
 
 @end

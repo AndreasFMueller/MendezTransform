@@ -16,11 +16,26 @@
     
     SCNSphere   *rightSphere;
     SCNNode *rightNode;
+    
+    SCNCylinder *axisCylinder;
+    SCNNode *axisNode;
+    
+    id  target;
+    SEL action;
 }
+
+@property (readonly) SCNVector3 axis;
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)setupScene;
 - (void)rotate: (SCNVector4)rotation;
 - (void)setImage: (NSString *)imagename;
+
+- (void)addTouchTarget: (id)target action: (SEL)action;
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

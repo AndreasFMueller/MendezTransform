@@ -7,10 +7,15 @@
 //
 
 #import "MendezView.h"
+#import "ImageSelectionController.h"
 
 @implementation MendezView
 
-@synthesize leftTransform, rightTransform, differenceTransform, mirroredDifferenceTransform, spheresView, axis;
+@synthesize leftTransform, rightTransform, differenceTransform, mirroredDifferenceTransform, spheresView;
+
+- (SCNVector3)axis {
+    return spheresView.axis;
+}
 
 - (void)resizeSubviews {
     spheresView.frame = CGRectMake(0, 0 * self.bounds.size.width/2, self.bounds.size.width, self.bounds.size.width/2);
@@ -31,6 +36,8 @@
     mirroredDifferenceLabel.frame = CGRectMake(2 * twidth, typosition - labelheight, twidth, labelheight);
     
     rotationangle.frame = CGRectMake(0, self.bounds.size.height - controlsheight, self.bounds.size.width/3, controlsheight);
+    
+    imageSelection.frame = CGRectMake(self.bounds.size.width * 3/4, self.bounds.size.height - controlsheight, self.bounds.size.width / 4, controlsheight);
 }
 
 - (void)setupSubviews {
@@ -70,8 +77,7 @@
     differenceLabel.text = @"Difference";
     mirroredDifferenceLabel.text = @"Mirrored Difference";
     
-    axis = SCNVector3Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3));
-
+    // Slider to set the rotation angle
     rotationangle = [[UISlider alloc] initWithFrame: CGRectMake(0,0,1,1)];
     [self addSubview: rotationangle];
     rotationangle.minimumValue = -M_PI;
@@ -80,6 +86,14 @@
     
     [rotationangle addTarget: self action:@selector(rotate:) forControlEvents:UIControlEventValueChanged];
     
+    // Button to request the image selection
+    imageSelection = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
+    [imageSelection setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [imageSelection setTitle: @"Select Image" forState: UIControlStateNormal];
+
+    [self addSubview: imageSelection];
+    
+    // now resize all the subviews
     [self resizeSubviews];
 }
 
@@ -103,11 +117,18 @@
 
 - (IBAction)rotate: (id)sender {
     float   angle = rotationangle.value;
-    [spheresView rotate: SCNVector4Make(axis.x, axis.y, axis.z, angle)];
+    SCNVector3  a = self.axis;
+    [spheresView rotate: SCNVector4Make(a.x, a.y, a.z, angle)];
 }
 
 - (void)setImage: (NSString*) imagename {
     [spheresView setImage: imagename];
 }
+
+- (void)addSelectionTarget: (id)target action: (SEL)action {
+    [imageSelection addTarget:target action:action forControlEvents: UIControlEventTouchUpInside];
+}
+
+
 
 @end

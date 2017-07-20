@@ -21,5 +21,8 @@
 
 - (void)runExperiment;
 
+- (void)setImage: (NSString *)imagename;
+- (void)popupImageSelection: (id)sender;
+
 @end
 

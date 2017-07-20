@@ -13,6 +13,10 @@
 		9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723D1F12148E005F1A2B /* MendezTransformViewController.m */; };
 		903772411F127FC1005F1A2B /* MendezView.m in Sources */ = {isa = PBXBuildFile; fileRef = 903772401F127FC1005F1A2B /* MendezView.m */; };
 		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
+		906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */; };
+		906BDF031F20E7B000778F44 /* afm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF021F20E7B000778F44 /* afm.jpg */; };
+		906BDF091F20E8D000778F44 /* ImageSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF081F20E8D000778F44 /* ImageSelectionController.m */; };
+		906BDF0E1F210CC700778F44 /* tabea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF0D1F210CC700778F44 /* tabea.jpg */; };
 		909CBFF81F0E8E6F005172C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFF71F0E8E6F005172C3 /* main.m */; };
 		909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */; };
 		909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFD1F0E8E6F005172C3 /* ViewController.m */; };
@@ -59,6 +63,12 @@
 		903772401F127FC1005F1A2B /* MendezView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezView.m; sourceTree = "<group>"; };
 		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
 		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
+		906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionDatasource.h; sourceTree = "<group>"; };
+		906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSelectionDatasource.m; sourceTree = "<group>"; };
+		906BDF021F20E7B000778F44 /* afm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = afm.jpg; sourceTree = "<group>"; };
+		906BDF071F20E8D000778F44 /* ImageSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSelectionController.h; path = ../ImageSelectionController.h; sourceTree = "<group>"; };
+		906BDF081F20E8D000778F44 /* ImageSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageSelectionController.m; path = ../ImageSelectionController.m; sourceTree = "<group>"; };
+		906BDF0D1F210CC700778F44 /* tabea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tabea.jpg; sourceTree = "<group>"; };
 		909CBFF31F0E8E6F005172C3 /* MendezTransform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MendezTransform.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CBFF71F0E8E6F005172C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		909CBFF91F0E8E6F005172C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +128,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		906BDF0A1F20FA3100778F44 /* Mendez Transform */ = {
+			isa = PBXGroup;
+			children = (
+				909CC02B1F0E9538005172C3 /* Rotation.h */,
+				909CC0291F0E951A005172C3 /* Rotation.m */,
+				909CC02C1F0EAC53005172C3 /* SpherePoint.h */,
+				909CC02D1F0EAC88005172C3 /* SpherePoint.m */,
+				909CC02F1F112FC9005172C3 /* SphereGrid.h */,
+				909CC0301F11305F005172C3 /* SphereGrid.m */,
+				909CC0391F114300005172C3 /* SphereFunction.h */,
+				909CC0371F11427C005172C3 /* SphereFunction.m */,
+				909CC03C1F114C93005172C3 /* Mtransform.h */,
+				909CC03A1F114C1E005172C3 /* Mtransform.m */,
+				9037723C1F12148E005F1A2B /* MendezTransformViewController.h */,
+				9037723D1F12148E005F1A2B /* MendezTransformViewController.m */,
+				903772391F120F10005F1A2B /* MendezTransformView.h */,
+				9037723A1F120F10005F1A2B /* MendezTransformView.m */,
+			);
+			name = "Mendez Transform";
+			sourceTree = "<group>";
+		};
+		906BDF0B1F20FA5500778F44 /* Image Selection */ = {
+			isa = PBXGroup;
+			children = (
+				906BDF0D1F210CC700778F44 /* tabea.jpg */,
+				906BDF071F20E8D000778F44 /* ImageSelectionController.h */,
+				906BDF081F20E8D000778F44 /* ImageSelectionController.m */,
+				906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */,
+				906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */,
+				906BDF021F20E7B000778F44 /* afm.jpg */,
+				90311C231F20CB3C008B57F2 /* m42-final.jpg */,
+				903772371F115D62005F1A2B /* blackwhite.png */,
+			);
+			name = "Image Selection";
+			sourceTree = "<group>";
+		};
+		906BDF0C1F20FB1200778F44 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				9037723F1F127FC1005F1A2B /* MendezView.h */,
+				903772401F127FC1005F1A2B /* MendezView.m */,
+				906BDEFC1F20DAEC00778F44 /* SpheresView.h */,
+				906BDEFD1F20DAEC00778F44 /* SpheresView.m */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
 		909CBFEA1F0E8E6F005172C3 = {
 			isa = PBXGroup;
 			children = (
@@ -142,35 +199,20 @@
 		909CBFF51F0E8E6F005172C3 /* MendezTransform */ = {
 			isa = PBXGroup;
 			children = (
+				906BDF0B1F20FA5500778F44 /* Image Selection */,
+				906BDF0A1F20FA3100778F44 /* Mendez Transform */,
 				909CBFF91F0E8E6F005172C3 /* AppDelegate.h */,
 				909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */,
 				909CBFFC1F0E8E6F005172C3 /* ViewController.h */,
 				909CBFFD1F0E8E6F005172C3 /* ViewController.m */,
+				906BDF0C1F20FB1200778F44 /* Main View */,
 				909CBFFF1F0E8E6F005172C3 /* Main.storyboard */,
 				909CC0021F0E8E6F005172C3 /* Assets.xcassets */,
 				909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */,
 				909CC0071F0E8E6F005172C3 /* Info.plist */,
 				909CBFF61F0E8E6F005172C3 /* Supporting Files */,
-				909CC02B1F0E9538005172C3 /* Rotation.h */,
-				909CC0291F0E951A005172C3 /* Rotation.m */,
-				909CC02C1F0EAC53005172C3 /* SpherePoint.h */,
-				909CC02D1F0EAC88005172C3 /* SpherePoint.m */,
-				909CC02F1F112FC9005172C3 /* SphereGrid.h */,
-				909CC0301F11305F005172C3 /* SphereGrid.m */,
-				909CC0391F114300005172C3 /* SphereFunction.h */,
-				909CC0371F11427C005172C3 /* SphereFunction.m */,
-				909CC03C1F114C93005172C3 /* Mtransform.h */,
-				909CC03A1F114C1E005172C3 /* Mtransform.m */,
-				903772391F120F10005F1A2B /* MendezTransformView.h */,
-				9037723A1F120F10005F1A2B /* MendezTransformView.m */,
 				909CC03D1F115605005172C3 /* Experiment.h */,
 				909CC03E1F115642005172C3 /* Experiment.m */,
-				9037723C1F12148E005F1A2B /* MendezTransformViewController.h */,
-				9037723D1F12148E005F1A2B /* MendezTransformViewController.m */,
-				9037723F1F127FC1005F1A2B /* MendezView.h */,
-				903772401F127FC1005F1A2B /* MendezView.m */,
-				906BDEFC1F20DAEC00778F44 /* SpheresView.h */,
-				906BDEFD1F20DAEC00778F44 /* SpheresView.m */,
 			);
 			path = MendezTransform;
 			sourceTree = "<group>";
@@ -178,8 +220,6 @@
 		909CBFF61F0E8E6F005172C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90311C231F20CB3C008B57F2 /* m42-final.jpg */,
-				903772371F115D62005F1A2B /* blackwhite.png */,
 				909CBFF71F0E8E6F005172C3 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -319,9 +359,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906BDF031F20E7B000778F44 /* afm.jpg in Resources */,
 				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
 				909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
+				906BDF0E1F210CC700778F44 /* tabea.jpg in Resources */,
 				909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */,
 				903772381F115D62005F1A2B /* blackwhite.png in Resources */,
 			);
@@ -350,6 +392,7 @@
 			files = (
 				909CC03F1F115642005172C3 /* Experiment.m in Sources */,
 				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
+				906BDF091F20E8D000778F44 /* ImageSelectionController.m in Sources */,
 				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
 				9037723E1F12148E005F1A2B /* MendezTransformViewController.m in Sources */,
@@ -357,6 +400,7 @@
 				9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */,
 				909CC0381F11427C005172C3 /* SphereFunction.m in Sources */,
 				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
+				906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
 				903772411F127FC1005F1A2B /* MendezView.m in Sources */,
 				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
