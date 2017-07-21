@@ -22,8 +22,9 @@
 
 - (id)initWithFrame:(CGRect)frame;
 
-- (void)setTransforms: (int)n left: (float*)a right: (float*)b;
+- (void)setTransformsLeft: (MendezTransformResult*)a right: (MendezTransformResult*)b;
 - (void)layoutSubviews;
 - (UILabel*)makeLabel: (NSString*)labeltext;
+- (NSUInteger)recommendedTransformSize;
 
 @end

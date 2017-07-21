@@ -19,7 +19,6 @@
 
 @implementation ViewController
 
-#define Mtransform_size 200
 #define prerotate (M_PI / 2)
 
 - (void)viewDidLoad {
@@ -32,12 +31,15 @@
     rightFunction = [[SphereFunction alloc] init];
     float   a[3] = { prerotate/sqrt(3), prerotate/sqrt(3), prerotate/sqrt(3) };
     leftFunction.rotation = [[Rotation alloc] init: a];
+    Mtransform_size = [mendezView recommendedTransformSize];
     mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
-    [self setImage: @"m42-final.jpg"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    Mtransform_size = [mendezView recommendedTransformSize];
+    mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
+    [self setImage: @"m42-final.jpg"];
 }
 
 
@@ -46,31 +48,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-#if 0
-- (void)runExperiment {
-    NSLog(@"running experiment");
-    UIImage *image = [UIImage imageNamed: @"m42-final.jpg"];
-    SphereFunction  *f = [[SphereFunction alloc] init: image];
-    Mtransform  *M = [[Mtransform alloc] initWidth: Mtransform_size height: Mtransform_size];
-    spherepoint sp;
-    sp.phi = M_PI / 6;
-    sp.theta = M_PI / 6;
+- (void)recompute {
+    SCNVector3 axis = mendezView.axis;
     float   v[3];
-    point2vector(sp, v);
-    float   result[Mtransform_size];
-    [M transform: result axis: v function: f];
-    for (int i = 0; i < Mtransform_size; i++) {
-        NSLog(@"Mf[%3d] = %7.4f", i, result[i]);
-    }
-    [rightTransform setData: result length: Mtransform_size];
-    [leftTransform setData : result length: Mtransform_size];
-    [differenceTransform setDifference: result minus: result length:Mtransform_size mirror: NO];
-    [mirroredDifferenceTransform setDifference: result minus: result length:Mtransform_size mirror: YES];
-
+    v[0] = axis.x;
+    v[1] = axis.y;
+    v[2] = axis.z;
+    MendezTransformResult   *left = [mtransform transform: v function: leftFunction];
+    MendezTransformResult   *right = [mtransform transform: v function: rightFunction];
+    [mendezView setTransformsLeft: left right: right];
 }
-#endif
-
-
 
 - (void)setImage: (NSString *)imagename {
     // XXX other classes may also need to know the new image
@@ -78,10 +65,10 @@
     UIImage *image = [UIImage imageNamed: imagename];
     [leftFunction setImage: image];
     [rightFunction setImage: image];
+    [self recompute];
 }
 
 - (void)popupImageSelection:(id)sender {
-    NSLog(@"ViewController popupImageSelection called");
     ImageSelectionController    *imageSelectionController = [[ImageSelectionController alloc] init];
     imageSelectionController.viewController = self;
     imageSelectionController.modalPresentationStyle = UIModalPresentationPopover;
@@ -92,16 +79,7 @@
 
 
 - (void)axisChanged:(id)sender {
-    SCNVector3 axis = mendezView.axis;
-    float   v[3];
-    v[0] = axis.x;
-    v[1] = axis.y;
-    v[2] = axis.z;
-    float   *l = (float*)calloc(Mtransform_size, sizeof(float));
-    float   *r = (float*)calloc(Mtransform_size, sizeof(float));
-    [mtransform transform: l axis:v function: leftFunction];
-    [mtransform transform: r axis:v function: rightFunction];
-    [mendezView setTransforms: Mtransform_size left:l right:r];
+    [self recompute];
 }
 
 @end

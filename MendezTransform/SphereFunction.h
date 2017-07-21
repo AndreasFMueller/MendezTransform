@@ -19,8 +19,8 @@
 - (id)init;
 - (id)init: (UIImage*)_image;
 
-- (float)valueX: (NSUInteger)x Y: (NSUInteger)y;
-- (float)value: (float[3])vec;
+- (float)valueX: (NSUInteger)x Y: (NSUInteger)y offset:(int)_offset;
+- (float)value: (float[3])vec offset:(int)_offset;
 
 - (void)dealloc;
 

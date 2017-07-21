@@ -53,21 +53,21 @@
     return self;
 }
 
-- (float)valueX: (NSUInteger)x Y: (NSUInteger)y {
+- (float)valueX: (NSUInteger)x Y: (NSUInteger)y offset:(int)_offset {
     if (NULL == imageData) {
         return 0;
     }
     // take the green channel
-    return imageData[4 * x + 4 * y * self.width + 1] / 255.;
+    return imageData[4 * x + 4 * y * self.width + _offset + 1] / 255.;
 }
 
-- (float)value: (float[3])vec {
+- (float)value: (float[3])vec offset: (int)_offset {
     if (NULL == imageData) {
         return 0;
     }
     NSUInteger x = [self hoffsetV: vec];
     NSUInteger y = [self voffsetV: vec];
-    return [self valueX: x Y: y];
+    return [self valueX: x Y: y offset: _offset];
 }
 
 - (void)dealloc {

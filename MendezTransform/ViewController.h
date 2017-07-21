@@ -17,11 +17,13 @@
     SphereFunction  *leftFunction;
     SphereFunction  *rightFunction;
     Mtransform  *mtransform;
+    NSUInteger  Mtransform_size;
 }
 
 - (void)setImage: (NSString *)imagename;
 - (void)popupImageSelection: (id)sender;
 - (void)axisChanged: (id)sender;
+- (void)recompute;
 
 @end
 

@@ -10,7 +10,7 @@
 
 @implementation MendezTransformView
 
-@synthesize min, max;
+@synthesize min, max, color, scale;
 
 - (id)initWithFrame: (CGRect)frame {
     self = [super initWithFrame: frame];
@@ -19,6 +19,8 @@
         data = NULL;
         min = -0.1;
         max = 1.1;
+        color = NO;
+        scale = 1;
         self.backgroundColor = [UIColor colorWithRed: 0.9 green:0.9 blue:1 alpha:1];
     }
     return self;
@@ -31,29 +33,47 @@
     }
 }
 
-- (void)setData: (float*)_data length: (int)_n {
-    NSLog(@"got new data length %d", _n);
-    if (_n != n) {
-        n = _n;
-        data = realloc(data, n * sizeof(float));
+- (void)setData: (MendezTransformResult*)_data {
+    color = _data.color;
+    int maxoffset = (self.color) ? 3 : 1;
+    if (n != [_data length]) {
+        n = _data.length;
+        data = (float *)realloc(data, n * sizeof(float) * maxoffset);
     }
-    for (int i = 0; i < n; i++) {
-        data[i] = _data[i];
+    int j = 0;
+    for (int offset = 0; offset < maxoffset; offset++) {
+        float   *d = [_data dataAtOffset: offset];
+        for (int i = 0; i < n; i++) {
+            data[j++] = d[i];
+        }
     }
     [self setNeedsDisplay];
 }
 
-- (void)setDifference: (float*)_a minus: (float*)_b length: (int)_n mirror:(BOOL)_mirror {
-    if (_n != n) {
-        n = _n;
-        data = realloc(data, n * sizeof(float));
+- (void)setDifference: (MendezTransformResult*)a minus: (MendezTransformResult*)b mirror:(BOOL)_mirror {
+    if (a.length != b.length) {
+        return;
     }
-    for (int i = 0; i < n; i++) {
-        if (_mirror) {
-            data[i] = _a[i] - _b[n - i - 1];
-
-        } else {
-            data[i] = _a[i] - _b[i];
+    if (a.color != b.color) {
+        return;
+    }
+    color = a.color;
+    int maxoffset = (self.color) ? 3 : 1;
+    if (a.length != n) {
+        n = a.length;
+        data = (float *)realloc(data, n * sizeof(float) * maxoffset);
+    }
+    int j = 0;
+    for (int offset = 0; offset < maxoffset; offset++) {
+        float   *da = [a dataAtOffset: offset];
+        float   *db = [b dataAtOffset: offset];
+        for (int i = 0; i < n; i++) {
+            if (_mirror) {
+                data[j++] = da[i] - db[n - i - 1];
+                
+            } else {
+                data[j++] = da[i] - db[i];
+            }
         }
     }
     [self setNeedsDisplay];
@@ -70,8 +90,7 @@ float   between(float y, float minvalue, float maxvalue) {
     return y;
 }
 
-- (void)drawRect:(CGRect)rect {
-    NSLog(@"drawing contents of MendezTransformView (size %d)", n);
+- (void)drawRectMono:(CGRect)rect {
     if (0 == n) {
         return;
     }
@@ -94,7 +113,7 @@ float   between(float y, float minvalue, float maxvalue) {
     CGContextSetRGBStrokeColor(ctx, 0, 0, 0, 1);
  
 #define X(x) (width * x / n)
-#define Y(y) (height * (max - between(y, min, max)) / (max - min))
+#define Y(y) (height * (max - between(scale * y, min, max)) / (max - min))
     
     // create a path from all the points
     if (n > 0) {
@@ -115,5 +134,40 @@ float   between(float y, float minvalue, float maxvalue) {
     CGContextAddLineToPoint(ctx, X(n-1), Y(0));
     CGContextStrokePath(ctx);
 }
+
+- (void)drawRectColor: (CGRect)rect {
+    NSLog(@"color display not implemented");
+}
+
+
+- (void)drawRect: (CGRect)rect {
+    if (self.color) {
+        [self drawRectColor: (CGRect)rect];
+    } else {
+        [self drawRectMono: (CGRect)rect];
+    }
+}
+
+- (void)handleTouches:(NSSet*)touches {
+    if (0 == [touches count]) {
+        return;
+    }
+    UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex: 0];
+    CGPoint where = [touch locationInView: self];
+    float origin = self.bounds.origin.x + 20;
+    float width = self.bounds.size.width - 40;
+    float   t = (where.x - origin) / width;
+    scale = 1 + 4 * between(t, 0, 1);
+    [self setNeedsDisplay];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self handleTouches:touches];
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self handleTouches:touches];
+}
+
+
 
 @end

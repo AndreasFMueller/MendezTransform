@@ -21,12 +21,8 @@
 #define HEIGHT 30
 
 - (void)layoutSubviews {
-    NSLog(@"MendezTransformsView %.1fx%.1f x+%.1f y+%.1f",
-          self.frame.size.width, self.frame.size.height,
-          self.frame.origin.x, self.frame.origin.y);
     float   width = self.bounds.size.width / 4;
     float   height = self.bounds.size.height - HEIGHT;
-    NSLog(@"MendezTransformsView layoutSubviews: width=%.1f, height=%.1f", width, height);
 
     left.frame       = CGRectMake(            2, HEIGHT + 2, width - 4, height - 4);
     difference.frame = CGRectMake(    width + 2, HEIGHT + 2, width - 4, height - 4);
@@ -57,8 +53,10 @@
     [self addSubview: reverse];
     [self addSubview: right];
 
-    difference.min = -1.1;
-    reverse.min = -1.1;
+    difference.min = -0.5;
+    difference.max = 0.5;
+    reverse.min = -0.5;
+    reverse.max = 0.5;
 
     leftLabel       = [self makeLabel: @"Left"];
     differenceLabel = [self makeLabel: @"Difference"];
@@ -68,11 +66,15 @@
     [self setNeedsLayout];
 }
 
-- (void)setTransforms: (int)n left: (float*)a right: (float*)b {
-    [left setData: a length: n];
-    [right setData: b length: n];
-    [difference setDifference: a minus: b length: n mirror: NO];
-    [reverse setDifference: a minus: b length: n mirror: YES];
+- (void)setTransformsLeft: (MendezTransformResult*)a right: (MendezTransformResult*)b {
+    [left setData: a];
+    [right setData: b];
+    [difference setDifference: a minus: b mirror: NO];
+    [reverse setDifference: a minus: b mirror: YES];
+}
+
+- (NSUInteger)recommendedTransformSize {
+    return left.bounds.size.width;
 }
 
 @end

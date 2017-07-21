@@ -13,7 +13,6 @@
 static NSString *imageSelectionReuseIdentifier = @"imageselection";
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"request for row %ld", indexPath.row);
     NSString    *imagename = [images objectAtIndex: indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: imageSelectionReuseIdentifier];
     if (nil == cell) {
@@ -30,7 +29,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (id)init {
     self = [super init];
     if (self) {
-        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"blackwhite.png", nil];
+        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"blackwhite.png", nil];
     }
     return self;
 }

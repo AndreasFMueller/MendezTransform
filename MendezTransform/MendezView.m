@@ -24,10 +24,10 @@
     transformsView.frame = CGRectMake(0, self.bounds.size.width/2,
                                       self.bounds.size.width, height);
     
-    rotationangle.frame = CGRectMake(0, self.bounds.size.height - controlsheight,
-                                     self.bounds.size.width/3, controlsheight);
-    resetRotationButton.frame = CGRectMake(self.bounds.size.width/3, self.bounds.size.height - controlsheight,
+    comparingButton.frame = CGRectMake(0, self.bounds.size.height - controlsheight,
                                            2 * controlsheight, controlsheight);
+    fineButton.frame = CGRectMake(2 * controlsheight, self.bounds.size.height - controlsheight,
+                                  controlsheight, controlsheight);
     
     imageSelectionButton.frame = CGRectMake(self.bounds.size.width * 3/4, self.bounds.size.height - controlsheight, self.bounds.size.width / 4, controlsheight);
 }
@@ -40,20 +40,17 @@
     transformsView = [[MendezTransformsView alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
     [self addSubview: transformsView];
     
-    // Slider to set the rotation angle
-    rotationangle = [[UISlider alloc] initWithFrame: CGRectMake(0,0,1,1)];
-    [self addSubview: rotationangle];
-    rotationangle.minimumValue = -M_PI;
-    rotationangle.maximumValue = M_PI;
-    rotationangle.value = 0;
+    comparingButton = [[UIButton alloc] init];
+    [comparingButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
+    [comparingButton addTarget: self action: @selector(toggleComparing:) forControlEvents: UIControlEventTouchUpInside];
+    [self addSubview: comparingButton];
     
-    [rotationangle addTarget: self action:@selector(rotate:) forControlEvents:UIControlEventValueChanged];
-    
-    resetRotationButton = [[UIButton alloc] init];
-    [resetRotationButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [resetRotationButton setTitle: @"Reset" forState: UIControlStateNormal];
-    [resetRotationButton addTarget: self action: @selector(rotate0:) forControlEvents: UIControlEventTouchUpInside];
-    [self addSubview: resetRotationButton];
+    fineButton = [[UIButton alloc] init];
+    [fineButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [fineButton setTitle: @"Fine" forState: UIControlStateNormal];
+    [fineButton addTarget: self action: @selector(toggleFine:) forControlEvents: UIControlEventTouchUpInside];
+    [self addSubview: fineButton];
     
     // Button to request the image selection
     imageSelectionButton = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
@@ -89,16 +86,24 @@
     [spheresView rotate: SCNVector4Make(a.x, a.y, a.z, angle)];
 }
 
-
-- (IBAction)rotate: (id)sender {
-    [self rotateAngle: rotationangle.value];
-}
-
-- (IBAction)rotate0: (id)sender {
-    rotationangle.value = 0;
+- (void)toggleComparing: (id)sender {
     [self rotateAngle: 0];
+    spheresView.comparing = !spheresView.comparing;
+    if (spheresView.comparing) {
+        [comparingButton setTitle: @"Find Axis" forState: UIControlStateNormal];
+    } else {
+        [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
+    }
 }
 
+- (void)toggleFine: (id)sender {
+    spheresView.fine = !spheresView.fine;
+    if (spheresView.fine) {
+        [fineButton setTitle: @"Coarse" forState: UIControlStateNormal];
+    } else {
+        [fineButton setTitle: @"Fine" forState: UIControlStateNormal];
+    }
+}
 
 - (void)setImage: (NSString*) imagename {
     [spheresView setImage: imagename];
@@ -112,8 +117,13 @@
     [spheresView addTouchTarget:_target action: _action];
 }
 
-- (void)setTransforms: (int)n left: (float*)a right: (float*)b {
-    [transformsView setTransforms: n left: a right: b];
+
+- (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right {
+    [transformsView setTransformsLeft: left right: right];
+}
+
+- (NSUInteger)recommendedTransformSize {
+    return [transformsView recommendedTransformSize];
 }
 
 

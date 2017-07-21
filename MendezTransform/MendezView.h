@@ -10,10 +10,11 @@
 #import <SceneKit/SceneKit.h>
 #import "MendezTransformsView.h"
 #import "SpheresView.h"
+#import "MendezTransformResult.h"
 
 @interface MendezView : UIView {
-    IBOutlet UISlider   *rotationangle;
-    IBOutlet UIButton   *resetRotationButton;
+    IBOutlet UIButton   *comparingButton;
+    IBOutlet UIButton   *fineButton;
     IBOutlet UIButton   *imageSelectionButton;
     IBOutlet SpheresView    *spheresView;
     IBOutlet MendezTransformsView   *transformsView;
@@ -28,8 +29,9 @@
 - (id)initWithCoder:(NSCoder *)aDecoder;
 
 - (void)rotateAngle: (float)angle;
-- (IBAction)rotate: (id)sender;
-- (IBAction)rotate0: (id)sender;
+- (void)toggleComparing: (id)sender;
+
+- (NSUInteger)recommendedTransformSize;
 
 // stuff related to image selection
 - (void)setImage: (NSString*)imagename;
@@ -37,7 +39,8 @@
 
 // stuff related to the touch interactions to determine the axis
 - (void)addAxisTarget: (id)target action: (SEL)action;
-- (void)setTransforms: (int)n left: (float*)a right: (float*)b;
-
+- (void)setTransforms: (NSUInteger)n left: (float*)a right: (float*)b;
+- (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right;
+- (void)toggleFine:(id)sender;
 
 @end
