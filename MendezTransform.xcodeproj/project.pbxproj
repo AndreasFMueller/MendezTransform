@@ -15,6 +15,9 @@
 		905B94801F215836004AA9BF /* ImageSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B947F1F215836004AA9BF /* ImageSelectionController.m */; };
 		905B94831F221032004AA9BF /* MendezTransformResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94821F221032004AA9BF /* MendezTransformResult.m */; };
 		905B94851F223DFB004AA9BF /* m42-smooth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B94841F223DFB004AA9BF /* m42-smooth.jpg */; };
+		905B948B1F228B90004AA9BF /* StripeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B948A1F228B90004AA9BF /* StripeImage.m */; };
+		905B948E1F229C25004AA9BF /* DotsImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B948D1F229C25004AA9BF /* DotsImage.m */; };
+		905B94911F22A1E0004AA9BF /* ComputedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94901F22A1E0004AA9BF /* ComputedImage.m */; };
 		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
 		906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */; };
 		906BDF031F20E7B000778F44 /* afm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF021F20E7B000778F44 /* afm.jpg */; };
@@ -67,6 +70,12 @@
 		905B94811F221032004AA9BF /* MendezTransformResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezTransformResult.h; sourceTree = "<group>"; };
 		905B94821F221032004AA9BF /* MendezTransformResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformResult.m; sourceTree = "<group>"; };
 		905B94841F223DFB004AA9BF /* m42-smooth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-smooth.jpg"; sourceTree = "<group>"; };
+		905B94891F228B90004AA9BF /* StripeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StripeImage.h; sourceTree = "<group>"; };
+		905B948A1F228B90004AA9BF /* StripeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StripeImage.m; sourceTree = "<group>"; };
+		905B948C1F229C25004AA9BF /* DotsImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotsImage.h; sourceTree = "<group>"; };
+		905B948D1F229C25004AA9BF /* DotsImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsImage.m; sourceTree = "<group>"; };
+		905B948F1F22A1E0004AA9BF /* ComputedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputedImage.h; sourceTree = "<group>"; };
+		905B94901F22A1E0004AA9BF /* ComputedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputedImage.m; sourceTree = "<group>"; };
 		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
 		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
 		906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionDatasource.h; sourceTree = "<group>"; };
@@ -224,6 +233,12 @@
 			isa = PBXGroup;
 			children = (
 				909CBFF71F0E8E6F005172C3 /* main.m */,
+				905B94891F228B90004AA9BF /* StripeImage.h */,
+				905B948A1F228B90004AA9BF /* StripeImage.m */,
+				905B948C1F229C25004AA9BF /* DotsImage.h */,
+				905B948D1F229C25004AA9BF /* DotsImage.m */,
+				905B948F1F22A1E0004AA9BF /* ComputedImage.h */,
+				905B94901F22A1E0004AA9BF /* ComputedImage.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -396,15 +411,18 @@
 			files = (
 				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
 				905B94801F215836004AA9BF /* ImageSelectionController.m in Sources */,
+				905B948B1F228B90004AA9BF /* StripeImage.m in Sources */,
 				905B94831F221032004AA9BF /* MendezTransformResult.m in Sources */,
 				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
+				905B94911F22A1E0004AA9BF /* ComputedImage.m in Sources */,
 				909CC02A1F0E951A005172C3 /* Rotation.m in Sources */,
 				9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */,
 				909CC0381F11427C005172C3 /* SphereFunction.m in Sources */,
 				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
 				906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
+				905B948E1F229C25004AA9BF /* DotsImage.m in Sources */,
 				903772411F127FC1005F1A2B /* MendezView.m in Sources */,
 				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
 				905B947D1F212539004AA9BF /* MendezTransformsView.m in Sources */,

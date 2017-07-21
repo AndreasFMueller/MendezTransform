@@ -89,7 +89,7 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [viewController setImage: [data imageNameAtIndexPath: indexPath]];
+    [viewController setImage: [data imageAtIndexPath: indexPath]];
     [self dismissViewControllerAnimated: YES completion: nil];
 }
 

@@ -109,17 +109,15 @@ static thread_time_t thread_time_sub(thread_time_t const a, thread_time_t const 
     }
     thread_time_t   end = thread_time();
     thread_time_t   total = thread_time_sub(end, start);
-    NSLog(@"Mendez-Transform computation complete user: %llu system: %llu", total.user_time_us, total.system_time_us);
+    //NSLog(@"Mendez-Transform computation complete user: %llu system: %llu", total.user_time_us, total.system_time_us);
 }
 
 - (MendezTransformResult *)transform: (float[3])axis function: (SphereFunction*)f {
-    NSLog(@"color transform: %s", (self.color) ? "YES" : "NO");
     MendezTransformResult   *result = [[MendezTransformResult alloc] init: height color: self.color];
     if (!self.color) {
         [self transformTo: [result dataAtOffset: 0] axis: axis function: f offset: 1];
     } else {
         for (int _offset = 0; _offset < 3; _offset++) {
-            NSLog(@"transform for offset %d", _offset);
             [self transformTo: [result dataAtOffset: _offset] axis: axis function: f offset: _offset];
         }
     }

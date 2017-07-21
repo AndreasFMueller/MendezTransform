@@ -15,5 +15,6 @@
 
 - (id)init;
 - (NSString *)imageNameAtIndexPath: (NSIndexPath*)indexPath;
+- (UIImage *)imageAtIndexPath: (NSIndexPath*)indexPath;
 
 @end

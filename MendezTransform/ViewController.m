@@ -40,7 +40,7 @@
     [super viewDidAppear:animated];
     Mtransform_size = [mendezView recommendedTransformSize];
     mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
-    [self setImage: @"m42-final.jpg"];
+    [self setImage: [UIImage imageNamed: @"m42-final.jpg"]];
 }
 
 
@@ -70,9 +70,8 @@
     [mendezView setTransformsLeft: left right: right];
 }
 
-- (void)setImage: (NSString *)imagename {
-    [mendezView setImage: imagename];
-    UIImage *image = [UIImage imageNamed: imagename];
+- (void)setImage: (UIImage *)image {
+    [mendezView setImage: image];
     [leftFunction setImage: image];
     [rightFunction setImage: image];
     [self recompute];

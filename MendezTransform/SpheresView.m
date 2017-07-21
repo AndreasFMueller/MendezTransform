@@ -46,8 +46,8 @@
     sphere.materials = @[material];
 }
 
-- (void)setImage: (NSString*)imagename {
-    opaqueImage = [UIImage imageNamed: imagename];
+- (void)setImage: (UIImage*)image {
+    opaqueImage = image;
     
     // convert this image to have the right alpha channel
     CIImage *inputImage = nil;
@@ -177,7 +177,7 @@
     NSLog(@"position: %.2f, %.2f", where.x, where.y);
     phi = 2 * M_PI * where.x / self.bounds.size.width;
     theta = M_PI * where.y / self.bounds.size.height;
-    NSLog(@"theta = %.3f, phi = %.3f", theta, phi);
+    //NSLog(@"theta = %.3f, phi = %.3f", theta, phi);
     float   z = cosf(theta);
     float   x = sinf(theta);
     float   y = x * sinf(phi);
@@ -189,7 +189,6 @@
     
     // send action
     if ([target respondsToSelector: action]) {
-        NSLog(@"new axis action");
         [target performSelector:action withObject: self];
     }
 }

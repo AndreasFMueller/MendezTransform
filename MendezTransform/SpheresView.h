@@ -39,7 +39,7 @@
 - (void)setupScene;
 - (void)rotate: (SCNVector4)rotation;
 - (void)rotateAngle: (float)angle;
-- (void)setImage: (NSString *)imagename;
+- (void)setImage: (UIImage *)image;
 
 - (void)addTouchTarget: (id)target action: (SEL)action;
 

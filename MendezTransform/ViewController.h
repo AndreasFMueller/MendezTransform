@@ -21,7 +21,7 @@
     BOOL color;
 }
 
-- (void)setImage: (NSString *)imagename;
+- (void)setImage: (UIImage *)image;
 - (void)popupImageSelection: (id)sender;
 - (void)axisChanged: (id)sender;
 - (void)recompute;

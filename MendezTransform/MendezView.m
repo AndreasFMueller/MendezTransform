@@ -114,8 +114,8 @@
     }
 }
 
-- (void)setImage: (NSString*) imagename {
-    [spheresView setImage: imagename];
+- (void)setImage: (UIImage*) image {
+    [spheresView setImage: image];
 }
 
 - (void)addSelectionTarget: (id)target action: (SEL)action {

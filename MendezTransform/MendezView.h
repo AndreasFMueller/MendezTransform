@@ -38,7 +38,7 @@
 - (NSUInteger)recommendedTransformSize;
 
 // stuff related to image selection
-- (void)setImage: (NSString*)imagename;
+- (void)setImage: (UIImage*)image;
 - (void)addSelectionTarget: (id)target action: (SEL)action;
 
 // stuff related to the touch interactions to determine the axis
