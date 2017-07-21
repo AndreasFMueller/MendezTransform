@@ -113,12 +113,25 @@ static thread_time_t thread_time_sub(thread_time_t const a, thread_time_t const 
 }
 
 - (MendezTransformResult *)transform: (float[3])axis function: (SphereFunction*)f {
+    NSLog(@"color transform: %s", (self.color) ? "YES" : "NO");
     MendezTransformResult   *result = [[MendezTransformResult alloc] init: height color: self.color];
-    int maxoffset = (self.color) ? 2 : 0;
-    for (int _offset = 0; _offset <= maxoffset; _offset++) {
-        [self transformTo: [result dataAtOffset: _offset] axis: axis function: f offset: _offset];
+    if (!self.color) {
+        [self transformTo: [result dataAtOffset: 0] axis: axis function: f offset: 1];
+    } else {
+        for (int _offset = 0; _offset < 3; _offset++) {
+            NSLog(@"transform for offset %d", _offset);
+            [self transformTo: [result dataAtOffset: _offset] axis: axis function: f offset: _offset];
+        }
     }
     return result;
+}
+
+- (MendezTransformResult *)transformVector:(SCNVector3)axis function:(SphereFunction *)f {
+    float    v[3];
+    v[0] = axis.x;
+    v[1] = axis.y;
+    v[2] = axis.z;
+    return [self transform: v function: f];
 }
 
 - (void)dealloc {

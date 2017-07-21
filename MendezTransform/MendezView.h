@@ -18,6 +18,10 @@
     IBOutlet UIButton   *imageSelectionButton;
     IBOutlet SpheresView    *spheresView;
     IBOutlet MendezTransformsView   *transformsView;
+    IBOutlet UIButton   *colorButton;
+    
+    id  colorTarget;
+    SEL colorAction;
 }
 
 @property (readonly) SCNVector3    axis;
@@ -39,8 +43,11 @@
 
 // stuff related to the touch interactions to determine the axis
 - (void)addAxisTarget: (id)target action: (SEL)action;
-- (void)setTransforms: (NSUInteger)n left: (float*)a right: (float*)b;
 - (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right;
 - (void)toggleFine:(id)sender;
+
+// color
+- (void)addColorTarget: (id)target action: (SEL)action;
+- (void)colorPressed: (id)sender;
 
 @end

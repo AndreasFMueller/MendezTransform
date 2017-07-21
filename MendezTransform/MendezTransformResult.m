@@ -12,6 +12,10 @@
 
 @synthesize length, color;
 
+- (NSUInteger)dataLength {
+    return ((self.color) ? 3 : 1) * length;
+}
+
 - (id)init: (NSUInteger)_length color: (BOOL)_color {
     self = [super init];
     if (self) {
@@ -20,6 +24,7 @@
         length = _length;
         data = (float *)calloc(length * maxoffset, sizeof(float));
         int maxi = maxoffset * length;
+        NSLog(@"initialize %d floats", maxi);
         for (int i = 0; i < maxi; i++) {
             data[i] = 0;
         }
@@ -32,6 +37,7 @@
     if (o >= maxoffset) {
         o = maxoffset - 1;
     }
+    NSLog(@"request for offset %d, address %p", o, &data[o * length]);
     return &data[o * length];
 }
 

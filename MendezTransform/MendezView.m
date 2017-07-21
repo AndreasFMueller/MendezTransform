@@ -29,6 +29,8 @@
     fineButton.frame = CGRectMake(2 * controlsheight, self.bounds.size.height - controlsheight,
                                   controlsheight, controlsheight);
     
+    colorButton.frame = CGRectMake(self.bounds.size.width * 3/4 - controlsheight, self.bounds.size.height - controlsheight, controlsheight, controlsheight);
+    
     imageSelectionButton.frame = CGRectMake(self.bounds.size.width * 3/4, self.bounds.size.height - controlsheight, self.bounds.size.width / 4, controlsheight);
 }
 
@@ -52,8 +54,15 @@
     [fineButton addTarget: self action: @selector(toggleFine:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: fineButton];
     
+    // Button to switch to color mode
+    colorButton = [[UIButton alloc] init];
+    [colorButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
+    [colorButton addTarget: self action: @selector(colorPressed:) forControlEvents: UIControlEventTouchUpInside];
+    [self addSubview: colorButton];
+    
     // Button to request the image selection
-    imageSelectionButton = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
+    imageSelectionButton = [[UIButton alloc] init];
     [imageSelectionButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [imageSelectionButton setTitle: @"Select Image" forState: UIControlStateNormal];
 
@@ -126,5 +135,18 @@
     return [transformsView recommendedTransformSize];
 }
 
+- (void)addColorTarget: (id)target action: (SEL)action {
+    colorTarget = target;
+    colorAction = action;
+}
+
+- (void)colorPressed: (id)sender {
+    if ([colorButton.titleLabel.text isEqualToString: @"Mono" ]) {
+        [colorButton setTitle: @"Color" forState: UIControlStateNormal];
+    } else {
+        [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
+    }
+    [colorTarget performSelector: colorAction withObject: self];
+}
 
 @end

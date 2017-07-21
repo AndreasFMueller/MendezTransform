@@ -43,6 +43,8 @@
 }
 
 - (void)setupSubviews {
+    self.backgroundColor = [UIColor colorWithRed: 0.95 green:0.95 blue:0.95 alpha:1];
+    
     left       = [[MendezTransformView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
     difference = [[MendezTransformView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
     reverse    = [[MendezTransformView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];

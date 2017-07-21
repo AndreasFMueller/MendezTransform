@@ -14,6 +14,7 @@
 }
 
 @property (readonly) NSUInteger length;
+@property (readonly) NSUInteger dataLength;
 @property (readonly) BOOL color;
 
 - (id)init: (NSUInteger)length color: (BOOL)_color;

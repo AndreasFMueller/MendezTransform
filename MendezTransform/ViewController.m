@@ -27,6 +27,7 @@
     mendezView = (MendezView *)self.view;
     [mendezView addSelectionTarget: self action: @selector(popupImageSelection:)];
     [mendezView addAxisTarget: self action: @selector(axisChanged:)];
+    [mendezView addColorTarget: self action: @selector(toggleColor:)];
     leftFunction = [[SphereFunction alloc] init];
     rightFunction = [[SphereFunction alloc] init];
     float   a[3] = { prerotate/sqrt(3), prerotate/sqrt(3), prerotate/sqrt(3) };
@@ -50,17 +51,26 @@
 
 - (void)recompute {
     SCNVector3 axis = mendezView.axis;
-    float   v[3];
-    v[0] = axis.x;
-    v[1] = axis.y;
-    v[2] = axis.z;
-    MendezTransformResult   *left = [mtransform transform: v function: leftFunction];
-    MendezTransformResult   *right = [mtransform transform: v function: rightFunction];
+#if 0
+    dispatch_group_t group = dispatch_group_create();
+    MendezTransformResult __block  *left = nil;
+    MendezTransformResult __block   *right = nil;
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        left = [mtransform transformVector: axis function: leftFunction];
+    });
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        right = [mtransform transformVector: axis function: rightFunction];
+    });
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"transforms completed");
+#else
+    MendezTransformResult *left = [mtransform transformVector: axis function: leftFunction];
+    MendezTransformResult *right = [mtransform transformVector: axis function: rightFunction];
+#endif
     [mendezView setTransformsLeft: left right: right];
 }
 
 - (void)setImage: (NSString *)imagename {
-    // XXX other classes may also need to know the new image
     [mendezView setImage: imagename];
     UIImage *image = [UIImage imageNamed: imagename];
     [leftFunction setImage: image];
@@ -77,9 +87,16 @@
     presentationController.sourceView = sender;
 }
 
-
 - (void)axisChanged:(id)sender {
     [self recompute];
 }
+
+- (void)toggleColor:(id)sender {
+    NSLog(@"color toggled");
+    color = !color;
+    mtransform.color = color;
+    [self recompute];
+}
+
 
 @end

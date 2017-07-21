@@ -58,7 +58,7 @@
         return 0;
     }
     // take the green channel
-    return imageData[4 * x + 4 * y * self.width + _offset + 1] / 255.;
+    return imageData[4 * x + 4 * y * self.width + _offset] / 255.;
 }
 
 - (float)value: (float[3])vec offset: (int)_offset {

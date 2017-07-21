@@ -18,12 +18,14 @@
     SphereFunction  *rightFunction;
     Mtransform  *mtransform;
     NSUInteger  Mtransform_size;
+    BOOL color;
 }
 
 - (void)setImage: (NSString *)imagename;
 - (void)popupImageSelection: (id)sender;
 - (void)axisChanged: (id)sender;
 - (void)recompute;
+- (void)toggleColor:(id)sender;
 
 @end
 
