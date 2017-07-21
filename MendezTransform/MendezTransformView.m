@@ -152,7 +152,6 @@ float   between(float y, float minvalue, float maxvalue) {
 }
 
 - (void)drawRectColor: (CGRect)rect {
-    NSLog(@"color display not implemented");
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceCMYK();
     CGFloat redcomponents[5] = { 0, 0.2, 0.2, 0, 1 };
     [self drawMonoData: data color: CGColorCreate(colorspace, redcomponents)];
