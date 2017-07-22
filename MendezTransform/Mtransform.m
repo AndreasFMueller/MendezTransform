@@ -117,9 +117,13 @@ static thread_time_t thread_time_sub(thread_time_t const a, thread_time_t const 
     if (!self.color) {
         [self transformTo: [result dataAtOffset: 0] axis: axis function: f offset: 1];
     } else {
+        dispatch_group_t    group = dispatch_group_create();
         for (int _offset = 0; _offset < 3; _offset++) {
-            [self transformTo: [result dataAtOffset: _offset] axis: axis function: f offset: _offset];
+            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [self transformTo: [result dataAtOffset: _offset] axis: axis function: f offset: _offset];
+            });
         }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     }
     return result;
 }

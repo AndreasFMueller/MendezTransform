@@ -18,20 +18,24 @@
 - (void)layoutSubviews {
     NSLog(@"MendezView layoutSubviews");
     spheresView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.width/2);
+    
     float controlsheight = 80;
     float height = self.bounds.size.height - self.bounds.size.width/2 - controlsheight;
+    
+    float buttonunit = self.bounds.size.width / 12;
+    float buttony = self.bounds.size.height - controlsheight;
     
     transformsView.frame = CGRectMake(0, self.bounds.size.width/2,
                                       self.bounds.size.width, height);
     
-    comparingButton.frame = CGRectMake(0, self.bounds.size.height - controlsheight,
-                                           2 * controlsheight, controlsheight);
-    fineButton.frame = CGRectMake(2 * controlsheight, self.bounds.size.height - controlsheight,
-                                  controlsheight, controlsheight);
+    comparingButton.frame = CGRectMake(0, buttony, 2 * buttonunit, controlsheight);
+    fineButton.frame = CGRectMake(2 * buttonunit, buttony, controlsheight, controlsheight);
     
-    colorButton.frame = CGRectMake(self.bounds.size.width * 3/4 - controlsheight, self.bounds.size.height - controlsheight, controlsheight, controlsheight);
+    axisButton.frame = CGRectMake(3 * buttonunit, buttony, buttonunit, controlsheight);
     
-    imageSelectionButton.frame = CGRectMake(self.bounds.size.width * 3/4, self.bounds.size.height - controlsheight, self.bounds.size.width / 4, controlsheight);
+    colorButton.frame = CGRectMake(8 * buttonunit, buttony, buttonunit, controlsheight);
+    
+    imageSelectionButton.frame = CGRectMake(9 * buttonunit, buttony, 3 * buttonunit, controlsheight);
 }
 
 - (void)setupSubviews {
@@ -53,6 +57,12 @@
     [fineButton setTitle: @"Fine" forState: UIControlStateNormal];
     [fineButton addTarget: self action: @selector(toggleFine:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: fineButton];
+    
+    axisButton = [[UIButton alloc] init];
+    [axisButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [axisButton setTitle: @"Axis" forState: UIControlStateNormal];
+    [axisButton addTarget: spheresView action: @selector(toggleAxis:) forControlEvents: UIControlEventTouchUpInside];
+    [self addSubview: axisButton];
     
     // Button to switch to color mode
     colorButton = [[UIButton alloc] init];
@@ -147,6 +157,14 @@
         [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
     }
     [colorTarget performSelector: colorAction withObject: self];
+}
+
+- (SCNVector3)prerotation {
+    return spheresView.prerotation;
+}
+
+- (void)setPrerotation:(SCNVector3)r {
+    spheresView.prerotation = r;
 }
 
 @end

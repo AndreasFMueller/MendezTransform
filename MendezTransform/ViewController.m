@@ -30,8 +30,12 @@
     [mendezView addColorTarget: self action: @selector(toggleColor:)];
     leftFunction = [[SphereFunction alloc] init];
     rightFunction = [[SphereFunction alloc] init];
+    
     float   a[3] = { prerotate/sqrt(3), prerotate/sqrt(3), prerotate/sqrt(3) };
     leftFunction.rotation = [[Rotation alloc] init: a];
+    
+    mendezView.prerotation = SCNVector3Make(a[0], a[1], a[2]);
+    
     Mtransform_size = [mendezView recommendedTransformSize];
     mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
 }
@@ -51,7 +55,7 @@
 
 - (void)recompute {
     SCNVector3 axis = mendezView.axis;
-#if 0
+
     dispatch_group_t group = dispatch_group_create();
     MendezTransformResult __block  *left = nil;
     MendezTransformResult __block   *right = nil;
@@ -62,11 +66,7 @@
         right = [mtransform transformVector: axis function: rightFunction];
     });
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    NSLog(@"transforms completed");
-#else
-    MendezTransformResult *left = [mtransform transformVector: axis function: leftFunction];
-    MendezTransformResult *right = [mtransform transformVector: axis function: rightFunction];
-#endif
+
     [mendezView setTransformsLeft: left right: right];
 }
 

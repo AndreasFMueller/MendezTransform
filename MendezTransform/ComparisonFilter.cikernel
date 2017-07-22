@@ -1,0 +1,13 @@
+/*
+ * ComparisonFilter.cikernel
+ *
+ * (c) 2017 Prof Dr Andreas Müller, Hochschule Rapperswil
+ */
+kernel vec4 comparisonMask(sampler src, float level, float alpha) {
+    vec4    i = sample(src, samplerCoord(src));
+    float f;
+    f = (i.r > i.g) ? i.r : i.g;
+    f = (f > i.b) ? f : i.b;
+    i.a = (f > level) ? alpha : 0.0;
+    return i;
+}

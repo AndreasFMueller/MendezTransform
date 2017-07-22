@@ -19,12 +19,13 @@
     IBOutlet SpheresView    *spheresView;
     IBOutlet MendezTransformsView   *transformsView;
     IBOutlet UIButton   *colorButton;
-    
+    IBOutlet UIButton   *axisButton;
     id  colorTarget;
     SEL colorAction;
 }
 
-@property (readonly) SCNVector3    axis;
+@property (readonly) SCNVector3 axis;
+@property (readwrite) SCNVector3 prerotation;
 
 - (void)setupSubviews;
 - (void)layoutSubviews;

@@ -31,7 +31,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (id)init {
     self = [super init];
     if (self) {
-        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"blackwhite.png", @"Stripes", @"Dots", nil];
+        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png", @"Stripes", @"Dots", nil];
     }
     return self;
 }
@@ -46,7 +46,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
         return [[StripeImage alloc] initWithSize: CGSizeMake(800,400) stripes: 5].image;
     }
     if ([imagename isEqualToString: @"Dots"]) {
-        return [[DotsImage alloc] initWithSize: CGSizeMake(800,400) dots: 50].image;
+        return [[DotsImage alloc] initWithSize: CGSizeMake(800,400) dots: 70].image;
     }
     return [UIImage imageNamed: imagename];
 }

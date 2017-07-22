@@ -58,7 +58,10 @@ typedef struct dot_s {
             for (int i = 0; i < 3 * self.dots; i++) {
                 float a = acos(dotset[i].x * x + dotset[i].y * y + dotset[i].z * z);
                 if (a < dotset[i].r) {
-                    c[i % 3] = 255;
+                    int f = i % 6 + 1;
+                    if (0x1 & f) { c[0] = 255; }
+                    if (0x2 & f) { c[1] = 255; }
+                    if (0x4 & f) { c[2] = 255; }
                 }
             }
             *(w++) = c[0];

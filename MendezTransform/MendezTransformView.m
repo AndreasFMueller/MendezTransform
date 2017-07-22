@@ -153,11 +153,11 @@ float   between(float y, float minvalue, float maxvalue) {
 
 - (void)drawRectColor: (CGRect)rect {
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceCMYK();
-    CGFloat redcomponents[5] = { 0, 0.2, 0.2, 0, 1 };
+    CGFloat redcomponents[5] = { 0, 0.8, 0.8, 0, 1 };
     [self drawMonoData: data color: CGColorCreate(colorspace, redcomponents)];
-    CGFloat greencomponents[5] = { 0.2, 0, 0.2, 0, 0.5 };
+    CGFloat greencomponents[5] = { 0.8, 0, 0.8, 0, 0.5 };
     [self drawMonoData: data + self.length color: CGColorCreate(colorspace, greencomponents)];
-    CGFloat bluecomponents[5] = { 0.2, 0.2, 0, 0, 0.5 };
+    CGFloat bluecomponents[5] = { 0.8, 0.6, 0, 0, 0.5 };
     [self drawMonoData: data + 2 * self.length color: CGColorCreate(colorspace, bluecomponents)];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ComparisonFilter.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //Experiment  *exp = [[Experiment alloc] init: @"blackwhite.png"];
-    //[exp run];
+    [ComparisonFilter class];
     // Override point for customization after application launch.
     return YES;
 }

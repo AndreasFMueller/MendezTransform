@@ -12,14 +12,6 @@
 
 @synthesize axis, fine, center;
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 #define SPHERE_SEPARATION   3.3
 #define SPHERE_RADIUS       3.0
 
@@ -27,9 +19,29 @@
     self = [super initWithFrame:frame];
     if (self) {
         fine = NO;
+        showAxis = YES;
         [self setupScene];
     }
     return self;
+}
+
+- (SCNVector3)axisLeft {
+    return axisLeft;
+}
+
+- (void)setAxisLeft:(SCNVector3)a {
+    float n = hypotf(hypotf(a.x, a.y), a.z);
+    axisLeft = SCNVector3Make(a.x/n, -a.z/n, -a.y/n);
+    axisLeftNode.rotation = [self rotationAxis: axisLeft];
+}
+
+- (BOOL)showAxis {
+    return showAxis;
+}
+
+- (void)setShowAxis:(BOOL)s {
+    showAxis = s;
+    axisLeftNode.hidden = !showAxis;
 }
 
 - (void)setSphere: (SCNSphere*)sphere image: (UIImage*) image transparent:(UIImage*)transparent {
@@ -59,6 +71,7 @@
         NSLog(@"have CGImage data");
         inputImage = [CIImage imageWithCGImage: opaqueImage.CGImage];
     }
+#if 0
     CIFilter *monoFilter = [CIFilter filterWithName:@"CIPhotoEffectMono" keysAndValues: kCIInputImageKey, inputImage, nil];
     CIImage *monoImage = [monoFilter outputImage];
     
@@ -73,6 +86,10 @@
     CIFilter *blendFilter = [CIFilter filterWithName: @"CIBlendWithAlphaMask" keysAndValues:kCIInputImageKey, inputImage, @"inputBackgroundImage", backgroundImage, @"inputMaskImage", maskImage, nil];
     
     CIImage *outputImage = [blendFilter outputImage];
+#else
+    CIFilter *comparisonFilter = [CIFilter filterWithName: @"ComparisonFilter" keysAndValues: kCIInputImageKey, inputImage, @"level", 0.7, @"alpha", 0.7, nil ];
+    CIImage *outputImage = [comparisonFilter outputImage];
+#endif
     CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
     transparentImage = [UIImage imageWithCGImage: outputCGImage];
     NSLog(@"image converted to monochrome");
@@ -113,11 +130,24 @@
     axisCylinder.materials = @[material];
     axisNode = [SCNNode nodeWithGeometry: axisCylinder];
     axisNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-    axisNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 6);
+    
+    axis = SCNVector3Make(1 / sqrtf(3.0), 1 / sqrtf(3.0), 1 / sqrtf(3.0));
+    axisNode.rotation = [self rotationAxis: axis];;
+    
+    axisLeftCylinder = [SCNCylinder cylinderWithRadius: 0.1 height: 8];
+    SCNMaterial *axisMaterial = [SCNMaterial material];
+    axisMaterial.diffuse.contents = [UIColor greenColor];
+    axisMaterial.shininess = 0.5;
+    [axisLeftCylinder removeMaterialAtIndex: 0];
+    axisLeftCylinder.materials = @[axisMaterial];
+    axisLeftNode = [SCNNode nodeWithGeometry: axisLeftCylinder];
+    axisLeftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    self.axisLeft = SCNVector3Make(-1, 1, -1);
     
     [scene.rootNode addChildNode: leftNode];
     [scene.rootNode addChildNode: rightNode];
     [scene.rootNode addChildNode: axisNode];
+    [scene.rootNode addChildNode: axisLeftNode];
     
     self.allowsCameraControl = NO;
     
@@ -150,6 +180,27 @@
     action = _action;
 }
 
+- (SCNVector3)axisPhi: (float)phi theta: (float)theta {
+    float   z = cosf(theta);
+    float   x = sinf(theta);
+    float   y = x * sinf(phi);
+    x *= cosf(phi);
+    return SCNVector3Make(x, -z, -y);
+}
+
+- (SCNVector4)rotationPhi: (float)phi theta: (float)theta {
+    return SCNVector4Make(sinf(phi), 0, cosf(phi), theta);
+}
+
+- (SCNVector4)rotationAxis: (SCNVector3)_axis {
+    float x = axis.x;
+    float y = axis.y;
+    float z = axis.z;
+    float theta = acosf(z);
+    float phi = atan2f(y, x);
+    return [self rotationPhi: phi theta: theta];
+}
+
 - (void)handleTouches: (NSSet *)touches {
     // extract coordinates from the first touch
     if (0 == [touches count]) {
@@ -177,15 +228,11 @@
     NSLog(@"position: %.2f, %.2f", where.x, where.y);
     phi = 2 * M_PI * where.x / self.bounds.size.width;
     theta = M_PI * where.y / self.bounds.size.height;
-    //NSLog(@"theta = %.3f, phi = %.3f", theta, phi);
-    float   z = cosf(theta);
-    float   x = sinf(theta);
-    float   y = x * sinf(phi);
-    x *= cosf(phi);
-    axis = SCNVector3Make(x, -z, -y);
+
+    axis = [self axisPhi: phi theta: theta];
     
     // redisplay the axis
-    axisNode.rotation = SCNVector4Make(sinf(phi), 0, cosf(phi), theta);
+    axisNode.rotation = [self rotationPhi: phi theta:theta];
     
     // send action
     if ([target respondsToSelector: action]) {
@@ -217,6 +264,7 @@
         leftNode.position = SCNVector3Make(0, 0, 0);
         rightNode.position = SCNVector3Make(0, 0, 0);
         axisNode.position = SCNVector3Make(0, 0, 0);
+        axisLeftNode.position = SCNVector3Make(0, 0, 0);
         material.transparent.contents = transparentImage;
     } else {
         NSLog(@"not comparing");
@@ -224,10 +272,25 @@
         leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
         axisNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+        axisLeftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         material.transparent.contents = nil;
     }
     [leftSphere removeMaterialAtIndex: 0];
     leftSphere.materials = @[material];
+}
+
+-(void)toggleAxis:(id)sender {
+    self.showAxis = !self.showAxis;
+}
+
+- (SCNVector3)prerotation {
+    return prerotation;
+}
+
+- (void)setPrerotation:(SCNVector3)p {
+    prerotation = p;
+    float l = hypotf(hypotf(p.x, p.y), p.z);
+    leftInternalNode.rotation = SCNVector4Make(p.x/l, p.y/l, p.z/l, l);
 }
 
 @end
