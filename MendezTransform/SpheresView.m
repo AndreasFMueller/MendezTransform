@@ -95,7 +95,7 @@
         NSLog(@"have CGImage data");
         inputImage = [CIImage imageWithCGImage: opaqueImage.CGImage];
     }
-    CIFilter *comparisonFilter = [CIFilter filterWithName: @"ComparisonFilter" keysAndValues: kCIInputImageKey, inputImage, @"level", 0.7, @"alpha", 0.7, nil ];
+    CIFilter *comparisonFilter = [CIFilter filterWithName: @"ComparisonFilter" keysAndValues: kCIInputImageKey, inputImage, nil ];
     CIImage *outputImage = [comparisonFilter outputImage];
     CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
     transparentImage = [UIImage imageWithCGImage: outputCGImage];

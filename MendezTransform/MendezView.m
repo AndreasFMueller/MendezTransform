@@ -22,7 +22,6 @@
 
 - (void)layoutSubviews {
     NSLog(@"MendezView layoutSubviews");
-    spheresView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.width/2);
     
     float controlsheight = 80;
     float height = self.bounds.size.height - self.bounds.size.width/2 - controlsheight;
@@ -30,9 +29,10 @@
     float buttonunit = self.bounds.size.width / 12;
     float buttony = self.bounds.size.height - controlsheight;
     
-    transformsView.frame = CGRectMake(0, self.bounds.size.width/2,
+    transformsView.frame = CGRectMake(0, 0,
                                       self.bounds.size.width, height);
-    
+    spheresView.frame = CGRectMake(0, height, self.bounds.size.width, self.bounds.size.width/2);
+
     comparingButton.frame = CGRectMake(3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
     fineButton.frame = CGRectMake(2 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     

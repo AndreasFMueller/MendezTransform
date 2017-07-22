@@ -17,9 +17,11 @@ static CIKernel     *comparisonFilterKernel = nil;
 static ComparisonFilterGenerator    *filterGenerator = nil;
 
 + (void)initialize {
-    if (nil == filterGenerator) {
-        filterGenerator = [[ComparisonFilterGenerator alloc] init];
+    NSLog(@"filter initialization");
+    if (nil != filterGenerator) {
+        return;
     }
+    filterGenerator = [[ComparisonFilterGenerator alloc] init];
     [CIFilter registerFilterName: @"ComparisonFilter"
                      constructor: filterGenerator
                  classAttributes: @{
@@ -32,6 +34,7 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 - (id)init {
+    NSLog(@"create a filter instance");
     if (comparisonFilterKernel == nil) {
         NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
         NSString    *code = [NSString stringWithContentsOfFile: [bundle pathForResource: @"ComparisonFilter" ofType:@"cikernel"]];
@@ -46,6 +49,7 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 + (NSDictionary*)customAttributes {
+    NSLog(@"customAttributes");
     return @{
              @"level" : @{
                      kCIAttributeMin: @0.0,
@@ -69,7 +73,9 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 - (CIImage*)outputImage {
+    NSLog(@"applying the filter");
     CISampler *src = [CISampler samplerWithImage: inputImage];
+    NSLog(@"input image: %p", src);
     NSNumber *l = [[NSNumber alloc] initWithFloat: self.level];
     NSNumber *a = [[NSNumber alloc] initWithFloat: self.alpha];
     NSArray *arguments = [NSArray arrayWithObjects: src, l, a, nil];
