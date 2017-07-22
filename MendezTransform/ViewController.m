@@ -20,6 +20,15 @@
 
 @implementation ViewController
 
+- (AppVector3)prerotation {
+    return mendezView.prerotation;
+}
+
+- (void)setPrerotation:(AppVector3)prerotation {
+    leftFunction.rotation = [[Rotation alloc] initVector: prerotation];
+    mendezView.prerotation = prerotation;
+}
+
 #define prerotate (M_PI / 2)
 
 - (void)viewDidLoad {
@@ -29,12 +38,13 @@
     [mendezView addSelectionTarget: self action: @selector(popupImageSelection:)];
     [mendezView addAxisChangedTarget: self action: @selector(axisChanged:)];
     [mendezView addColorTarget: self action: @selector(toggleColor:)];
+    [mendezView addRandomButtonTarget: self action: @selector(randomAction:)];
+    [mendezView addSmoothButtonTarget: self action: @selector(smoothAction:)];
     leftFunction = [[SphereFunction alloc] init];
     rightFunction = [[SphereFunction alloc] init];
     
     AppVector3  initialaxis = AppVector3Normalized(AppVector3Make(1, 2, 1));
-    leftFunction.rotation = [[Rotation alloc] initVector: initialaxis];
-    mendezView.prerotation = initialaxis;
+    self.prerotation = initialaxis;
     
     Mtransform_size = [mendezView recommendedTransformSize];
     mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
@@ -71,6 +81,16 @@
 }
 
 - (void)setImage: (UIImage *)image {
+    if (nil == image) {
+        return;
+    }
+    normalImage = image;
+    smoothImage = nil;
+    smooth = NO;
+    [self setImageInternal: normalImage];
+}
+
+- (void)setImageInternal:(UIImage *)image {
     [mendezView setImage: image];
     [leftFunction setImage: image];
     [rightFunction setImage: image];
@@ -96,5 +116,48 @@
     mtransform.color = color;
     [self recompute];
 }
+
+- (void)randomAction:(id)sender {
+    NSLog(@"randomAction");
+    AppPolar    p;
+    p.phi = 2 * M_PI * (random() / (float)RAND_MAX);
+    float t = 2 * (random() / (float)RAND_MAX) - 1;
+    p.theta = acosf(t);
+    p.r = 2 * M_PI * (0.5 - (random() / (float)RAND_MAX));
+    AppVector3  pre = AppPolar2Vector3(p);
+    self.prerotation = pre;
+    [self recompute];
+}
+
+- (void)smoothAction: (id)sender {
+    NSLog(@"smoothAction");
+    smooth = !smooth;
+    if (smooth) {
+        if (nil == smoothImage) {
+            NSLog(@"make smooth");
+            CIImage *inputImage = nil;
+            CIContext *context = [CIContext contextWithOptions:nil];
+            if (normalImage.CIImage != nil) {
+                inputImage = normalImage.CIImage;
+            }
+            if (normalImage.CGImage != nil) {
+                NSLog(@"have CGImage data");
+                inputImage = [CIImage imageWithCGImage: normalImage.CGImage];
+            }
+            CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+            [filter setValue:inputImage forKey:kCIInputImageKey];
+            [filter setValue:[NSNumber numberWithDouble:6.0] forKey:@"inputRadius"];
+            //CIImage *result = [filter valueForKey:kCIOutputImageKey];
+            CIImage *outputImage = [filter outputImage];
+            CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+            smoothImage = [UIImage imageWithCGImage: outputCGImage];
+        }
+        [self setImageInternal: smoothImage];
+    } else {
+        [self setImageInternal: normalImage];
+    }
+}
+
+
 
 @end

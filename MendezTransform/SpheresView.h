@@ -19,6 +19,8 @@
     SCNSphere   *rightSphere;
     SCNNode *rightNode;
     
+    SCNNode *centerNode;
+    
     SCNNode *leftArrow;
     SCNNode *rightArrow;
     
@@ -30,6 +32,7 @@
     SEL axisChangedAction;
     
     BOOL comparing;
+    BOOL fine;
     
     UIImage *opaqueImage;
     UIImage *transparentImage;

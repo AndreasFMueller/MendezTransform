@@ -33,14 +33,16 @@
     transformsView.frame = CGRectMake(0, self.bounds.size.width/2,
                                       self.bounds.size.width, height);
     
-    comparingButton.frame = CGRectMake(0, buttony, 2 * buttonunit, controlsheight);
-    fineButton.frame = CGRectMake(2 * buttonunit, buttony, controlsheight, controlsheight);
+    comparingButton.frame = CGRectMake(3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
+    fineButton.frame = CGRectMake(2 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
-    axisButton.frame = CGRectMake(3 * buttonunit, buttony, buttonunit, controlsheight);
+    axisButton.frame = CGRectMake(3 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
-    colorButton.frame = CGRectMake(9 * buttonunit, buttony, buttonunit, controlsheight);
+    randomButton.frame = CGRectMake(4 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
+    colorButton.frame = CGRectMake(8 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
+    smoothButton.frame = CGRectMake(9 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
-    imageSelectionButton.frame = CGRectMake(10 * buttonunit, buttony, 2 * buttonunit, controlsheight);
+    imageSelectionButton.frame = CGRectMake(10 * buttonunit + 3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
 }
 
 - (void)setupSubviews {
@@ -54,25 +56,41 @@
     [self addSubview: transformsView];
     
     comparingButton = [[UIButton alloc] init];
+    comparingButton.backgroundColor = [UIColor whiteColor];
     [comparingButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
     [comparingButton addTarget: self action: @selector(toggleComparing:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: comparingButton];
     
     fineButton = [[UIButton alloc] init];
+    fineButton.backgroundColor = [UIColor whiteColor];
     [fineButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [fineButton setTitle: @"Fine" forState: UIControlStateNormal];
     [fineButton addTarget: self action: @selector(toggleFine:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: fineButton];
     
     axisButton = [[UIButton alloc] init];
+    axisButton.backgroundColor = [UIColor whiteColor];
     [axisButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [axisButton setTitle: @"Axis" forState: UIControlStateNormal];
     [axisButton addTarget: spheresView action: @selector(toggleAxis:) forControlEvents: UIControlEventTouchUpInside];
     [self addSubview: axisButton];
     
+    randomButton = [[UIButton alloc] init];
+    randomButton.backgroundColor = [UIColor whiteColor];
+    [randomButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [randomButton setTitle: @"Random" forState: UIControlStateNormal];
+    [self addSubview: randomButton];
+    
+    smoothButton = [[UIButton alloc] init];
+    smoothButton.backgroundColor = [UIColor whiteColor];
+    [smoothButton setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
+    [smoothButton setTitle: @"Smooth" forState: UIControlStateNormal];
+    [self addSubview: smoothButton];
+    
     // Button to switch to color mode
     colorButton = [[UIButton alloc] init];
+    colorButton.backgroundColor = [UIColor whiteColor];
     [colorButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
     [colorButton addTarget: self action: @selector(colorPressed:) forControlEvents: UIControlEventTouchUpInside];
@@ -80,6 +98,7 @@
     
     // Button to request the image selection
     imageSelectionButton = [[UIButton alloc] init];
+    imageSelectionButton.backgroundColor = [UIColor whiteColor];
     [imageSelectionButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
     [imageSelectionButton setTitle: @"Select Image" forState: UIControlStateNormal];
 
@@ -173,5 +192,14 @@
     NSLog(@"setting prerotation in MendezView");
     spheresView.prerotation = App2SCN3(r);
 }
+
+- (void)addRandomButtonTarget: (id)target action: (SEL)action {
+    [randomButton addTarget: target action: action forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addSmoothButtonTarget: (id)target action: (SEL)action {
+    [smoothButton addTarget: target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
 
 @end

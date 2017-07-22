@@ -21,6 +21,8 @@
     IBOutlet MendezTransformsView   *transformsView;
     IBOutlet UIButton   *colorButton;
     IBOutlet UIButton   *axisButton;
+    IBOutlet UIButton   *randomButton;
+    IBOutlet UIButton   *smoothButton;
     id  colorTarget;
     SEL colorAction;
     SCNVector3 axis;
@@ -52,5 +54,9 @@
 // color
 - (void)addColorTarget: (id)target action: (SEL)action;
 - (void)colorPressed: (id)sender;
+
+// random button
+- (void)addRandomButtonTarget: (id)target action: (SEL)action;
+- (void)addSmoothButtonTarget: (id)target action: (SEL)action;
 
 @end

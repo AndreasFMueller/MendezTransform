@@ -11,7 +11,7 @@
 
 @implementation SpheresView
 
-@synthesize fine, center;
+@synthesize center;
 
 #define SPHERE_SEPARATION   3.3
 #define SPHERE_RADIUS       3.0
@@ -26,16 +26,14 @@
     return self;
 }
 
-#if 0
-- (SCNVector3)prerotateAxis {
-    return prerotateAxis;
+- (BOOL)fine {
+    return fine;
 }
 
-- (void)setPrerotateAxis:(SCNVector3)a {
-    prerotateAxis = SCNVector3Normalized(a);
-    prerotateArrow.rotation = [self rotationToAxis: prerotateAxis];
+- (void)setFine: (BOOL)f {
+    fine = f;
+    centerNode.hidden = !f;
 }
-#endif
 
 - (BOOL)showAxis {
     return showAxis;
@@ -134,7 +132,6 @@
     leftArrow = [self arrow: [UIColor redColor]];
     rightArrow = [self arrow: [UIColor redColor]];
 
-
     leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
     rightArrow.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
     
@@ -147,11 +144,22 @@
     prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
     prerotateArrow.hidden = YES;
     
+    SCNSphere   *centerSphere = [SCNSphere sphereWithRadius: 0.1];
+    SCNMaterial *centerMaterial = [SCNMaterial material];
+    centerMaterial.diffuse.contents = [UIColor yellowColor];
+    centerMaterial.shininess = 0.5;
+    [centerSphere removeMaterialAtIndex: 0];
+    centerSphere.materials = @[centerMaterial];
+    
+    centerNode = [SCNNode nodeWithGeometry: centerSphere];
+    centerNode.hidden = YES;
+    
     [scene.rootNode addChildNode: leftNode];
     [scene.rootNode addChildNode: rightNode];
     [scene.rootNode addChildNode: leftArrow];
     [scene.rootNode addChildNode: rightArrow];
     [scene.rootNode addChildNode: prerotateArrow];
+    [scene.rootNode addChildNode: centerNode];
     
     self.allowsCameraControl = NO;
     
@@ -235,6 +243,8 @@
     return comparing;
 }
 
+#define ANIMATION_TIME 2.0
+
 - (void)setComparing: (BOOL)_comparing {
     NSLog(@"toggle comparison mode");
     if (comparing == _comparing) {
@@ -244,22 +254,30 @@
     SCNMaterial *material = [leftSphere firstMaterial];
     if (comparing) {
         NSLog(@"comparing");
+        rightArrow.hidden = YES;
+        [SCNTransaction begin];
+        [SCNTransaction setAnimationDuration: ANIMATION_TIME];
         leftSphere.radius = SPHERE_RADIUS * 1.004;
         leftNode.position = SCNVector3Make(0, 0, 0);
         rightNode.position = SCNVector3Make(0, 0, 0);
         leftArrow.position = SCNVector3Make(0, 0, 0);
-        rightArrow.hidden = YES;
         prerotateArrow.position = SCNVector3Make(0, 0, 0);
         material.transparent.contents = transparentImage;
+        [SCNTransaction commit];
     } else {
         NSLog(@"not comparing");
+        [SCNTransaction begin];
+        [SCNTransaction setAnimationDuration: ANIMATION_TIME];
         leftSphere.radius = SPHERE_RADIUS;
         leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
         leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-        rightArrow.hidden = NO;
         prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         material.transparent.contents = nil;
+        [SCNTransaction setCompletionBlock:^{
+            rightArrow.hidden = NO;
+        }];
+        [SCNTransaction commit];
     }
     [leftSphere removeMaterialAtIndex: 0];
     leftSphere.materials = @[material];
