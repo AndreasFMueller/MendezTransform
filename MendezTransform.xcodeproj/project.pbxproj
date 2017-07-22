@@ -25,6 +25,7 @@
 		905B949D1F236BB3004AA9BF /* eth-main-building.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B949C1F236BB3004AA9BF /* eth-main-building.jpg */; };
 		905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B949E1F236D1A004AA9BF /* hsr.jpg */; };
 		905B94A21F23AA00004AA9BF /* VectorTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94A11F23AA00004AA9BF /* VectorTypes.m */; };
+		905B94A51F23DA86004AA9BF /* GridImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94A41F23DA86004AA9BF /* GridImage.m */; };
 		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
 		906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */; };
 		906BDF031F20E7B000778F44 /* afm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF021F20E7B000778F44 /* afm.jpg */; };
@@ -93,6 +94,8 @@
 		905B949E1F236D1A004AA9BF /* hsr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hsr.jpg; sourceTree = "<group>"; };
 		905B94A01F23A9BC004AA9BF /* VectorTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VectorTypes.h; sourceTree = "<group>"; };
 		905B94A11F23AA00004AA9BF /* VectorTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorTypes.m; sourceTree = "<group>"; };
+		905B94A31F23DA86004AA9BF /* GridImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridImage.h; sourceTree = "<group>"; };
+		905B94A41F23DA86004AA9BF /* GridImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridImage.m; sourceTree = "<group>"; };
 		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
 		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
 		906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionDatasource.h; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				905B94901F22A1E0004AA9BF /* ComputedImage.m */,
 				905B94A01F23A9BC004AA9BF /* VectorTypes.h */,
 				905B94A11F23AA00004AA9BF /* VectorTypes.m */,
+				905B94A31F23DA86004AA9BF /* GridImage.h */,
+				905B94A41F23DA86004AA9BF /* GridImage.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				905B948E1F229C25004AA9BF /* DotsImage.m in Sources */,
 				903772411F127FC1005F1A2B /* MendezView.m in Sources */,
 				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
+				905B94A51F23DA86004AA9BF /* GridImage.m in Sources */,
 				905B947D1F212539004AA9BF /* MendezTransformsView.m in Sources */,
 				909CBFF81F0E8E6F005172C3 /* main.m in Sources */,
 			);

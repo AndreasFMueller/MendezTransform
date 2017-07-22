@@ -9,6 +9,7 @@
 #import "ImageSelectionDatasource.h"
 #import "StripeImage.h"
 #import "DotsImage.h"
+#import "GridImage.h"
 
 @implementation ImageSelectionDatasource
 
@@ -31,7 +32,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (id)init {
     self = [super init];
     if (self) {
-        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png", @"Stripes", @"Dots", nil];
+        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png", @"Stripes", @"Dots", @"Grid", nil];
     }
     return self;
 }
@@ -47,6 +48,9 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     }
     if ([imagename isEqualToString: @"Dots"]) {
         return [[DotsImage alloc] initWithSize: CGSizeMake(800,400) dots: 70].image;
+    }
+    if ([imagename isEqualToString: @"Grid"]) {
+        return [[GridImage alloc] initWithSize: CGSizeMake(800,400) lines: 6].image;
     }
     return [UIImage imageNamed: imagename];
 }
