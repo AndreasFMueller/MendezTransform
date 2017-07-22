@@ -7,10 +7,11 @@
 //
 
 #import "SpheresView.h"
+#import "VectorTypes.h"
 
 @implementation SpheresView
 
-@synthesize axis, fine, center;
+@synthesize fine, center;
 
 #define SPHERE_SEPARATION   3.3
 #define SPHERE_RADIUS       3.0
@@ -25,15 +26,16 @@
     return self;
 }
 
-- (SCNVector3)axisLeft {
-    return axisLeft;
+#if 0
+- (SCNVector3)prerotateAxis {
+    return prerotateAxis;
 }
 
-- (void)setAxisLeft:(SCNVector3)a {
-    float n = hypotf(hypotf(a.x, a.y), a.z);
-    axisLeft = SCNVector3Make(a.x/n, -a.z/n, -a.y/n);
-    axisLeftNode.rotation = [self rotationAxis: axisLeft];
+- (void)setPrerotateAxis:(SCNVector3)a {
+    prerotateAxis = SCNVector3Normalized(a);
+    prerotateArrow.rotation = [self rotationToAxis: prerotateAxis];
 }
+#endif
 
 - (BOOL)showAxis {
     return showAxis;
@@ -41,7 +43,7 @@
 
 - (void)setShowAxis:(BOOL)s {
     showAxis = s;
-    axisLeftNode.hidden = !showAxis;
+    prerotateArrow.hidden = !showAxis;
 }
 
 - (void)setSphere: (SCNSphere*)sphere image: (UIImage*) image transparent:(UIImage*)transparent {
@@ -52,10 +54,34 @@
     } else {
         material.transparent.contents = nil;
     }
-    //material.specular.contents = [UIColor colorWithWhite:0.6 alpha:1.0];
-    //material.shininess = 0.5;
     [sphere removeMaterialAtIndex: 0];
     sphere.materials = @[material];
+}
+
+- (SCNNode *)arrow: (UIColor*)color {
+    // create a node for the left axis arrow
+    SCNCylinder *cylinder = [SCNCylinder cylinderWithRadius: 0.1 height: 7.6];
+    SCNMaterial *material = [SCNMaterial material];
+    material.diffuse.contents = color;
+    material.shininess = 0.5;
+    [cylinder removeMaterialAtIndex: 0];
+    cylinder.materials = @[material];
+    
+    SCNNode *shaftNode = [SCNNode nodeWithGeometry: cylinder];
+    shaftNode.position = SCNVector3Make(0, -0.2, 0);
+    
+    SCNCone *cone = [SCNCone coneWithTopRadius: 0 bottomRadius: 0.2 height:0.6];
+    [cone removeMaterialAtIndex: 0];
+    cone.materials = @[material];
+    
+    SCNNode *headNode = [SCNNode nodeWithGeometry: cone];
+    headNode.position = SCNVector3Make(0, 3.8, 0);
+    
+    SCNNode *result = [SCNNode node];
+    [result addChildNode: shaftNode];
+    [result addChildNode: headNode];
+    
+    return result;
 }
 
 - (void)setImage: (UIImage*)image {
@@ -71,25 +97,8 @@
         NSLog(@"have CGImage data");
         inputImage = [CIImage imageWithCGImage: opaqueImage.CGImage];
     }
-#if 0
-    CIFilter *monoFilter = [CIFilter filterWithName:@"CIPhotoEffectMono" keysAndValues: kCIInputImageKey, inputImage, nil];
-    CIImage *monoImage = [monoFilter outputImage];
-    
-    CIFilter *invertFilter = [CIFilter filterWithName: @"CIColorInvert" keysAndValues: kCIInputImageKey, monoImage, nil];
-    CIImage *invertedImage = [invertFilter outputImage];
-    
-    CIFilter *maskFilter = [CIFilter filterWithName: @"CIMaskToAlpha" keysAndValues:kCIInputImageKey, monoImage, nil];
-    CIImage *maskImage = [maskFilter outputImage];
-    
-    CIImage *backgroundImage = [CIImage imageWithColor: [[CIColor alloc] initWithRed: 0 green: 0 blue: 0 alpha: 0]];
-    
-    CIFilter *blendFilter = [CIFilter filterWithName: @"CIBlendWithAlphaMask" keysAndValues:kCIInputImageKey, inputImage, @"inputBackgroundImage", backgroundImage, @"inputMaskImage", maskImage, nil];
-    
-    CIImage *outputImage = [blendFilter outputImage];
-#else
     CIFilter *comparisonFilter = [CIFilter filterWithName: @"ComparisonFilter" keysAndValues: kCIInputImageKey, inputImage, @"level", 0.7, @"alpha", 0.7, nil ];
     CIImage *outputImage = [comparisonFilter outputImage];
-#endif
     CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
     transparentImage = [UIImage imageWithCGImage: outputCGImage];
     NSLog(@"image converted to monochrome");
@@ -114,7 +123,7 @@
     rightSphere.segmentCount = 50;
     
     leftInternalNode = [SCNNode nodeWithGeometry: leftSphere];
-    leftInternalNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 2);
+    //leftInternalNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 2);
     leftNode = [SCNNode node];
     [leftNode addChildNode: leftInternalNode];
     leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
@@ -122,32 +131,27 @@
     rightNode = [SCNNode nodeWithGeometry: rightSphere];
     rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
     
-    axisCylinder = [SCNCylinder cylinderWithRadius: 0.1 height: 8];
-    SCNMaterial *material = [SCNMaterial material];
-    material.diffuse.contents = [UIColor redColor];
-    material.shininess = 0.5;
-    [axisCylinder removeMaterialAtIndex: 0];
-    axisCylinder.materials = @[material];
-    axisNode = [SCNNode nodeWithGeometry: axisCylinder];
-    axisNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    leftArrow = [self arrow: [UIColor redColor]];
+    rightArrow = [self arrow: [UIColor redColor]];
+
+
+    leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    rightArrow.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
     
-    axis = SCNVector3Make(1 / sqrtf(3.0), 1 / sqrtf(3.0), 1 / sqrtf(3.0));
-    axisNode.rotation = [self rotationAxis: axis];;
+    axis = App2SCN3(AppVector3Normalized(AppVector3Make(1, 1, 1)));
+    leftArrow.rotation = [self rotationToAxis: axis];;
+    rightArrow.rotation = [self rotationToAxis: axis];;
     
-    axisLeftCylinder = [SCNCylinder cylinderWithRadius: 0.1 height: 8];
-    SCNMaterial *axisMaterial = [SCNMaterial material];
-    axisMaterial.diffuse.contents = [UIColor greenColor];
-    axisMaterial.shininess = 0.5;
-    [axisLeftCylinder removeMaterialAtIndex: 0];
-    axisLeftCylinder.materials = @[axisMaterial];
-    axisLeftNode = [SCNNode nodeWithGeometry: axisLeftCylinder];
-    axisLeftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-    self.axisLeft = SCNVector3Make(-1, 1, -1);
+    // create a node for the left axis arrow
+    prerotateArrow = [self arrow: [UIColor greenColor]];
+    prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    prerotateArrow.hidden = YES;
     
     [scene.rootNode addChildNode: leftNode];
     [scene.rootNode addChildNode: rightNode];
-    [scene.rootNode addChildNode: axisNode];
-    [scene.rootNode addChildNode: axisLeftNode];
+    [scene.rootNode addChildNode: leftArrow];
+    [scene.rootNode addChildNode: rightArrow];
+    [scene.rootNode addChildNode: prerotateArrow];
     
     self.allowsCameraControl = NO;
     
@@ -175,30 +179,16 @@
     [self rotate: SCNVector4Make(axis.x, axis.y, axis.z, angle)];
 }
 
-- (void)addTouchTarget: (id)_target action: (SEL)_action {
-    target = _target;
-    action = _action;
+- (void)addAxisChangedTarget: (id)target action: (SEL)action {
+    axisChangedTarget = target;
+    axisChangedAction = action;
 }
 
-- (SCNVector3)axisPhi: (float)phi theta: (float)theta {
-    float   z = cosf(theta);
-    float   x = sinf(theta);
-    float   y = x * sinf(phi);
-    x *= cosf(phi);
-    return SCNVector3Make(x, -z, -y);
-}
-
-- (SCNVector4)rotationPhi: (float)phi theta: (float)theta {
-    return SCNVector4Make(sinf(phi), 0, cosf(phi), theta);
-}
-
-- (SCNVector4)rotationAxis: (SCNVector3)_axis {
-    float x = axis.x;
-    float y = axis.y;
-    float z = axis.z;
-    float theta = acosf(z);
-    float phi = atan2f(y, x);
-    return [self rotationPhi: phi theta: theta];
+- (SCNVector4)rotationToAxis: (SCNVector3)to {
+    SCNVector3  from = SCNVector3Make(0, 1, 0);
+    SCNVector3  r = SCNVector3Cross(from, to);
+    float angle = acosf(SCNVector3Dot(from, to));
+    return SCNVector4RotationMake(r, angle);
 }
 
 - (void)handleTouches: (NSSet *)touches {
@@ -216,7 +206,7 @@
     float   theta = 0;
     if (self.comparing) {
         phi = phi - M_PI;
-        [self rotateAngle: -phi];
+        [self rotateAngle: phi];
         return;
     }
     
@@ -225,19 +215,13 @@
         where.x = center.x + 0.05 * (where.x - self.bounds.size.width / 2);
         where.y = center.y + 0.05 * (where.y - self.bounds.size.height / 2);
     }
-    NSLog(@"position: %.2f, %.2f", where.x, where.y);
     phi = 2 * M_PI * where.x / self.bounds.size.width;
     theta = M_PI * where.y / self.bounds.size.height;
+    AppPolar    polar = AppPolarMake(phi, theta, 1);
+    NSLog(@"position: %.2f, %.2f, phi = %.3f, theta = %.3f", where.x, where.y, phi, theta);
 
-    axis = [self axisPhi: phi theta: theta];
-    
-    // redisplay the axis
-    axisNode.rotation = [self rotationPhi: phi theta:theta];
-    
-    // send action
-    if ([target respondsToSelector: action]) {
-        [target performSelector:action withObject: self];
-    }
+    self.axis = App2SCN3(AppPolar2Vector3(polar));
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -263,16 +247,18 @@
         leftSphere.radius = SPHERE_RADIUS * 1.004;
         leftNode.position = SCNVector3Make(0, 0, 0);
         rightNode.position = SCNVector3Make(0, 0, 0);
-        axisNode.position = SCNVector3Make(0, 0, 0);
-        axisLeftNode.position = SCNVector3Make(0, 0, 0);
+        leftArrow.position = SCNVector3Make(0, 0, 0);
+        rightArrow.hidden = YES;
+        prerotateArrow.position = SCNVector3Make(0, 0, 0);
         material.transparent.contents = transparentImage;
     } else {
         NSLog(@"not comparing");
         leftSphere.radius = SPHERE_RADIUS;
         leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
-        axisNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-        axisLeftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+        leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+        rightArrow.hidden = NO;
+        prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         material.transparent.contents = nil;
     }
     [leftSphere removeMaterialAtIndex: 0];
@@ -288,9 +274,35 @@
 }
 
 - (void)setPrerotation:(SCNVector3)p {
+    NSLog(@"setting prerotation in SpheresView: %.2f, %.2f, %.2f", p.x, p.y, p.z);
     prerotation = p;
-    float l = hypotf(hypotf(p.x, p.y), p.z);
-    leftInternalNode.rotation = SCNVector4Make(p.x/l, p.y/l, p.z/l, l);
+    float angle = SCNVector3Length(p);
+    if (self.showAxis) {
+        prerotateArrow.hidden = (angle == 0);
+    }
+    leftInternalNode.rotation = SCNVector4RotationMake(prerotation, angle);
+    if (angle > 0) {
+        SCNVector3  pa = SCNVector3Normalized(p);
+        prerotateArrow.rotation = [self rotationToAxis: pa];
+    }
+}
+
+- (SCNVector3)axis {
+    return axis;
+}
+
+- (void)setAxis:(SCNVector3)_axis {
+    axis = _axis;
+    NSLog(@"axis. %.2f,%.2f,%.2f", axis.x, axis.y, axis.z);
+    
+    // redisplay the axis
+    leftArrow.rotation = [self rotationToAxis: axis];
+    rightArrow.rotation = [self rotationToAxis: axis];
+    
+    // send action
+    if ([axisChangedTarget respondsToSelector: axisChangedAction]) {
+        [axisChangedTarget performSelector:axisChangedAction withObject: self];
+    }
 }
 
 @end

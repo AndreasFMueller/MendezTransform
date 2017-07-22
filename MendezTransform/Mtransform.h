@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SphereFunction.h"
 #import "MendezTransformResult.h"
-#import <SCENEKit/SCENEKit.H>
+#import <SceneKit/SceneKit.h>
+#import "VectorTypes.h"
 
 @interface Mtransform : NSObject {
     float   *xvalues;
@@ -27,6 +28,6 @@
 
 - (void)transformTo: (float*)data axis: (float[3])axis function: (SphereFunction*)f offset: (int)_offset;
 - (MendezTransformResult*)transform: (float[3])axis function: (SphereFunction*)f;
-- (MendezTransformResult*)transformVector: (SCNVector3)axis function: (SphereFunction*)f;
+- (MendezTransformResult*)transformVector: (AppVector3)axis function: (SphereFunction*)f;
 
 @end

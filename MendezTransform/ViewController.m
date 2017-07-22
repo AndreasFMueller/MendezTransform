@@ -12,6 +12,7 @@
 #import "SpherePoint.h"
 #import "MendezView.h"
 #import "ImageSelectionController.h"
+#import "VectorTypes.h"
 
 @interface ViewController ()
 
@@ -26,15 +27,14 @@
     // Do any additional setup after loading the view, typically from a nib.
     mendezView = (MendezView *)self.view;
     [mendezView addSelectionTarget: self action: @selector(popupImageSelection:)];
-    [mendezView addAxisTarget: self action: @selector(axisChanged:)];
+    [mendezView addAxisChangedTarget: self action: @selector(axisChanged:)];
     [mendezView addColorTarget: self action: @selector(toggleColor:)];
     leftFunction = [[SphereFunction alloc] init];
     rightFunction = [[SphereFunction alloc] init];
     
-    float   a[3] = { prerotate/sqrt(3), prerotate/sqrt(3), prerotate/sqrt(3) };
-    leftFunction.rotation = [[Rotation alloc] init: a];
-    
-    mendezView.prerotation = SCNVector3Make(a[0], a[1], a[2]);
+    AppVector3  initialaxis = AppVector3Normalized(AppVector3Make(1, 2, 1));
+    leftFunction.rotation = [[Rotation alloc] initVector: initialaxis];
+    mendezView.prerotation = initialaxis;
     
     Mtransform_size = [mendezView recommendedTransformSize];
     mtransform = [[Mtransform alloc] initWidth: Mtransform_size height:Mtransform_size];
@@ -54,7 +54,7 @@
 }
 
 - (void)recompute {
-    SCNVector3 axis = mendezView.axis;
+    AppVector3 axis = mendezView.axis;
 
     dispatch_group_t group = dispatch_group_create();
     MendezTransformResult __block  *left = nil;
@@ -96,6 +96,5 @@
     mtransform.color = color;
     [self recompute];
 }
-
 
 @end

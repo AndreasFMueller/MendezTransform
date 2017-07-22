@@ -23,8 +23,8 @@
         maxoffset = (color) ? 3 : 1;
         length = _length;
         data = (float *)calloc(length * maxoffset, sizeof(float));
-        int maxi = maxoffset * length;
-        for (int i = 0; i < maxi; i++) {
+        NSUInteger maxi = maxoffset * length;
+        for (NSUInteger i = 0; i < maxi; i++) {
             data[i] = 0;
         }
     }

@@ -11,8 +11,13 @@
 
 @implementation MendezView
 
-- (SCNVector3)axis {
-    return spheresView.axis;
+- (AppVector3)axis {
+    return SCN2App3(spheresView.axis);
+}
+
+- (void)setAxis: (AppVector3)a {
+    // XXX
+    axis = App2SCN3(a);
 }
 
 - (void)layoutSubviews {
@@ -33,12 +38,14 @@
     
     axisButton.frame = CGRectMake(3 * buttonunit, buttony, buttonunit, controlsheight);
     
-    colorButton.frame = CGRectMake(8 * buttonunit, buttony, buttonunit, controlsheight);
+    colorButton.frame = CGRectMake(9 * buttonunit, buttony, buttonunit, controlsheight);
     
-    imageSelectionButton.frame = CGRectMake(9 * buttonunit, buttony, 3 * buttonunit, controlsheight);
+    imageSelectionButton.frame = CGRectMake(10 * buttonunit, buttony, 2 * buttonunit, controlsheight);
 }
 
 - (void)setupSubviews {
+    self.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.95];
+    
     spheresView = [[SpheresView alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
     spheresView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:1 alpha:1];
     [self addSubview: spheresView];
@@ -101,7 +108,7 @@
 }
 
 - (void)rotateAngle: (float)angle {
-    SCNVector3  a = self.axis;
+    SCNVector3  a = axis;
     [spheresView rotate: SCNVector4Make(a.x, a.y, a.z, angle)];
 }
 
@@ -132,10 +139,9 @@
     [imageSelectionButton addTarget:target action:action forControlEvents: UIControlEventTouchUpInside];
 }
 
-- (void)addAxisTarget: (id)_target action: (SEL)_action {
-    [spheresView addTouchTarget:_target action: _action];
+- (void)addAxisChangedTarget: (id)_target action: (SEL)_action {
+    [spheresView addAxisChangedTarget:_target action: _action];
 }
-
 
 - (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right {
     [transformsView setTransformsLeft: left right: right];
@@ -159,12 +165,13 @@
     [colorTarget performSelector: colorAction withObject: self];
 }
 
-- (SCNVector3)prerotation {
-    return spheresView.prerotation;
+- (AppVector3)prerotation {
+    return SCN2App3(spheresView.prerotation);
 }
 
-- (void)setPrerotation:(SCNVector3)r {
-    spheresView.prerotation = r;
+- (void)setPrerotation:(AppVector3)r {
+    NSLog(@"setting prerotation in MendezView");
+    spheresView.prerotation = App2SCN3(r);
 }
 
 @end

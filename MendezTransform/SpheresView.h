@@ -7,6 +7,7 @@
 //
 
 #import <SceneKit/SceneKit.h>
+#import "VectorTypes.h"
 
 @interface SpheresView : SCNView {
     SCNScene    *scene;
@@ -18,16 +19,15 @@
     SCNSphere   *rightSphere;
     SCNNode *rightNode;
     
-    SCNCylinder *axisCylinder;
-    SCNNode *axisNode;
+    SCNNode *leftArrow;
+    SCNNode *rightArrow;
     
-    SCNCylinder *axisLeftCylinder;
-    SCNNode *axisLeftNode;
-    SCNVector3 axisLeft;
+    SCNNode *prerotateArrow;
+    SCNVector3 prerotateAxis; // in View coordinates
     BOOL showAxis;
     
-    id  target;
-    SEL action;
+    id  axisChangedTarget;
+    SEL axisChangedAction;
     
     BOOL comparing;
     
@@ -35,27 +35,26 @@
     UIImage *transparentImage;
     
     SCNVector3 prerotation;
+    SCNVector3 axis;
 }
 
-@property (readonly) SCNVector3 axis;
-@property (readwrite) SCNVector3 axisLeft;
+@property (readwrite) SCNVector3 axis; // scene coordinates
 @property (readwrite) BOOL showAxis;
 @property (readwrite)   BOOL comparing;
 @property (readwrite)   BOOL fine;
 @property (readonly) CGPoint center;
-@property (readwrite) SCNVector3 prerotation;
+@property (readwrite) SCNVector3 prerotation; // scene coordinates
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)setupScene;
 - (void)rotate: (SCNVector4)rotation;
 - (void)rotateAngle: (float)angle;
 - (void)setImage: (UIImage *)image;
+- (SCNNode*)arrow: (UIColor*)color;
 
-- (void)addTouchTarget: (id)target action: (SEL)action;
+- (void)addAxisChangedTarget: (id)target action: (SEL)action;
 
-- (SCNVector3)axisPhi: (float)phi theta: (float)theta;
-- (SCNVector4)rotationPhi: (float)phi theta: (float)theta;
-- (SCNVector4)rotationAxis: (SCNVector3)_axis;
+- (SCNVector4)rotationToAxis: (SCNVector3)_axis;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;

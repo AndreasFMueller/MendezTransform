@@ -34,6 +34,11 @@ static float sqr(float x) { return x * x; }
     return self;
 }
 
+- (id)initVector:(AppVector3)axis {
+    float a[3] = { axis.x, axis.y, axis.z };
+    return [self init: a];
+}
+
 - (void)rotate: (float[3])v to: (float[3]) w {
     w[0] = m[0] * v[0] + m[3] * v[1] + m[6] * v[2];
     w[1] = m[1] * v[0] + m[4] * v[1] + m[7] * v[2];

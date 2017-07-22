@@ -128,7 +128,7 @@ static thread_time_t thread_time_sub(thread_time_t const a, thread_time_t const 
     return result;
 }
 
-- (MendezTransformResult *)transformVector:(SCNVector3)axis function:(SphereFunction *)f {
+- (MendezTransformResult *)transformVector:(AppVector3)axis function:(SphereFunction *)f {
     float    v[3];
     v[0] = axis.x;
     v[1] = axis.y;

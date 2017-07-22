@@ -11,6 +11,7 @@
 #import "MendezTransformsView.h"
 #import "SpheresView.h"
 #import "MendezTransformResult.h"
+#import "VectorTypes.h"
 
 @interface MendezView : UIView {
     IBOutlet UIButton   *comparingButton;
@@ -22,10 +23,11 @@
     IBOutlet UIButton   *axisButton;
     id  colorTarget;
     SEL colorAction;
+    SCNVector3 axis;
 }
 
-@property (readonly) SCNVector3 axis;
-@property (readwrite) SCNVector3 prerotation;
+@property (readwrite) AppVector3 axis;
+@property (readwrite) AppVector3 prerotation;
 
 - (void)setupSubviews;
 - (void)layoutSubviews;
@@ -43,7 +45,7 @@
 - (void)addSelectionTarget: (id)target action: (SEL)action;
 
 // stuff related to the touch interactions to determine the axis
-- (void)addAxisTarget: (id)target action: (SEL)action;
+- (void)addAxisChangedTarget: (id)target action: (SEL)action;
 - (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right;
 - (void)toggleFine:(id)sender;
 
