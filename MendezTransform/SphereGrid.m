@@ -28,7 +28,6 @@
     if (0 != (_width % 8)) {
         NSLog(@"width is not divisible by 4");
     }
-    NSLog(@"resizing to %lu x %lu", _width, _height);
     
     // allocate data arrays
     z = (float *)malloc((height + 1) * sizeof(float));

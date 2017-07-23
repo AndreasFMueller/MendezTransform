@@ -80,7 +80,6 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
     NSNumber *l = [[NSNumber alloc] initWithFloat: self.level];
     NSNumber *a = [[NSNumber alloc] initWithFloat: self.alpha];
     NSArray *arguments = [NSArray arrayWithObjects: src, l, a, nil];
-    NSLog(@"%lu kernel arguments", [arguments count]);
     return [comparisonFilterKernel applyWithExtent: [inputImage extent]
                                        roiCallback:^CGRect(int index, CGRect destRect) {
                                                         return destRect;
