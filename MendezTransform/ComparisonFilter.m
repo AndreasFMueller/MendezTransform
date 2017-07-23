@@ -43,7 +43,7 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
     }
     self = [super init];
     if (self) {
-        level = 0.5;
+        level = 0.2;
         alpha = 0.7;
     }
     return self;

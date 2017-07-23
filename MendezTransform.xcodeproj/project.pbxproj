@@ -19,7 +19,6 @@
 		905B948E1F229C25004AA9BF /* DotsImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B948D1F229C25004AA9BF /* DotsImage.m */; };
 		905B94911F22A1E0004AA9BF /* ComputedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94901F22A1E0004AA9BF /* ComputedImage.m */; };
 		905B94931F233539004AA9BF /* ComparisonFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 905B94921F233539004AA9BF /* ComparisonFilter.cikernel */; };
-		905B94951F233746004AA9BF /* ComparisonFilter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 905B94941F233746004AA9BF /* ComparisonFilter.plist */; };
 		905B94981F234492004AA9BF /* ComparisonFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94971F234492004AA9BF /* ComparisonFilter.m */; };
 		905B949B1F234E1C004AA9BF /* ComparisonFilterGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B949A1F234E1C004AA9BF /* ComparisonFilterGenerator.m */; };
 		905B949D1F236BB3004AA9BF /* eth-main-building.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B949C1F236BB3004AA9BF /* eth-main-building.jpg */; };
@@ -89,7 +88,6 @@
 		905B948F1F22A1E0004AA9BF /* ComputedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputedImage.h; sourceTree = "<group>"; };
 		905B94901F22A1E0004AA9BF /* ComputedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputedImage.m; sourceTree = "<group>"; };
 		905B94921F233539004AA9BF /* ComparisonFilter.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ComparisonFilter.cikernel; sourceTree = "<group>"; };
-		905B94941F233746004AA9BF /* ComparisonFilter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComparisonFilter.plist; sourceTree = "<group>"; };
 		905B94961F234492004AA9BF /* ComparisonFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparisonFilter.h; sourceTree = "<group>"; };
 		905B94971F234492004AA9BF /* ComparisonFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparisonFilter.m; sourceTree = "<group>"; };
 		905B94991F234E1C004AA9BF /* ComparisonFilterGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparisonFilterGenerator.h; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 				906BDEFC1F20DAEC00778F44 /* SpheresView.h */,
 				906BDEFD1F20DAEC00778F44 /* SpheresView.m */,
 				905B94921F233539004AA9BF /* ComparisonFilter.cikernel */,
-				905B94941F233746004AA9BF /* ComparisonFilter.plist */,
 				905B94961F234492004AA9BF /* ComparisonFilter.h */,
 				905B94971F234492004AA9BF /* ComparisonFilter.m */,
 				905B94991F234E1C004AA9BF /* ComparisonFilterGenerator.h */,
@@ -437,7 +434,6 @@
 				905B94B71F249C3B004AA9BF /* help.html in Resources */,
 				905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */,
 				905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */,
-				905B94951F233746004AA9BF /* ComparisonFilter.plist in Resources */,
 				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
 				905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
