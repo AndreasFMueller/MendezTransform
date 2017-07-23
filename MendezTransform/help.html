@@ -1,0 +1,129 @@
+<html>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+<body>
+    <h1>How to use the MendezTransform App</h1>
+    <h2>What is the Méndez-transform?</h2>
+    <p>The Méndez-transform was developed by Tabea Méndez in her book <i>Nichtkommutative
+    Bildverarbeitung</i> [1] as a solution to the noncommutative image registration problem
+    on the group SO(3). For two images on a sphere that differ only by a rotation of the
+    sphere, this problem asks to find the rotation in SO(3) that makes the images coincide.
+    The problem is solved in two steps.
+    In the first step, the Méndez-transform is used to find the axis of rotation.
+    In the second, much easier step, one needs to find only the rotation angle.
+    </p>
+    <p>This App allows to play around with the Méndez-transform for a few selected images.
+    When it starts up, it loads an image on the two spheres.
+    The user can then try to find the rotation axis, and when (s)he thinks (s)he has found it,
+    (s)he can try to rotate the image around this axis and check whether
+    (s)he can actually make them coincide.
+    </p>
+    
+    <h2>How to find the rotation axis?</h2>
+    <p>In the top row of the screen, the Méndez-transforms of the images are displayed
+    for the images on the two spheres, the difference and the mirrored difference.
+    The currently selected rotation axis is displayed in <span style="color:red;">red</span>.
+    By touching the area with the two spheres and dragging, the user can move the rotation
+    axis.
+    The goal is to minimize the difference of the two Méndez-transforms.
+    By swiping over the Méndez-transform displays, the user can scale the graphs.
+    </p>
+    <p>The actual rotation axis is displayed in <span style="color: green">green</span>.
+    The button <b>Axis</b> toggles display of the axis.
+    </p>
+    <p>Due to limited screen resolution, it is sometimes difficult to pinpoint the
+    direction of the axis. The <b>Fine</b>-button allows to switch to a high resolution
+    mode.
+    The App displays a yellow ball in the center, which represents the current axis
+    direction.
+    By touching the screen at an offset to the ball, the axis is moved to a corresponding
+    offset from the direction when fine mode was initiated.
+    </p>
+    <p>It is sometimes difficult to find the minimum because of noise.
+    Smoothing the image reduces the noise and makes it easier to find the minimum.
+    The <b>Smooth</b> button does this.
+    Unfortunately it also introduces some artefacts into the image (this is caused by
+    the image filter library built into iOS), which usually add a small bump of noise
+    to the Méndez-transform that you have to learn to ignore.
+    Hitting <b>Smooth</b> again returns to the original image.
+    </p>
+    
+    <h2>How to check the rotation axis?</h2>
+    <p>To check the rotation axis, tap the button <b>Rotate</b>.
+    The two spheres are then moved to the center and the left sphere made transparent.
+    Touching the area of the two spheres no longer moves the axis of rotation, but changes
+    the rotation angle.
+    Move your finger around on the screen to find the angle where the two images
+    coincide.
+    If the axis was not determined accurately enough,
+    </p>
+    
+    <h2>Other images and other rotations</h2>
+    <p>The button <b>Select image</b> allows to select other images.
+    Some of them are computed on the fly.
+    The <i>Dots</i> image consists of random colored dots, and will be different each time
+    it is selected.
+    </p>
+    <p>The <b>Random</b> button computes a new random rotation axis.
+    </p>
+    
+    <h2>Color</h2>
+    <p>The original description of the Méndez-transform was only for monochrome images.
+    When computing the Méndez-transform of an image, this App just uses the green channel.
+    For some images, e.g. for <i>Stripes</i>, this will not result in a correct determination
+    of the rotation axis, because when looking only at the green channel, this image is
+    rotationally symmetric.
+    For such cases, the button <b>Mono</b> allows to switch mode to color.
+    In color mode, a Méndez-transform is computed for every color channel,
+    i.e. three Méndez-transforms have to be computed for each axis direction update.
+    This mode is considerably slower, but it allows to find the axis even for difficult
+    cases like the <i>Stripes</i> image.
+    </p>
+    
+    <h2>More Information</h2>
+    <p>Given the axis, the Méndez-transform computes the average of the pixel values
+    along latitude circles around this axis.
+    For the common rotation axis, these averages coincide for the two images.
+    If we write the two images as functions <i>f</i>(<i>&phi;, &theta;</i>) and
+    <i>g</i>(<i>&phi;,&theta;</i>) for spherical coordinates <i>&phi;</i> (longitude)
+    and <i>&theta;</i> (latitude),
+    and denote the Méndez-transform for the axis <i>v</i> as <i>Mf</i>(<i>v</i>), then
+    finding the axis amounts to minimizing the difference <i>Mf</i>(<i>v</i>)<i> - Mg</i>(<i>v</i>)
+        <i>= M</i>(<i>f-g</i>)(<i>v</i>) (the Méndez-transform is linear).
+    Any norm on the functions can be used for this purpose, the app just displays a graph
+    of the difference and asks a user to minimize the &ldquo;black area&rdquo;.
+    This is the same as minimizing the difference in the L<sup>1</sub>-norm.
+    </p>
+    <p>More generally, the Méndez-transform <i>Mf</i> is a mapping from the sphere
+    <i>S<sup>2</sup></i> to the space of real valued functions on the interval [-1,1].
+    Finding the rotation axis means finding the point <i>v</i> on the sphere S<sup>2</sup>,
+    <i>v &isin; </i>S<sup>2</sub>,
+    that minimizes ||<i>Mf</i>(<i>v</i>)||.
+    </p>
+    <p>There is also a link to the theory of Gelfand pairs in noncommutative harmonic
+    analysis, as explained in the appendix to the book [1].
+    The averaging operation of the Méndez-transform turns out to be just the averaging
+    over double cosets <i>K&bsol;G/K</i> for the Gelfand pair (<i>G</i>,<i>K</i>)=(SO(3), SO(2)).
+    Convolution on L<sup>1</sup>(<i>K</i>&bsol;<i>G</i>/<i>K</i>) is commutative,
+    which indicates that
+    convolution methods can be used to partially solve the registration problem.
+    One then only has to find the element <i>K</i> to complete the solution to
+    the noncommutative registration problem.
+    </p>
+    
+    <h2>References</h2>
+    <ol>
+    <li>
+    Tabea Méndez, <i>Nichtkommutative Bildverarbeitung</i>, <i>Anwendungsmöglichkeiten der
+        nichtkommutativen harmonischen Analyse in der Bildverarbeitung</i>,
+    with an appendix by Andreas Müller, published by
+    Hochschule für Technik Rapperswil, 2016, ISBN 978-3-033-05830-9</li>
+    <li>
+    Tabea Méndez and Andreas Müller, <i>Noncommutative Image Registration</i>,<!-- Journal of
+    Mathematical Imaging and Vision,--> to appear</li>
+    </ol>
+</body>
+</html>

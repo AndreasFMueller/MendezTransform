@@ -24,6 +24,7 @@
     IBOutlet UIButton   *randomButton;
     IBOutlet UIButton   *smoothButton;
     IBOutlet UIButton   *tailButton;
+    IBOutlet UIButton   *helpButton;
     id  colorTarget;
     SEL colorAction;
     SCNVector3 axis;
@@ -60,5 +61,8 @@
 // random button
 - (void)addRandomButtonTarget: (id)target action: (SEL)action;
 - (void)addSmoothButtonTarget: (id)target action: (SEL)action;
+
+// help
+- (void)addHelpTarget: (id)target action: (SEL)action;
 
 @end

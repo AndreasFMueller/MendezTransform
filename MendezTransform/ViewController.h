@@ -34,6 +34,7 @@
 - (void)toggleColor:(id)sender;
 - (void)randomAction: (id)sender;
 - (void)smoothAction: (id)sender;
+- (BOOL)prefersStatusBarHidden;
 
 @end
 

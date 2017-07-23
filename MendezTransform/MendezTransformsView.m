@@ -7,6 +7,7 @@
 //
 
 #import "MendezTransformsView.h"
+#import "HelpViewController.h"
 
 @implementation MendezTransformsView
 
@@ -33,6 +34,7 @@
     differenceLabel.frame = CGRectMake(    width + 2, 0, width - 4, HEIGHT);
     reverseLabel.frame    = CGRectMake(2 * width + 2, 0, width - 4, HEIGHT);
     rightLabel.frame      = CGRectMake(3 * width + 2, 0, width - 4, HEIGHT);
+    
 }
 
 - (UILabel *)makeLabel: (NSString*)labeltext {

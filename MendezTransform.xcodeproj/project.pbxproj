@@ -28,6 +28,9 @@
 		905B94A51F23DA86004AA9BF /* GridImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94A41F23DA86004AA9BF /* GridImage.m */; };
 		905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B94A61F248762004AA9BF /* m42-launch-retina.jpg */; };
 		905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B94A71F248762004AA9BF /* m42-launch.jpg */; };
+		905B94B01F2490AF004AA9BF /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94AF1F2490AF004AA9BF /* HelpViewController.m */; };
+		905B94B31F249706004AA9BF /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94B21F249706004AA9BF /* HelpView.m */; };
+		905B94B71F249C3B004AA9BF /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 905B94B61F249C3B004AA9BF /* help.html */; };
 		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
 		906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */; };
 		906BDF031F20E7B000778F44 /* afm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF021F20E7B000778F44 /* afm.jpg */; };
@@ -99,6 +102,11 @@
 		905B94A41F23DA86004AA9BF /* GridImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridImage.m; sourceTree = "<group>"; };
 		905B94A61F248762004AA9BF /* m42-launch-retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-launch-retina.jpg"; sourceTree = "<group>"; };
 		905B94A71F248762004AA9BF /* m42-launch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-launch.jpg"; sourceTree = "<group>"; };
+		905B94AE1F2490AF004AA9BF /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		905B94AF1F2490AF004AA9BF /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		905B94B11F249706004AA9BF /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
+		905B94B21F249706004AA9BF /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		905B94B61F249C3B004AA9BF /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
 		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
 		906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionDatasource.h; sourceTree = "<group>"; };
@@ -161,6 +169,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		905B94AA1F248C4D004AA9BF /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				905B94AE1F2490AF004AA9BF /* HelpViewController.h */,
+				905B94AF1F2490AF004AA9BF /* HelpViewController.m */,
+				905B94B11F249706004AA9BF /* HelpView.h */,
+				905B94B21F249706004AA9BF /* HelpView.m */,
+				905B94B61F249C3B004AA9BF /* help.html */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
 		906BDF0A1F20FA3100778F44 /* Mendez Transform */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +263,7 @@
 		909CBFF51F0E8E6F005172C3 /* MendezTransform */ = {
 			isa = PBXGroup;
 			children = (
+				905B94AA1F248C4D004AA9BF /* Help */,
 				906BDF0B1F20FA5500778F44 /* Image Selection */,
 				906BDF0A1F20FA3100778F44 /* Mendez Transform */,
 				909CBFF91F0E8E6F005172C3 /* AppDelegate.h */,
@@ -413,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				906BDF031F20E7B000778F44 /* afm.jpg in Resources */,
+				905B94B71F249C3B004AA9BF /* help.html in Resources */,
 				905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */,
 				905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */,
 				905B94951F233746004AA9BF /* ComparisonFilter.plist in Resources */,
@@ -450,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				905B94981F234492004AA9BF /* ComparisonFilter.m in Sources */,
+				905B94B31F249706004AA9BF /* HelpView.m in Sources */,
 				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
 				905B94801F215836004AA9BF /* ImageSelectionController.m in Sources */,
 				905B948B1F228B90004AA9BF /* StripeImage.m in Sources */,
@@ -470,6 +493,7 @@
 				909CC0311F11305F005172C3 /* SphereGrid.m in Sources */,
 				905B94A51F23DA86004AA9BF /* GridImage.m in Sources */,
 				905B947D1F212539004AA9BF /* MendezTransformsView.m in Sources */,
+				905B94B01F2490AF004AA9BF /* HelpViewController.m in Sources */,
 				909CBFF81F0E8E6F005172C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

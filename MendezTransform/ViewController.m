@@ -13,6 +13,7 @@
 #import "MendezView.h"
 #import "ImageSelectionController.h"
 #import "VectorTypes.h"
+#import "HelpViewController.h"
 
 @interface ViewController ()
 
@@ -40,6 +41,7 @@
     [mendezView addColorTarget: self action: @selector(toggleColor:)];
     [mendezView addRandomButtonTarget: self action: @selector(randomAction:)];
     [mendezView addSmoothButtonTarget: self action: @selector(smoothAction:)];
+    [mendezView addHelpTarget: self action: @selector(helpAction:)];
     leftFunction = [[SphereFunction alloc] init];
     rightFunction = [[SphereFunction alloc] init];
     
@@ -158,6 +160,16 @@
     }
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 
+- (void)helpAction:(id)sender {
+    NSLog(@"show help");
+    HelpViewController  *helpviewcontroller = [[HelpViewController alloc] init];
+    helpviewcontroller.modalPresentationStyle = UIModalPresentationPageSheet;
+    helpviewcontroller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController: helpviewcontroller animated: YES completion:nil];
+}
 
 @end

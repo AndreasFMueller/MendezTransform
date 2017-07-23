@@ -44,6 +44,8 @@
     smoothButton.frame = CGRectMake(9 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
     imageSelectionButton.frame = CGRectMake(10 * buttonunit + 3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
+    
+    helpButton.frame = CGRectMake(self.bounds.size.width - 30, 0, 30, 30);
 }
 
 - (UIButton *)makeButton: (NSString*)label {
@@ -88,6 +90,9 @@
     
     // Button to request the image selection
     imageSelectionButton = [self makeButton:@"Select Image"];
+    
+    helpButton = [UIButton buttonWithType: UIButtonTypeInfoDark];
+    [self addSubview: helpButton];
     
     // now resize all the subviews
     [self setNeedsLayout];
@@ -190,6 +195,10 @@
 
 - (void)addSmoothButtonTarget: (id)target action: (SEL)action {
     [smoothButton addTarget: target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addHelpTarget:(id)target action:(SEL)action {
+    [helpButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end
