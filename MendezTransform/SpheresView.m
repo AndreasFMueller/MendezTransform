@@ -321,6 +321,7 @@
     // redisplay the axis
     leftArrow.rotation = [self rotationToAxis: axis];
     rightArrow.rotation = [self rotationToAxis: axis];
+    [SCNTransaction flush];
     
     // send action
     if ([axisChangedTarget respondsToSelector: axisChangedAction]) {
