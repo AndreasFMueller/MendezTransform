@@ -36,13 +36,23 @@
     comparingButton.frame = CGRectMake(3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
     fineButton.frame = CGRectMake(2 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
-    axisButton.frame = CGRectMake(3 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
+    axisButton.frame = CGRectMake(4 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
+    tailButton.frame = CGRectMake(3 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
-    randomButton.frame = CGRectMake(4 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
+    randomButton.frame = CGRectMake(5 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     colorButton.frame = CGRectMake(8 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     smoothButton.frame = CGRectMake(9 * buttonunit + 3, buttony + 3, buttonunit - 6, controlsheight - 6);
     
     imageSelectionButton.frame = CGRectMake(10 * buttonunit + 3, buttony + 3, 2 * buttonunit - 6, controlsheight - 6);
+}
+
+- (UIButton *)makeButton: (NSString*)label {
+    UIButton *button = [[UIButton alloc] init];
+    button.backgroundColor = [UIColor whiteColor];
+    [button setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [button setTitle: label forState: UIControlStateNormal];
+    [self addSubview: button];
+    return button;
 }
 
 - (void)setupSubviews {
@@ -55,54 +65,28 @@
     transformsView = [[MendezTransformsView alloc] initWithFrame: CGRectMake(0, 0, 100, 100)];
     [self addSubview: transformsView];
     
-    comparingButton = [[UIButton alloc] init];
-    comparingButton.backgroundColor = [UIColor whiteColor];
-    [comparingButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
+    comparingButton = [self makeButton: @"Rotate"];
     [comparingButton addTarget: self action: @selector(toggleComparing:) forControlEvents: UIControlEventTouchUpInside];
-    [self addSubview: comparingButton];
     
-    fineButton = [[UIButton alloc] init];
-    fineButton.backgroundColor = [UIColor whiteColor];
-    [fineButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [fineButton setTitle: @"Fine" forState: UIControlStateNormal];
+    fineButton = [self makeButton: @"Fine"];
     [fineButton addTarget: self action: @selector(toggleFine:) forControlEvents: UIControlEventTouchUpInside];
-    [self addSubview: fineButton];
     
-    axisButton = [[UIButton alloc] init];
-    axisButton.backgroundColor = [UIColor whiteColor];
-    [axisButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [axisButton setTitle: @"Axis" forState: UIControlStateNormal];
+    axisButton = [self makeButton: @"Axis"];
     [axisButton addTarget: spheresView action: @selector(toggleAxis:) forControlEvents: UIControlEventTouchUpInside];
-    [self addSubview: axisButton];
     
-    randomButton = [[UIButton alloc] init];
-    randomButton.backgroundColor = [UIColor whiteColor];
-    [randomButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [randomButton setTitle: @"Random" forState: UIControlStateNormal];
-    [self addSubview: randomButton];
+    randomButton = [self makeButton: @"Random"];
     
-    smoothButton = [[UIButton alloc] init];
-    smoothButton.backgroundColor = [UIColor whiteColor];
-    [smoothButton setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-    [smoothButton setTitle: @"Smooth" forState: UIControlStateNormal];
-    [self addSubview: smoothButton];
+    tailButton = [self makeButton: @"Tail"];
+    [tailButton addTarget: spheresView action: @selector(toggleTail:) forControlEvents: UIControlEventTouchUpInside];
+    
+    smoothButton = [self makeButton:@"Smooth"];
     
     // Button to switch to color mode
-    colorButton = [[UIButton alloc] init];
-    colorButton.backgroundColor = [UIColor whiteColor];
-    [colorButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
+    colorButton = [self makeButton:@"Mono"];
     [colorButton addTarget: self action: @selector(colorPressed:) forControlEvents: UIControlEventTouchUpInside];
-    [self addSubview: colorButton];
     
     // Button to request the image selection
-    imageSelectionButton = [[UIButton alloc] init];
-    imageSelectionButton.backgroundColor = [UIColor whiteColor];
-    [imageSelectionButton setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-    [imageSelectionButton setTitle: @"Select Image" forState: UIControlStateNormal];
-
-    [self addSubview: imageSelectionButton];
+    imageSelectionButton = [self makeButton:@"Select Image"];
     
     // now resize all the subviews
     [self setNeedsLayout];
@@ -200,6 +184,5 @@
 - (void)addSmoothButtonTarget: (id)target action: (SEL)action {
     [smoothButton addTarget: target action:action forControlEvents:UIControlEventTouchUpInside];
 }
-
 
 @end

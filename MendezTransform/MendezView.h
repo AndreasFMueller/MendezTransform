@@ -23,6 +23,7 @@
     IBOutlet UIButton   *axisButton;
     IBOutlet UIButton   *randomButton;
     IBOutlet UIButton   *smoothButton;
+    IBOutlet UIButton   *tailButton;
     id  colorTarget;
     SEL colorAction;
     SCNVector3 axis;
@@ -33,6 +34,7 @@
 
 - (void)setupSubviews;
 - (void)layoutSubviews;
+- (UIButton *)makeButton: (NSString*)label;
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithCoder:(NSCoder *)aDecoder;

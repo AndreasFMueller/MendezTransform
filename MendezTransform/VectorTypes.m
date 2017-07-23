@@ -51,6 +51,14 @@ float   AppVector3Dot(AppVector3 a, AppVector3 b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
+AppVector3  AppVector3Add(AppVector3 a, AppVector3 b) {
+    return AppVector3Make(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+AppVector3  AppVector3Multiply(AppVector3 a, float b) {
+    return AppVector3Make(a.x * b, a.y * b, a.z * b);
+}
+
 float   SCNVector3Length(SCNVector3 a) {
     return sqrtf(sqr(a.x) + sqr(a.y) + sqr(a.z));
 }
@@ -73,6 +81,14 @@ SCNVector3  SCNVector3Cross(SCNVector3 a, SCNVector3 b) {
 
 float   SCNVector3Dot(SCNVector3 a, SCNVector3 b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+SCNVector3  SCNVector3Add(SCNVector3 a, SCNVector3 b) {
+    return SCNVector3Make(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+SCNVector3  SCNVector3Multiply(SCNVector3 a, float b) {
+    return SCNVector3Make(a.x * b, a.y * b, a.z * b);
 }
 
 SCNVector4  SCNVector4RotationMake(SCNVector3 axis, float angle) {

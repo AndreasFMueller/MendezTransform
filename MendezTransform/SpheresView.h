@@ -34,6 +34,8 @@
     BOOL comparing;
     BOOL fine;
     
+    int tail;
+    
     UIImage *opaqueImage;
     UIImage *transparentImage;
     
@@ -63,5 +65,6 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 
 - (void)toggleAxis: (id)sender;
+- (void)toggleTail: (id)sender;
 
 @end

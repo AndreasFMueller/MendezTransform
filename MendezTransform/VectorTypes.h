@@ -32,10 +32,16 @@ AppVector3  AppVector3Normalized(AppVector3 a);
 AppVector3  AppVector3Cross(AppVector3 a, AppVector3 b);
 float   AppVector3Dot(AppVector3 a, AppVector3 b);
 
+AppVector3  AppVector3Add(AppVector3 a, AppVector3);
+AppVector3  AppVector3Multiply(AppVector3 a, float b);
+
 float   SCNVector3Length(SCNVector3 a);
 SCNVector3  SCNVector3Normalized(SCNVector3 a);
 SCNVector3  SCNVector3Cross(SCNVector3 a, SCNVector3 b);
 float   SCNVector3Dot(SCNVector3 a, SCNVector3 b);
+
+SCNVector3  SCNVector3Add(SCNVector3 a, SCNVector3 b);
+SCNVector3  SCNVector3Multiply(SCNVector3 a, float b);
 
 SCNVector4  SCNVector4RotationMake(SCNVector3 axis, float angle);
 

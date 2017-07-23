@@ -21,6 +21,7 @@
     if (self) {
         fine = NO;
         showAxis = YES;
+        tail = 1;
         [self setupScene];
     }
     return self;
@@ -310,7 +311,7 @@
 }
 
 - (void)setAxis:(SCNVector3)_axis {
-    axis = _axis;
+    axis = SCNVector3Multiply(_axis, tail);
     NSLog(@"axis. %.2f,%.2f,%.2f", axis.x, axis.y, axis.z);
     
     // redisplay the axis
@@ -321,6 +322,10 @@
     if ([axisChangedTarget respondsToSelector: axisChangedAction]) {
         [axisChangedTarget performSelector:axisChangedAction withObject: self];
     }
+}
+
+- (void)toggleTail:(id)sender {
+    tail = -tail;
 }
 
 @end
