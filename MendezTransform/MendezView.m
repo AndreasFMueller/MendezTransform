@@ -50,6 +50,7 @@
     UIButton *button = [[UIButton alloc] init];
     button.backgroundColor = [UIColor whiteColor];
     [button setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
+    [button setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];
     [button setTitle: label forState: UIControlStateNormal];
     [self addSubview: button];
     return button;
@@ -120,8 +121,14 @@
     spheresView.comparing = !spheresView.comparing;
     if (spheresView.comparing) {
         [comparingButton setTitle: @"Find Axis" forState: UIControlStateNormal];
+        randomButton.enabled = NO;
+        fineButton.enabled = NO;
+        tailButton.enabled = NO;
     } else {
         [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
+        randomButton.enabled = YES;
+        fineButton.enabled = YES;
+        tailButton.enabled = YES;
     }
 }
 

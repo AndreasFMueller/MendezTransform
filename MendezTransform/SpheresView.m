@@ -255,28 +255,32 @@
     SCNMaterial *material = [leftSphere firstMaterial];
     if (comparing) {
         NSLog(@"comparing");
-        rightArrow.hidden = YES;
         [SCNTransaction begin];
         [SCNTransaction setAnimationDuration: ANIMATION_TIME];
         leftSphere.radius = SPHERE_RADIUS * 1.004;
         leftNode.position = SCNVector3Make(0, 0, 0);
         rightNode.position = SCNVector3Make(0, 0, 0);
+        rightArrow.position = SCNVector3Make(0, 0, 0);
         leftArrow.position = SCNVector3Make(0, 0, 0);
         prerotateArrow.position = SCNVector3Make(0, 0, 0);
-        material.transparent.contents = transparentImage;
+        [SCNTransaction setCompletionBlock:^{
+            material.transparent.contents = transparentImage;
+            rightArrow.hidden = YES;
+        }];
         [SCNTransaction commit];
     } else {
         NSLog(@"not comparing");
+        rightArrow.hidden = NO;
+        material.transparent.contents = nil;
         [SCNTransaction begin];
         [SCNTransaction setAnimationDuration: ANIMATION_TIME];
         leftSphere.radius = SPHERE_RADIUS;
         leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
         rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
         leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+        rightArrow.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
         prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-        material.transparent.contents = nil;
         [SCNTransaction setCompletionBlock:^{
-            rightArrow.hidden = NO;
         }];
         [SCNTransaction commit];
     }

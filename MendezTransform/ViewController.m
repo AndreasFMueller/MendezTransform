@@ -146,7 +146,7 @@
             }
             CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
             [filter setValue:inputImage forKey:kCIInputImageKey];
-            [filter setValue:[NSNumber numberWithDouble:6.0] forKey:@"inputRadius"];
+            [filter setValue:[NSNumber numberWithDouble:3.0] forKey:@"inputRadius"];
             //CIImage *result = [filter valueForKey:kCIOutputImageKey];
             CIImage *outputImage = [filter outputImage];
             CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
