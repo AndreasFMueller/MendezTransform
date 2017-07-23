@@ -26,6 +26,8 @@
 		905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B949E1F236D1A004AA9BF /* hsr.jpg */; };
 		905B94A21F23AA00004AA9BF /* VectorTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94A11F23AA00004AA9BF /* VectorTypes.m */; };
 		905B94A51F23DA86004AA9BF /* GridImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94A41F23DA86004AA9BF /* GridImage.m */; };
+		905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B94A61F248762004AA9BF /* m42-launch-retina.jpg */; };
+		905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 905B94A71F248762004AA9BF /* m42-launch.jpg */; };
 		906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDEFD1F20DAEC00778F44 /* SpheresView.m */; };
 		906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */; };
 		906BDF031F20E7B000778F44 /* afm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 906BDF021F20E7B000778F44 /* afm.jpg */; };
@@ -35,7 +37,6 @@
 		909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CBFFD1F0E8E6F005172C3 /* ViewController.m */; };
 		909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 909CBFFF1F0E8E6F005172C3 /* Main.storyboard */; };
 		909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909CC0021F0E8E6F005172C3 /* Assets.xcassets */; };
-		909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */; };
 		909CC0111F0E8E6F005172C3 /* MendezTransformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0101F0E8E6F005172C3 /* MendezTransformTests.m */; };
 		909CC01C1F0E8E6F005172C3 /* MendezTransformUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC01B1F0E8E6F005172C3 /* MendezTransformUITests.m */; };
 		909CC02A1F0E951A005172C3 /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0291F0E951A005172C3 /* Rotation.m */; };
@@ -96,6 +97,8 @@
 		905B94A11F23AA00004AA9BF /* VectorTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorTypes.m; sourceTree = "<group>"; };
 		905B94A31F23DA86004AA9BF /* GridImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridImage.h; sourceTree = "<group>"; };
 		905B94A41F23DA86004AA9BF /* GridImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridImage.m; sourceTree = "<group>"; };
+		905B94A61F248762004AA9BF /* m42-launch-retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-launch-retina.jpg"; sourceTree = "<group>"; };
+		905B94A71F248762004AA9BF /* m42-launch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "m42-launch.jpg"; sourceTree = "<group>"; };
 		906BDEFC1F20DAEC00778F44 /* SpheresView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpheresView.h; sourceTree = "<group>"; };
 		906BDEFD1F20DAEC00778F44 /* SpheresView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpheresView.m; sourceTree = "<group>"; };
 		906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionDatasource.h; sourceTree = "<group>"; };
@@ -110,7 +113,6 @@
 		909CBFFD1F0E8E6F005172C3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		909CC0001F0E8E6F005172C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		909CC0021F0E8E6F005172C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		909CC0051F0E8E6F005172C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		909CC0071F0E8E6F005172C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		909CC00C1F0E8E6F005172C3 /* MendezTransformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MendezTransformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		909CC0101F0E8E6F005172C3 /* MendezTransformTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MendezTransformTests.m; sourceTree = "<group>"; };
@@ -250,7 +252,6 @@
 				906BDF0C1F20FB1200778F44 /* Main View */,
 				909CBFFF1F0E8E6F005172C3 /* Main.storyboard */,
 				909CC0021F0E8E6F005172C3 /* Assets.xcassets */,
-				909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */,
 				909CC0071F0E8E6F005172C3 /* Info.plist */,
 				909CBFF61F0E8E6F005172C3 /* Supporting Files */,
 			);
@@ -260,6 +261,8 @@
 		909CBFF61F0E8E6F005172C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				905B94A61F248762004AA9BF /* m42-launch-retina.jpg */,
+				905B94A71F248762004AA9BF /* m42-launch.jpg */,
 				909CBFF71F0E8E6F005172C3 /* main.m */,
 				905B94891F228B90004AA9BF /* StripeImage.h */,
 				905B948A1F228B90004AA9BF /* StripeImage.m */,
@@ -410,10 +413,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				906BDF031F20E7B000778F44 /* afm.jpg in Resources */,
+				905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */,
+				905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */,
 				905B94951F233746004AA9BF /* ComparisonFilter.plist in Resources */,
 				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
 				905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */,
-				909CC0061F0E8E6F005172C3 /* LaunchScreen.storyboard in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
 				906BDF0E1F210CC700778F44 /* tabea.jpg in Resources */,
 				909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */,
@@ -510,14 +514,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		909CC0041F0E8E6F005172C3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				909CC0051F0E8E6F005172C3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -562,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -605,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -617,6 +613,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -629,6 +626,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

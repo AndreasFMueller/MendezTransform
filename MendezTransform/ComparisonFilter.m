@@ -37,7 +37,8 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
     NSLog(@"create a filter instance");
     if (comparisonFilterKernel == nil) {
         NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
-        NSString    *code = [NSString stringWithContentsOfFile: [bundle pathForResource: @"ComparisonFilter" ofType:@"cikernel"]];
+        NSError* error = nil;
+        NSString    *code = [NSString stringWithContentsOfFile: [bundle pathForResource: @"ComparisonFilter" ofType:@"cikernel"] encoding: NSUTF8StringEncoding error:&error];
         comparisonFilterKernel = [CIKernel kernelWithString: code];
     }
     self = [super init];
