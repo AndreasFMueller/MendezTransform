@@ -69,6 +69,9 @@ SCNPolar    SCNVector32Polar(SCNVector3 v);
 AppPolar    AppPolarMake(float phi, float theta, float r);
 AppVector3  AppPolar2Vector3(AppPolar p);
 AppPolar    AppVector32Polar(AppVector3 v);
+AppPolar    AppPolarAdd(AppPolar a, AppPolar b);
+AppPolar    AppPolarSub(AppPolar a, AppPolar b);
+AppPolar    AppPolarMultiply(AppPolar a, float s);
 
 AppPolar    SCN2AppPolar(SCNPolar p);
 SCNPolar    App2SCNPolar(AppPolar p);

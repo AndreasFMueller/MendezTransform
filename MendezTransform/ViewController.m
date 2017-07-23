@@ -113,14 +113,12 @@
 }
 
 - (void)toggleColor:(id)sender {
-    NSLog(@"color toggled");
     color = !color;
     mtransform.color = color;
     [self recompute];
 }
 
 - (void)randomAction:(id)sender {
-    NSLog(@"randomAction");
     AppPolar    p;
     p.phi = 2 * M_PI * (random() / (float)RAND_MAX);
     float t = 2 * (random() / (float)RAND_MAX) - 1;
@@ -132,7 +130,6 @@
 }
 
 - (void)smoothAction: (id)sender {
-    NSLog(@"smoothAction");
     smooth = !smooth;
     if (smooth) {
         if (nil == smoothImage) {
@@ -165,7 +162,6 @@
 }
 
 - (void)helpAction:(id)sender {
-    NSLog(@"show help");
     HelpViewController  *helpviewcontroller = [[HelpViewController alloc] init];
     helpviewcontroller.modalPresentationStyle = UIModalPresentationPageSheet;
     helpviewcontroller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

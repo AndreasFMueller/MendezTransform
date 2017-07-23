@@ -18,9 +18,7 @@
     
     SCNSphere   *rightSphere;
     SCNNode *rightNode;
-    
-    SCNNode *centerNode;
-    
+        
     SCNNode *leftArrow;
     SCNNode *rightArrow;
     
@@ -41,6 +39,10 @@
     
     SCNVector3 prerotation;
     SCNVector3 axis;
+    
+    AppPolar    start;
+    AppPolar    startaxis;
+    float   startangle;
 }
 
 @property (readwrite) SCNVector3 axis; // scene coordinates
@@ -54,6 +56,7 @@
 - (void)setupScene;
 - (void)rotate: (SCNVector4)rotation;
 - (void)rotateAngle: (float)angle;
+- (float)angle;
 - (void)setImage: (UIImage *)image;
 - (SCNNode*)arrow: (UIColor*)color;
 

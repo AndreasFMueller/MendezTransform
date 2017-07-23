@@ -33,7 +33,6 @@
 
 - (void)setFine: (BOOL)f {
     fine = f;
-    centerNode.hidden = !f;
 }
 
 - (BOOL)showAxis {
@@ -145,22 +144,11 @@
     prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
     prerotateArrow.hidden = YES;
     
-    SCNSphere   *centerSphere = [SCNSphere sphereWithRadius: 0.1];
-    SCNMaterial *centerMaterial = [SCNMaterial material];
-    centerMaterial.diffuse.contents = [UIColor yellowColor];
-    centerMaterial.shininess = 0.5;
-    [centerSphere removeMaterialAtIndex: 0];
-    centerSphere.materials = @[centerMaterial];
-    
-    centerNode = [SCNNode nodeWithGeometry: centerSphere];
-    centerNode.hidden = YES;
-    
     [scene.rootNode addChildNode: leftNode];
     [scene.rootNode addChildNode: rightNode];
     [scene.rootNode addChildNode: leftArrow];
     [scene.rootNode addChildNode: rightArrow];
     [scene.rootNode addChildNode: prerotateArrow];
-    [scene.rootNode addChildNode: centerNode];
     
     self.allowsCameraControl = NO;
     
@@ -200,44 +188,55 @@
     return SCNVector4RotationMake(r, angle);
 }
 
-- (void)handleTouches: (NSSet *)touches {
-    // extract coordinates from the first touch
-    if (0 == [touches count]) {
-        return;
-    }
-    UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex: 0];
-    CGPoint where = [touch locationInView: self];
-    if (!fine) {
-        center = where;
-    }
-    
-    float   phi = 2 * M_PI * where.x / self.bounds.size.width;
-    float   theta = 0;
-    if (self.comparing) {
-        phi = phi - M_PI;
-        [self rotateAngle: phi];
-        return;
-    }
-    
-    // build new axis based on these coordinates
-    if (fine) {
-        where.x = center.x + 0.05 * (where.x - self.bounds.size.width / 2);
-        where.y = center.y + 0.05 * (where.y - self.bounds.size.height / 2);
-    }
-    phi = 2 * M_PI * where.x / self.bounds.size.width;
-    theta = M_PI * where.y / self.bounds.size.height;
-    AppPolar    polar = AppPolarMake(phi, theta, 1);
-    NSLog(@"position: %.2f, %.2f, phi = %.3f, theta = %.3f", where.x, where.y, phi, theta);
+- (AppPolar)polar: (CGPoint)where {
+    return AppPolarMake(2 * M_PI * where.x / self.bounds.size.width,
+                        M_PI * where.y / self.bounds.size.height, 1);
+}
 
-    self.axis = App2SCN3(AppPolar2Vector3(polar));
-
+- (float)angle {
+    return leftNode.rotation.w;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouches: touches];
+    if ([touches count] == 0) {
+        return;
+    }
+    UITouch *touch = (UITouch*)[[touches allObjects] objectAtIndex:0];
+    start = [self polar: [touch locationInView: self]];
+    if (self.comparing) {
+        startangle = [self angle];
+    } else {
+        AppVector3  v = SCN2App3(self.axis);
+        startaxis = AppVector32Polar(v);
+    }
 }
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouches: touches];
+    if ([touches count] == 0) {
+        return;
+    }
+    UITouch *touch = (UITouch*)[[touches allObjects] objectAtIndex:0];
+    AppPolar current = [self polar: [touch locationInView: self]];
+    AppPolar    delta = AppPolarSub(current, start);
+    if (fine) {
+        delta = AppPolarMultiply(delta, 0.05);
+    }
+    if (self.comparing) {
+        [self rotateAngle: startangle + delta.phi];
+    } else {
+        AppPolar polar = AppPolarAdd(startaxis, delta);
+        self.axis = App2SCN3(AppPolar2Vector3(polar));
+    }
+}
+
+// the following two methods must be overriden because we don't call the superclass
+// and the documentation says that we have to override them in that case
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
 }
 
 - (BOOL)comparing {

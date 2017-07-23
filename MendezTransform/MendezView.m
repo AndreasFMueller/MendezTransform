@@ -20,9 +20,7 @@
     axis = App2SCN3(a);
 }
 
-- (void)layoutSubviews {
-    NSLog(@"MendezView layoutSubviews");
-    
+- (void)layoutSubviews {    
     float controlsheight = 80;
     float height = self.bounds.size.height - self.bounds.size.width/2 - controlsheight;
     
@@ -127,12 +125,10 @@
     if (spheresView.comparing) {
         [comparingButton setTitle: @"Find Axis" forState: UIControlStateNormal];
         randomButton.enabled = NO;
-        fineButton.enabled = NO;
         tailButton.enabled = NO;
     } else {
         [comparingButton setTitle: @"Rotate" forState: UIControlStateNormal];
         randomButton.enabled = YES;
-        fineButton.enabled = YES;
         tailButton.enabled = YES;
     }
 }
@@ -185,7 +181,6 @@
 }
 
 - (void)setPrerotation:(AppVector3)r {
-    NSLog(@"setting prerotation in MendezView");
     spheresView.prerotation = App2SCN3(r);
 }
 

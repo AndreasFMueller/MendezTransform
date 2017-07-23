@@ -194,4 +194,15 @@ float   between(float y, float minvalue, float maxvalue) {
     [self handleTouches:touches];
 }
 
+
+// the following two methods must be overriden because we don't call the superclass
+// and the documentation says that we have to override them in that case
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+}
+
 @end

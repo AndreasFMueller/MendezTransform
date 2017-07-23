@@ -136,6 +136,18 @@ AppPolar        AppPolarMake(float phi, float theta, float r) {
     return result;
 }
 
+AppPolar    AppPolarSub(AppPolar a, AppPolar b) {
+    return AppPolarMake(a.phi - b.phi, a.theta - b.theta, 1);
+}
+
+AppPolar    AppPolarAdd(AppPolar a, AppPolar b) {
+    return AppPolarMake(a.phi + b.phi, a.theta + b.theta, 1);
+}
+
+AppPolar    AppPolarMultiply(AppPolar a, float s) {
+    return AppPolarMake(s * a.phi, s * a.theta, s * a.r);
+}
+
 AppVector3  AppPolar2Vector3(AppPolar p) {
     float   s = p.r * sinf(p.theta);
     float   z = p.r * cosf(p.theta);
