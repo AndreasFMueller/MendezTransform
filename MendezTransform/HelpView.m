@@ -49,7 +49,7 @@
     return nil;
 }
 
-- (void)loadURL: (NSURL*)url {
+- (void)loadURL: (NSURL* _Nonnull)url {
     [textView loadRequest: [NSURLRequest requestWithURL: url]];
 }
 

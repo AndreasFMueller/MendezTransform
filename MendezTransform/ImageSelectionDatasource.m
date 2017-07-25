@@ -31,7 +31,6 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
         }
     }
     
-    NSLog(@"found %lu files", [resultarray count]);
     return resultarray;
 }
 
@@ -75,7 +74,6 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 }
 
 - (UIImage*)imageAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"request for image at %ld", indexPath.row);
     if (indexPath.row < [images count]) {
         NSString *imagename = [self imageNameAtIndexPath: indexPath];
         if ([imagename isEqualToString: @"Stripes"]) {
@@ -92,10 +90,8 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: [self imageNameAtIndexPath: indexPath]];
-    NSLog(@"selected image: %@", imagename);
     NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
     UIImage     *image = [UIImage imageWithData: imageData];
-    NSLog(@"found image: %@", [image description]);
     return image;
 }
 

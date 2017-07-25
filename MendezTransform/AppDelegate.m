@@ -21,15 +21,12 @@
     [ComparisonFilter class];
     // Override point for customization after application launch.
     
-    NSLog(@"launch with options: %lu", [launchOptions count]);
-    
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
-    NSLog(@"open url: %@", url.absoluteString);
     NSString __block   *imagefile = url.path;
     NSData  *imageData = [NSData dataWithContentsOfFile: imagefile];
     if (nil == imageData) {

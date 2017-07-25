@@ -13,10 +13,10 @@
     UIButton   *dismissButton;
 }
 
-- (id)initWithFrame:(CGRect)frame;
+- (id _Nonnull )initWithFrame:(CGRect)frame;
 - (void)layoutSubviews;
 - (void)setupSubviews;
 - (void)addTarget: (id _Nullable )target action:(nonnull SEL)action forControlEvents:(UIControlEvents)controlEvents;
-- (void)loadURL: (NSURL*)url;
+- (void)loadURL: (NSURL* _Nonnull)url;
 
 @end
