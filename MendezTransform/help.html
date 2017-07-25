@@ -1,14 +1,16 @@
 <html>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <style type="text/css">
         body {
             font-family: sans-serif;
         }
     </style>
 <body>
-    <h1>How to use the MendezTransform App</h1>
+    <h1>How to use the <i>Méndez Transform</i> App</h1>
     <h2>What is the Méndez-transform?</h2>
-    <p>The Méndez-transform was developed by Tabea Méndez in her book <i>Nichtkommutative
-    Bildverarbeitung</i> [1] as a solution to the noncommutative image registration problem
+    <p><img src="Buchtitel.png" align="right" width="200"/>
+    The Méndez-transform was developed by Tabea Méndez in her book <i>Nichtkommutative
+    Bildverarbeitung</i> [1] (Book cover displayed on the right) as a solution to the noncommutative image registration problem
     on the group SO(3). For two images on a sphere that differ only by a rotation of the
     sphere, this problem asks to find the rotation in SO(3) that makes the images coincide.
     The problem is solved in two steps.
@@ -22,15 +24,27 @@
     (s)he can actually make them coincide.
     </p>
     
-    <h2>How to find the rotation axis?</h2>
+    <h2>How to find the rotation axis</h2>
     <p>In the top row of the screen, the Méndez-transforms of the images are displayed
     for the images on the two spheres, the difference and the mirrored difference.
     The currently selected rotation axis is displayed in <span style="color:red;">red</span>.
     By touching the area with the two spheres and dragging, the user can move the rotation
     axis.
-    The goal is to minimize the difference of the two Méndez-transforms.
+    The goal is to minimize the difference of the two Méndez-transforms (second graph in the top row).
     By swiping over the Méndez-transform displays, the user can scale the graphs.
     </p>
+    <table>
+        <tr>
+            <td><img src="IMG_0026.png" width="360"/></td>
+            <td><img src="IMG_0027.png" width="360"/></td>
+        </tr>
+        <tr>
+            <td width="320" valign="top">Current rotation axis (red) misaligned, Méndez transform difference
+                (second graph in top row) is not zero.</td>
+            <td width="320" valign="top">Rotation axis found, Méndez transform difference vanishingly small.</td>
+        </tr>
+    </table>
+
     <p>The actual rotation axis is displayed in <span style="color: green">green</span>.
     The button <b>Axis</b> toggles display of the axis.
     </p>
@@ -47,39 +61,75 @@
     Hitting <b>Smooth</b> again returns to the original image.
     </p>
     
-    <h2>How to check the rotation axis?</h2>
+    <h2>How to check the rotation axis</h2>
+    
     <p>To check the rotation axis, tap the button <b>Rotate</b>.
     The two spheres are then moved to the center and the left sphere made transparent.
     Touching the area of the two spheres no longer moves the axis of rotation, but changes
     the rotation angle.
-    Move your finger around on the screen to find the angle where the two images
-    coincide.
-    If the axis was not determined accurately enough,
+    Move your finger left and right on the screen to find the angle where the two images
+    coincide (the vertical motion is ignored in this mode).
+    If the axis was not determined accurately enough, you will not be able to
+    make the images coincide.
     </p>
+    <table>
+        <tr>
+            <td><img src="IMG_0028.png" width="360"/></td>
+            <td><img src="IMG_0029.png" width="360"/></td>
+        </tr>
+        <tr>
+            <td width="320" valign="top">Current rotation angle almost correct, but stars
+            appear as pairs.</td>
+            <td width="320" valign="top">Current rotation angle correct, perfect
+                alignment of the two images.</td>
+        </tr>
+    </table>
     
     <h2>Other images and other rotations</h2>
+    
+    <p>The <b>Random</b> button computes a new random rotation axis with the same image.
+    Go to "Find axis" mode to find this new axis.
+    </p>
     <p>The button <b>Select image</b> allows to select other images.
     Some of them are computed on the fly.
     The <i>Dots</i> image consists of random colored dots, and will be different each time
     it is selected.
+    The <i>Stripes</i> image contains red, green and blue stripes in a way that each
+    color channel is rotationally symmetric around one of the coordinate axes.
+    The exist multiple rotation axes for each color channel, but only one for
+    the color image.
     </p>
-    <p>The <b>Random</b> button computes a new random rotation axis.
+    <p>The Méndez-transform App supports Document Interaction.
+    It anounces itself to the operating system as a viewer for PNG and JPEG images,
+    so images in Email messages etc. can be opened with the it.
+    The App also asks the user whether (s)he wants to keep the image for future use,
+    in which case it will be added to the menu of selectable images.
+    Images twice as wide as they are high work best.
+    It is a good idea to place the images inside a suitably large dark background.
     </p>
+    <p>Additional images can also be added via iTunes: go to your iPad -> Apps and scroll
+    to the bottom. Then select the Méndez Transform App. iTunes displays a list of
+    image files (the ones you have opened so far and told the App to keep).
+    You can add new images from that dialog.
+    </p>
+
     
     <h2>Color</h2>
-    <p>The original description of the Méndez-transform was only for monochrome images.
+    
+    <p>The original description of the Méndez-transform in [1] was only for monochrome images.
     When computing the Méndez-transform of an image, this App just uses the green channel.
     For some images, e.g. for <i>Stripes</i>, this will not result in a correct determination
     of the rotation axis, because when looking only at the green channel, this image is
     rotationally symmetric.
-    For such cases, the button <b>Mono</b> allows to switch mode to color.
-    In color mode, a Méndez-transform is computed for every color channel,
+    For such cases, the button <b>Mono</b> allows to switch  to color mode.
+    In color mode, a Méndez-transform is computed for each color channel,
     i.e. three Méndez-transforms have to be computed for each axis direction update.
     This mode is considerably slower, but it allows to find the axis even for difficult
     cases like the <i>Stripes</i> image.
     </p>
     
     <h2>More Information</h2>
+    
     <p>Given the axis, the Méndez-transform computes the average of the pixel values
     along latitude circles around this axis.
     For the common rotation axis, these averages coincide for the two images.
@@ -91,7 +141,7 @@
         <i>= M</i>(<i>f-g</i>)(<i>v</i>) (the Méndez-transform is linear).
     Any norm on the functions can be used for this purpose, the app just displays a graph
     of the difference and asks a user to minimize the &ldquo;black area&rdquo;.
-    This is the same as minimizing the difference in the L<sup>1</sub>-norm.
+    This is the same as minimizing the difference in the L<sup>1</sup>-norm.
     </p>
     <p>More generally, the Méndez-transform <i>Mf</i> is a mapping from the sphere
     <i>S<sup>2</sup></i> to the space of real valued functions on the interval [-1,1].
@@ -109,6 +159,11 @@
     convolution methods can be used to partially solve the registration problem.
     One then only has to find the element <i>k&isin;K</i> to complete the solution to
     the noncommutative registration problem.
+    </p>
+    <p>This App also demonstrates that it is possible to compute the Méndez transform
+    relatively efficiently.
+    On an iPad Pro 12", the computation of a single Méndez transform takes around 50ms.
+    The source code for this App is available on GitHub at <a href="https://github.com/AndreasFMueller/MendezTransform">https://github.com/AndreasFMueller/MendezTransform</a>.
     </p>
     
     <h2>References</h2>

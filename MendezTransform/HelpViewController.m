@@ -25,9 +25,8 @@
     [helpView addTarget: self action:@selector(dismissAction:) forControlEvents: UIControlEventTouchUpInside];
     
     NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
-    NSError* error = nil;
-    NSString    *helptext = [NSString stringWithContentsOfFile: [bundle pathForResource: @"help" ofType:@"html"] encoding: NSUTF8StringEncoding error:&error];
-    helpView.text = helptext;
+    NSURL   *url = [bundle URLForResource:@"help" withExtension: @"html"];
+    [helpView loadURL: url];
 }
 
 - (void)didReceiveMemoryWarning {

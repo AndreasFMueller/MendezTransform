@@ -22,8 +22,17 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     NSError *error;
     NSArray *files = [filemanager contentsOfDirectoryAtPath: documentsDirectory error: &error];
     
-    NSLog(@"found %lu files", [files count]);
-    return files;
+    NSMutableArray  *resultarray = [NSMutableArray array];
+    [resultarray addObject: @"Inbox"];
+    for (NSUInteger i = 0; i < [files count]; i++) {
+        NSString    *f = (NSString*)[files objectAtIndex: i];
+        if (![@"Inbox" isEqualToString: f]) {
+            [resultarray addObject: f];
+        }
+    }
+    
+    NSLog(@"found %lu files", [resultarray count]);
+    return resultarray;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -49,8 +49,9 @@
     return nil;
 }
 
-- (void)setText:(NSString *)text {
-    [textView loadHTMLString:text baseURL:nil];
+- (void)loadURL: (NSURL*)url {
+    [textView loadRequest: [NSURLRequest requestWithURL: url]];
 }
+
 
 @end

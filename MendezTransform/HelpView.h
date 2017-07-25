@@ -13,11 +13,10 @@
     UIButton   *dismissButton;
 }
 
-@property (readwrite) NSString * _Nullable text;
-
 - (id)initWithFrame:(CGRect)frame;
 - (void)layoutSubviews;
 - (void)setupSubviews;
 - (void)addTarget: (id _Nullable )target action:(nonnull SEL)action forControlEvents:(UIControlEvents)controlEvents;
+- (void)loadURL: (NSURL*)url;
 
 @end
