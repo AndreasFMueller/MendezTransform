@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ComparisonFilter.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +20,56 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [ComparisonFilter class];
     // Override point for customization after application launch.
+    
+    NSLog(@"launch with options: %lu", [launchOptions count]);
+    
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    NSLog(@"open url: %@", url.absoluteString);
+    NSString __block   *imagefile = url.path;
+    NSData  *imageData = [NSData dataWithContentsOfFile: imagefile];
+    if (nil == imageData) {
+        return NO;
+    }
+    UIImage *image = [UIImage imageWithData: imageData];
+    if (nil == image) {
+        return NO;
+    }
+    
+    ViewController  *vc = (ViewController*)self.window.rootViewController;
+    vc.image = image;
+    
+    UIAlertController   *alert = [UIAlertController alertControllerWithTitle: @"New image" message: @"A new image was opened. Shall we keep this image for future use?" preferredStyle: UIAlertControllerStyleAlert];
+    UIAlertAction   *keepAction = [UIAlertAction actionWithTitle: @"Keep" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"keep image");
+        NSError *error;
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+        NSString *targetfile = [documentsDirectory stringByAppendingPathComponent: [imagefile lastPathComponent]];
+        NSLog(@"writing file to: %@", targetfile);
+        if (![[NSFileManager defaultManager] fileExistsAtPath: imagefile]) {
+            BOOL    rc = [[NSFileManager defaultManager] copyItemAtPath: imagefile toPath: targetfile error: &error];
+            if (!rc) {
+                NSLog(@"file not copied: %@", error.description);
+            }
+        }
+        [[NSFileManager defaultManager] removeItemAtURL: url error: &error];
+    }];
+    UIAlertAction   *forgetAction = [UIAlertAction actionWithTitle: @"Ignore" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"delete image: %@", imagefile);
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath: imagefile error: &error];
+    }];
+    [alert addAction: keepAction];
+    [alert addAction: forgetAction];
+    [vc presentViewController: alert animated: YES completion: nil];
+    
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

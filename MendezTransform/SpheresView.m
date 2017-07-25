@@ -103,6 +103,8 @@
     
     [self setSphere: leftSphere image: opaqueImage transparent: transparentImage];
     [self setSphere: rightSphere image: opaqueImage transparent: nil];
+    
+    [SCNTransaction flush]; // needed so that imported images update immediately
 }
 
 - (void)setupScene {

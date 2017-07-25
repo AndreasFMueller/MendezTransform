@@ -15,18 +15,38 @@
 
 static NSString *imageSelectionReuseIdentifier = @"imageselection";
 
+- (NSArray*)fileList {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager   *filemanager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *files = [filemanager contentsOfDirectoryAtPath: documentsDirectory error: &error];
+    
+    NSLog(@"found %lu files", [files count]);
+    return files;
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString    *imagename = [images objectAtIndex: indexPath.row];
+    NSString    *imagename = [self imageNameAtIndexPath: indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: imageSelectionReuseIdentifier];
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: imageSelectionReuseIdentifier];
     }
-    cell.textLabel.text = imagename;
+    if ([imagename isEqualToString: @"Inbox"]) {
+        cell.textLabel.text = @"Downloaded images:";
+        cell.textLabel.textColor = [UIColor grayColor];
+        cell.userInteractionEnabled = NO;
+    } else {
+        cell.textLabel.text = imagename;
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.userInteractionEnabled = YES;
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [images count];
+    // find the number of file names in the Documents directory
+    return [images count] + [[self fileList] count];
 }
 
 - (id)init {
@@ -38,21 +58,36 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 }
 
 - (NSString *)imageNameAtIndexPath: (NSIndexPath*)indexPath {
-    return (NSString*)[images objectAtIndex: indexPath.row];
+    if (indexPath.row < [images count]) {
+        return (NSString*)[images objectAtIndex: indexPath.row];
+    }
+    NSArray *files = [self fileList];
+    return (NSString*)[files objectAtIndex: indexPath.row - [images count]];
 }
 
 - (UIImage*)imageAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *imagename = [self imageNameAtIndexPath: indexPath];
-    if ([imagename isEqualToString: @"Stripes"]) {
-        return [[StripeImage alloc] initWithSize: CGSizeMake(800,400) stripes: 5].image;
+    NSLog(@"request for image at %ld", indexPath.row);
+    if (indexPath.row < [images count]) {
+        NSString *imagename = [self imageNameAtIndexPath: indexPath];
+        if ([imagename isEqualToString: @"Stripes"]) {
+            return [[StripeImage alloc] initWithSize: CGSizeMake(800,400) stripes: 5].image;
+        }
+        if ([imagename isEqualToString: @"Dots"]) {
+            return [[DotsImage alloc] initWithSize: CGSizeMake(800,400) dots: 70].image;
+        }
+        if ([imagename isEqualToString: @"Grid"]) {
+            return [[GridImage alloc] initWithSize: CGSizeMake(800,400) lines: 6].image;
+        }
+        return [UIImage imageNamed: imagename];
     }
-    if ([imagename isEqualToString: @"Dots"]) {
-        return [[DotsImage alloc] initWithSize: CGSizeMake(800,400) dots: 70].image;
-    }
-    if ([imagename isEqualToString: @"Grid"]) {
-        return [[GridImage alloc] initWithSize: CGSizeMake(800,400) lines: 6].image;
-    }
-    return [UIImage imageNamed: imagename];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: [self imageNameAtIndexPath: indexPath]];
+    NSLog(@"selected image: %@", imagename);
+    NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
+    UIImage     *image = [UIImage imageWithData: imageData];
+    NSLog(@"found image: %@", [image description]);
+    return image;
 }
 
 @end
