@@ -21,19 +21,35 @@
 
 #define HEIGHT 30
 
+#define SHOWMIRROR  1
+
 - (void)layoutSubviews {
+#if SHOWREVERSE
     float   width = self.bounds.size.width / 4;
+#else
+    float   width = self.bounds.size.width / 3;
+#endif
     float   height = self.bounds.size.height - HEIGHT;
 
     left.frame       = CGRectMake(            2, HEIGHT + 2, width - 4, height - 4);
     difference.frame = CGRectMake(    width + 2, HEIGHT + 2, width - 4, height - 4);
+#if SHOWREVERSE
     reverse.frame    = CGRectMake(2 * width + 2, HEIGHT + 2, width - 4, height - 4);
     right.frame      = CGRectMake(3 * width + 2, HEIGHT + 2, width - 4, height - 4);
+#else
+    reverse.frame    = CGRectMake(3 * width + 2, HEIGHT + 2, width - 4, height - 4);
+    right.frame      = CGRectMake(2 * width + 2, HEIGHT + 2, width - 4, height - 4);
+#endif
     
     leftLabel.frame       = CGRectMake(          + 2, 0, width - 4, HEIGHT);
     differenceLabel.frame = CGRectMake(    width + 2, 0, width - 4, HEIGHT);
+#if SHOWREVERSE
     reverseLabel.frame    = CGRectMake(2 * width + 2, 0, width - 4, HEIGHT);
     rightLabel.frame      = CGRectMake(3 * width + 2, 0, width - 4, HEIGHT);
+#else
+    reverseLabel.frame    = CGRectMake(3 * width + 2, 0, width - 4, HEIGHT);
+    rightLabel.frame      = CGRectMake(2 * width + 2, 0, width - 4, HEIGHT);
+#endif
     
 }
 
