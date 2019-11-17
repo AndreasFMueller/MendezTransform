@@ -163,7 +163,7 @@
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
     cameraNode.position = SCNVector3Make(0, 0, 25);
-    cameraNode.camera.xFov = 30;
+    cameraNode.camera.fieldOfView = 16;
     [scene.rootNode addChildNode: cameraNode];
     
     SCNNode *lightNode = [SCNNode node];
