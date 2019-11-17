@@ -58,6 +58,7 @@
 		90FC19E52381EB9100E480DB /* find_aligned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E12381EB9100E480DB /* find_aligned.jpg */; };
 		90FC19E62381EB9100E480DB /* find_misaligned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E22381EB9100E480DB /* find_misaligned.jpg */; };
 		90FC19E72381EB9100E480DB /* rotate_exact.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E32381EB9100E480DB /* rotate_exact.jpg */; };
+		90FC19E92381F05600E480DB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E82381F05600E480DB /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		90FC19E12381EB9100E480DB /* find_aligned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = find_aligned.jpg; sourceTree = "<group>"; };
 		90FC19E22381EB9100E480DB /* find_misaligned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = find_misaligned.jpg; sourceTree = "<group>"; };
 		90FC19E32381EB9100E480DB /* rotate_exact.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rotate_exact.jpg; sourceTree = "<group>"; };
+		90FC19E82381F05600E480DB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				909CC0021F0E8E6F005172C3 /* Assets.xcassets */,
 				909CC0071F0E8E6F005172C3 /* Info.plist */,
 				909CBFF61F0E8E6F005172C3 /* Supporting Files */,
+				90FC19E82381F05600E480DB /* Launch Screen.storyboard */,
 			);
 			path = MendezTransform;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */,
 				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
 				90FC19E52381EB9100E480DB /* find_aligned.jpg in Resources */,
+				90FC19E92381F05600E480DB /* Launch Screen.storyboard in Resources */,
 				905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
 				90FC19E72381EB9100E480DB /* rotate_exact.jpg in Resources */,
@@ -702,9 +706,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -715,9 +722,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.othello.MendezTransform2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
