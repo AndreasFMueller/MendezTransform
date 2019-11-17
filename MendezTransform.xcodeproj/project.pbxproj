@@ -58,6 +58,10 @@
 		90FC19D923815E7300E480DB /* XAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D823815E7300E480DB /* XAxisImage.m */; };
 		90FC19DC23815F0200E480DB /* YAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19DB23815F0200E480DB /* YAxisImage.m */; };
 		90FC19DF23815F5000E480DB /* ZAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19DE23815F5000E480DB /* ZAxisImage.m */; };
+		90FC19E42381EB9100E480DB /* rotate_almost.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E02381EB9100E480DB /* rotate_almost.jpg */; };
+		90FC19E52381EB9100E480DB /* find_aligned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E12381EB9100E480DB /* find_aligned.jpg */; };
+		90FC19E62381EB9100E480DB /* find_misaligned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E22381EB9100E480DB /* find_misaligned.jpg */; };
+		90FC19E72381EB9100E480DB /* rotate_exact.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90FC19E32381EB9100E480DB /* rotate_exact.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +167,10 @@
 		90FC19DB23815F0200E480DB /* YAxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAxisImage.m; sourceTree = "<group>"; };
 		90FC19DD23815F5000E480DB /* ZAxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZAxisImage.h; sourceTree = "<group>"; };
 		90FC19DE23815F5000E480DB /* ZAxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZAxisImage.m; sourceTree = "<group>"; };
+		90FC19E02381EB9100E480DB /* rotate_almost.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rotate_almost.jpg; sourceTree = "<group>"; };
+		90FC19E12381EB9100E480DB /* find_aligned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = find_aligned.jpg; sourceTree = "<group>"; };
+		90FC19E22381EB9100E480DB /* find_misaligned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = find_misaligned.jpg; sourceTree = "<group>"; };
+		90FC19E32381EB9100E480DB /* rotate_exact.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rotate_exact.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +203,10 @@
 		905B94AA1F248C4D004AA9BF /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				90FC19E12381EB9100E480DB /* find_aligned.jpg */,
+				90FC19E22381EB9100E480DB /* find_misaligned.jpg */,
+				90FC19E02381EB9100E480DB /* rotate_almost.jpg */,
+				90FC19E32381EB9100E480DB /* rotate_exact.jpg */,
 				90AEF0DD1F276E6E00C7E73A /* IMG_0026.jpg */,
 				90AEF0DE1F276E6E00C7E73A /* IMG_0027.jpg */,
 				90AEF0DF1F276E6E00C7E73A /* IMG_0028.jpg */,
@@ -473,11 +485,14 @@
 				906BDF031F20E7B000778F44 /* afm.jpg in Resources */,
 				905B94B71F249C3B004AA9BF /* help.html in Resources */,
 				90AEF0DC1F27685700C7E73A /* Buchtitel.png in Resources */,
+				90FC19E42381EB9100E480DB /* rotate_almost.jpg in Resources */,
 				905B94A81F248762004AA9BF /* m42-launch-retina.jpg in Resources */,
 				905B94A91F248762004AA9BF /* m42-launch.jpg in Resources */,
 				90311C241F20CB3C008B57F2 /* m42-final.jpg in Resources */,
+				90FC19E52381EB9100E480DB /* find_aligned.jpg in Resources */,
 				905B949F1F236D1A004AA9BF /* hsr.jpg in Resources */,
 				909CC0031F0E8E6F005172C3 /* Assets.xcassets in Resources */,
+				90FC19E72381EB9100E480DB /* rotate_exact.jpg in Resources */,
 				906BDF0E1F210CC700778F44 /* tabea.jpg in Resources */,
 				909CC0011F0E8E6F005172C3 /* Main.storyboard in Resources */,
 				905B94931F233539004AA9BF /* ComparisonFilter.cikernel in Resources */,
@@ -486,6 +501,7 @@
 				905B949D1F236BB3004AA9BF /* eth-main-building.jpg in Resources */,
 				90AEF0E21F276E6E00C7E73A /* IMG_0027.jpg in Resources */,
 				90AEF0E11F276E6E00C7E73A /* IMG_0026.jpg in Resources */,
+				90FC19E62381EB9100E480DB /* find_misaligned.jpg in Resources */,
 				905B94851F223DFB004AA9BF /* m42-smooth.jpg in Resources */,
 				90AEF0E31F276E6E00C7E73A /* IMG_0028.jpg in Resources */,
 			);
