@@ -53,6 +53,11 @@
 		90AEF0E21F276E6E00C7E73A /* IMG_0027.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90AEF0DE1F276E6E00C7E73A /* IMG_0027.jpg */; };
 		90AEF0E31F276E6E00C7E73A /* IMG_0028.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90AEF0DF1F276E6E00C7E73A /* IMG_0028.jpg */; };
 		90AEF0E41F276E6E00C7E73A /* IMG_0029.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90AEF0E01F276E6E00C7E73A /* IMG_0029.jpg */; };
+		90FC19D32381504700E480DB /* QuadrantImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D22381504700E480DB /* QuadrantImage.m */; };
+		90FC19D623815C2D00E480DB /* AxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D523815C2D00E480DB /* AxisImage.m */; };
+		90FC19D923815E7300E480DB /* XAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D823815E7300E480DB /* XAxisImage.m */; };
+		90FC19DC23815F0200E480DB /* YAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19DB23815F0200E480DB /* YAxisImage.m */; };
+		90FC19DF23815F5000E480DB /* ZAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19DE23815F5000E480DB /* ZAxisImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +153,16 @@
 		90AEF0DE1F276E6E00C7E73A /* IMG_0027.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0027.jpg; sourceTree = "<group>"; };
 		90AEF0DF1F276E6E00C7E73A /* IMG_0028.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0028.jpg; sourceTree = "<group>"; };
 		90AEF0E01F276E6E00C7E73A /* IMG_0029.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0029.jpg; sourceTree = "<group>"; };
+		90FC19D12381504700E480DB /* QuadrantImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadrantImage.h; sourceTree = "<group>"; };
+		90FC19D22381504700E480DB /* QuadrantImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuadrantImage.m; sourceTree = "<group>"; };
+		90FC19D423815C2D00E480DB /* AxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisImage.h; sourceTree = "<group>"; };
+		90FC19D523815C2D00E480DB /* AxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AxisImage.m; sourceTree = "<group>"; };
+		90FC19D723815E7300E480DB /* XAxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XAxisImage.h; sourceTree = "<group>"; };
+		90FC19D823815E7300E480DB /* XAxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XAxisImage.m; sourceTree = "<group>"; };
+		90FC19DA23815F0200E480DB /* YAxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YAxisImage.h; sourceTree = "<group>"; };
+		90FC19DB23815F0200E480DB /* YAxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAxisImage.m; sourceTree = "<group>"; };
+		90FC19DD23815F5000E480DB /* ZAxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZAxisImage.h; sourceTree = "<group>"; };
+		90FC19DE23815F5000E480DB /* ZAxisImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZAxisImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +312,16 @@
 				905B94A61F248762004AA9BF /* m42-launch-retina.jpg */,
 				905B94A71F248762004AA9BF /* m42-launch.jpg */,
 				909CBFF71F0E8E6F005172C3 /* main.m */,
+				90FC19D12381504700E480DB /* QuadrantImage.h */,
+				90FC19D22381504700E480DB /* QuadrantImage.m */,
+				90FC19D423815C2D00E480DB /* AxisImage.h */,
+				90FC19D523815C2D00E480DB /* AxisImage.m */,
+				90FC19D723815E7300E480DB /* XAxisImage.h */,
+				90FC19D823815E7300E480DB /* XAxisImage.m */,
+				90FC19DA23815F0200E480DB /* YAxisImage.h */,
+				90FC19DB23815F0200E480DB /* YAxisImage.m */,
+				90FC19DD23815F5000E480DB /* ZAxisImage.h */,
+				90FC19DE23815F5000E480DB /* ZAxisImage.m */,
 				905B94891F228B90004AA9BF /* StripeImage.h */,
 				905B948A1F228B90004AA9BF /* StripeImage.m */,
 				905B948C1F229C25004AA9BF /* DotsImage.h */,
@@ -400,7 +425,7 @@
 		909CBFEB1F0E8E6F005172C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Andreas Müller";
 				TargetAttributes = {
 					909CBFF21F0E8E6F005172C3 = {
@@ -422,7 +447,7 @@
 			};
 			buildConfigurationList = 909CBFEE1F0E8E6F005172C3 /* Build configuration list for PBXProject "MendezTransform" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -488,18 +513,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				905B94981F234492004AA9BF /* ComparisonFilter.m in Sources */,
+				90FC19D923815E7300E480DB /* XAxisImage.m in Sources */,
 				905B94B31F249706004AA9BF /* HelpView.m in Sources */,
+				90FC19DF23815F5000E480DB /* ZAxisImage.m in Sources */,
 				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
+				90FC19DC23815F0200E480DB /* YAxisImage.m in Sources */,
 				905B94801F215836004AA9BF /* ImageSelectionController.m in Sources */,
 				905B948B1F228B90004AA9BF /* StripeImage.m in Sources */,
 				905B94A21F23AA00004AA9BF /* VectorTypes.m in Sources */,
 				905B94831F221032004AA9BF /* MendezTransformResult.m in Sources */,
 				909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */,
+				90FC19D623815C2D00E480DB /* AxisImage.m in Sources */,
 				909CBFFE1F0E8E6F005172C3 /* ViewController.m in Sources */,
 				905B94911F22A1E0004AA9BF /* ComputedImage.m in Sources */,
 				909CC02A1F0E951A005172C3 /* Rotation.m in Sources */,
 				9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */,
 				909CC0381F11427C005172C3 /* SphereFunction.m in Sources */,
+				90FC19D32381504700E480DB /* QuadrantImage.m in Sources */,
 				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
 				906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
@@ -561,6 +591,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -570,6 +601,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -577,6 +609,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -616,6 +649,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -625,6 +659,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -632,6 +667,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -8,6 +8,10 @@
 
 #import "ImageSelectionDatasource.h"
 #import "StripeImage.h"
+#import "QuadrantImage.h"
+#import "XAxisImage.h"
+#import "YAxisImage.h"
+#import "ZAxisImage.h"
 #import "DotsImage.h"
 #import "GridImage.h"
 
@@ -60,7 +64,8 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (id)init {
     self = [super init];
     if (self) {
-        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png", @"Stripes", @"Dots", @"Grid", nil];
+        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
+            @"X-Cap", @"Y-Cap", @"Z-Cap", @"Quadrants", @"Stripes", @"Dots", @"Grid", nil];
     }
     return self;
 }
@@ -76,6 +81,18 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (UIImage*)imageAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < [images count]) {
         NSString *imagename = [self imageNameAtIndexPath: indexPath];
+        if ([imagename isEqualToString: @"X-Cap"]) {
+            return [[XAxisImage alloc] initWithSize: CGSizeMake(800,400)].image;
+        }
+        if ([imagename isEqualToString: @"Y-Cap"]) {
+            return [[YAxisImage alloc] initWithSize: CGSizeMake(800,400)].image;
+        }
+        if ([imagename isEqualToString: @"Z-Cap"]) {
+            return [[ZAxisImage alloc] initWithSize: CGSizeMake(800,400)].image;
+        }
+        if ([imagename isEqualToString: @"Quadrants"]) {
+            return [[QuadrantImage alloc] initWithSize: CGSizeMake(800,400)].image;
+        }
         if ([imagename isEqualToString: @"Stripes"]) {
             return [[StripeImage alloc] initWithSize: CGSizeMake(800,400) stripes: 5].image;
         }

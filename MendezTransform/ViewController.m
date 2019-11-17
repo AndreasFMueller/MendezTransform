@@ -30,8 +30,6 @@
     mendezView.prerotation = prerotation;
 }
 
-#define prerotate (M_PI / 2)
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -46,6 +44,7 @@
     rightFunction = [[SphereFunction alloc] init];
     
     AppVector3  initialaxis = AppVector3Normalized(AppVector3Make(1, 2, 1));
+    //initialaxis = AppVector3Normalized(AppVector3Make(0, 0, 1));
     self.prerotation = initialaxis;
     
     Mtransform_size = [mendezView recommendedTransformSize];
@@ -118,12 +117,20 @@
     [self recompute];
 }
 
+#define RANDOM_ROTATION 1
+
 - (void)randomAction:(id)sender {
     AppPolar    p;
+#if RANDOM_ROTATION
     p.phi = 2 * M_PI * (random() / (float)RAND_MAX);
     float t = 2 * (random() / (float)RAND_MAX) - 1;
     p.theta = acosf(t);
     p.r = 2 * M_PI * (0.5 - (random() / (float)RAND_MAX));
+#else
+    p.phi = 0 * M_PI;
+    p.theta = 0 * M_PI / 4;
+    p.r = 0.01 * M_PI;
+#endif
     AppVector3  pre = AppPolar2Vector3(p);
     self.prerotation = pre;
     [self recompute];

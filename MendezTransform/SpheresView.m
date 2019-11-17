@@ -8,6 +8,7 @@
 
 #import "SpheresView.h"
 #import "VectorTypes.h"
+#import "simd/quaternion.h"
 
 @implementation SpheresView
 
@@ -22,6 +23,9 @@
         fine = NO;
         showAxis = YES;
         tail = 1;
+        leftPosition = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+        rightPosition = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
+
         [self setupScene];
     }
     return self;
@@ -124,18 +128,20 @@
     
     leftInternalNode = [SCNNode nodeWithGeometry: leftSphere];
     //leftInternalNode.rotation = SCNVector4Make(1/sqrtf(3), 1/sqrtf(3), 1/sqrtf(3), M_PI / 2);
+    //leftInternalNode.rotation = SCNVector4Make(0, 1, 0, M_PI/2);
     leftNode = [SCNNode node];
     [leftNode addChildNode: leftInternalNode];
-    leftNode.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    leftNode.position = leftPosition;
     
     rightNode = [SCNNode nodeWithGeometry: rightSphere];
-    rightNode.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
+    rightNode.position = rightPosition;
+    rightNode.rotation = SCNVector4Make(0, 1, 0, -M_PI/2);
     
     leftArrow = [self arrow: [UIColor redColor]];
     rightArrow = [self arrow: [UIColor redColor]];
 
-    leftArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
-    rightArrow.position = SCNVector3Make(SPHERE_SEPARATION, 0, 0);
+    leftArrow.position = leftPosition;
+    rightArrow.position = rightPosition;
     
     axis = App2SCN3(AppVector3Normalized(AppVector3Make(1, 1, 1)));
     leftArrow.rotation = [self rotationToAxis: axis];;
@@ -143,7 +149,7 @@
     
     // create a node for the left axis arrow
     prerotateArrow = [self arrow: [UIColor greenColor]];
-    prerotateArrow.position = SCNVector3Make(-SPHERE_SEPARATION, 0, 0);
+    prerotateArrow.position = leftPosition;
     prerotateArrow.hidden = YES;
     
     [scene.rootNode addChildNode: leftNode];
@@ -170,8 +176,20 @@
     self.scene = scene;
 }
 
+// method to rotate the left sphere (outernode) around the axis.
+// this currently works correctly, but the image is not displayed correctly, probably
+// has to do with the internal Node rotation
 - (void)rotate: (SCNVector4)rotation {
+    NSLog(@"rotate: %f, %f, %f, %f", rotation.x, rotation.y, rotation.z, rotation.w);
+#if 0
+    SCNVector4  fixOrientation = SCNVector4Make(0, 1, 0, M_PI/2);
+    simd_quatf  f = simd_quaternion(fixOrientation.x, fixOrientation.y, fixOrientation.z, fixOrientation.w);
+    simd_quatf  r = simd_quaternion(rotation.x, rotation.y, rotation.z, rotation.w);
+    simd_quatf  prod = simd_mul(r, f);
+    leftNode.rotation = SCNVector4FromFloat4(prod.vector);
+#else
     leftNode.rotation = rotation;
+#endif
 }
 
 - (void)rotateAngle: (float)angle {
@@ -297,14 +315,31 @@
     return prerotation;
 }
 
+// prerotation only affects the internal node
 - (void)setPrerotation:(SCNVector3)p {
     NSLog(@"setting prerotation in SpheresView: %.2f, %.2f, %.2f", p.x, p.y, p.z);
     prerotation = p;
+    
+    // quaternion for the rotation around
+    simd_quatf  f = simd_quaternion(0.f, -sinf(M_PI/4), 0.f, cosf(M_PI/4));
+    
+    // compute rotation angle
     float angle = SCNVector3Length(p);
+    NSLog(@"rotation angle = %f", angle);
+    
+    // compute the quaternion product
+    float   s = -sinf(angle/2) / angle;
+    simd_quatf  r = simd_quaternion(s * p.x, s * p.y, s * p.z, cosf(angle/2));
+    simd_quatf  prod = simd_mul(r, f);
+    NSLog(@"rotation quaternion: %f, %f, %f, %f", prod.vector[0], prod.vector[1], prod.vector[2], prod.vector[3]);
+    SCNVector3  axis2 = SCNVector3Make(prod.vector[0], prod.vector[1], prod.vector[2]);
+    float angle2 = 2 * acosf(prod.vector[3]);
+    leftInternalNode.rotation = SCNVector4RotationMake(axis2, angle2);
+    
+    // handle special values of the angle
     if (self.showAxis) {
-        prerotateArrow.hidden = (angle == 0);
+        prerotateArrow.hidden = (angle == 0) ? YES : NO;
     }
-    leftInternalNode.rotation = SCNVector4RotationMake(prerotation, angle);
     if (angle > 0) {
         SCNVector3  pa = SCNVector3Normalized(p);
         prerotateArrow.rotation = [self rotationToAxis: pa];

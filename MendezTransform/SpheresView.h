@@ -12,6 +12,9 @@
 @interface SpheresView : SCNView {
     SCNScene    *scene;
     
+    SCNVector3  leftPosition;
+    SCNVector3  rightPosition;
+    
     SCNSphere   *leftSphere;
     SCNNode *leftNode;
     SCNNode *leftInternalNode;

@@ -43,6 +43,10 @@ static float sqr(float x) { return x * x; }
     w[0] = m[0] * v[0] + m[3] * v[1] + m[6] * v[2];
     w[1] = m[1] * v[0] + m[4] * v[1] + m[7] * v[2];
     w[2] = m[2] * v[0] + m[5] * v[1] + m[8] * v[2];
+    
+//    w[0] = m[0] * v[0] + m[1] * v[1] + m[2] * v[2];
+//    w[1] = m[3] * v[0] + m[4] * v[1] + m[5] * v[2];
+//    w[2] = m[6] * v[0] + m[7] * v[1] + m[8] * v[2];
 }
 
 - (spherepoint)rotate: (spherepoint)x {
