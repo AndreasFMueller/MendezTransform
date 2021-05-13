@@ -64,7 +64,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
 - (id)init {
     self = [super init];
     if (self) {
-        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
+        images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"roman.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
             @"X-Cap", @"Y-Cap", @"Z-Cap", @"Quadrants", @"Stripes", @"Dots", @"Grid", nil];
     }
     return self;
@@ -107,6 +107,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: [self imageNameAtIndexPath: indexPath]];
+    NSLog(@"loading image %@", imagename);
     NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
     UIImage     *image = [UIImage imageWithData: imageData];
     return image;

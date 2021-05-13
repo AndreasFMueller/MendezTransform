@@ -142,8 +142,24 @@
     }
 }
 
+#define ROMAN
+#undef ROMAN
+
 - (void)setImage: (UIImage*) image {
-    [spheresView setImage: image];
+#ifdef ROMAN
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: @"roman.jpg"];
+//    NSLog(@"image file: %@", imagename);
+
+//    NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
+//    UIImage     *leftimage = [UIImage imageWithData: imageData];
+    
+    [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
+#else
+    [spheresView setLeftImage: image];
+#endif
+    [spheresView setRightImage: image];
 }
 
 - (void)addSelectionTarget: (id)target action: (SEL)action {

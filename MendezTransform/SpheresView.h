@@ -60,7 +60,8 @@
 - (void)rotate: (SCNVector4)rotation;
 - (void)rotateAngle: (float)angle;
 - (float)angle;
-- (void)setImage: (UIImage *)image;
+- (void)setLeftImage: (UIImage *)image;
+- (void)setRightImage: (UIImage *)image;
 - (SCNNode*)arrow: (UIColor*)color;
 
 - (void)addAxisChangedTarget: (id)target action: (SEL)action;

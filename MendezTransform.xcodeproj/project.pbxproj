@@ -11,6 +11,7 @@
 		903772381F115D62005F1A2B /* blackwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 903772371F115D62005F1A2B /* blackwhite.png */; };
 		9037723B1F120F10005F1A2B /* MendezTransformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037723A1F120F10005F1A2B /* MendezTransformView.m */; };
 		903772411F127FC1005F1A2B /* MendezView.m in Sources */ = {isa = PBXBuildFile; fileRef = 903772401F127FC1005F1A2B /* MendezView.m */; };
+		903B7E5B264DAF6500AE09FB /* roman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 903B7E5A264DAF6500AE09FB /* roman.jpg */; };
 		905B947D1F212539004AA9BF /* MendezTransformsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B947C1F212539004AA9BF /* MendezTransformsView.m */; };
 		905B94801F215836004AA9BF /* ImageSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B947F1F215836004AA9BF /* ImageSelectionController.m */; };
 		905B94831F221032004AA9BF /* MendezTransformResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 905B94821F221032004AA9BF /* MendezTransformResult.m */; };
@@ -85,6 +86,7 @@
 		9037723A1F120F10005F1A2B /* MendezTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformView.m; sourceTree = "<group>"; };
 		9037723F1F127FC1005F1A2B /* MendezView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezView.h; sourceTree = "<group>"; };
 		903772401F127FC1005F1A2B /* MendezView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezView.m; sourceTree = "<group>"; };
+		903B7E5A264DAF6500AE09FB /* roman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roman.jpg; sourceTree = "<group>"; };
 		905B947B1F212539004AA9BF /* MendezTransformsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendezTransformsView.h; sourceTree = "<group>"; };
 		905B947C1F212539004AA9BF /* MendezTransformsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendezTransformsView.m; sourceTree = "<group>"; };
 		905B947E1F21581F004AA9BF /* ImageSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSelectionController.h; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		906BDF0B1F20FA5500778F44 /* Image Selection */ = {
 			isa = PBXGroup;
 			children = (
+				903B7E5A264DAF6500AE09FB /* roman.jpg */,
 				905B949E1F236D1A004AA9BF /* hsr.jpg */,
 				905B949C1F236BB3004AA9BF /* eth-main-building.jpg */,
 				905B94841F223DFB004AA9BF /* m42-smooth.jpg */,
@@ -490,6 +493,7 @@
 				905B94931F233539004AA9BF /* ComparisonFilter.cikernel in Resources */,
 				903772381F115D62005F1A2B /* blackwhite.png in Resources */,
 				905B949D1F236BB3004AA9BF /* eth-main-building.jpg in Resources */,
+				903B7E5B264DAF6500AE09FB /* roman.jpg in Resources */,
 				90FC19E62381EB9100E480DB /* find_misaligned.jpg in Resources */,
 				905B94851F223DFB004AA9BF /* m42-smooth.jpg in Resources */,
 			);
@@ -706,7 +710,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -722,7 +726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = QR66XBP47D;
 				INFOPLIST_FILE = MendezTransform/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

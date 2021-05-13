@@ -86,7 +86,7 @@
     return result;
 }
 
-- (void)setImage: (UIImage*)image {
+- (void)setLeftImage: (UIImage*)image {
     opaqueImage = image;
     
     // convert this image to have the right alpha channel
@@ -106,9 +106,13 @@
     NSLog(@"image converted to monochrome");
     
     [self setSphere: leftSphere image: opaqueImage transparent: transparentImage];
-    [self setSphere: rightSphere image: opaqueImage transparent: nil];
+    //[self setSphere: rightSphere image: opaqueImage transparent: nil];
     
     [SCNTransaction flush]; // needed so that imported images update immediately
+}
+
+- (void)setRightImage: (UIImage*)image {
+    [self setSphere: rightSphere image: image transparent: nil];
 }
 
 - (void)setupScene {
