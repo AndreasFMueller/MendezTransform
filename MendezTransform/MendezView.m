@@ -142,19 +142,13 @@
     }
 }
 
+#ifdef DEBUG
 #define ROMAN
-#undef ROMAN
+//#undef ROMAN
+#endif
 
 - (void)setImage: (UIImage*) image {
 #ifdef ROMAN
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: @"roman.jpg"];
-//    NSLog(@"image file: %@", imagename);
-
-//    NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
-//    UIImage     *leftimage = [UIImage imageWithData: imageData];
-    
     [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
 #else
     [spheresView setLeftImage: image];

@@ -61,11 +61,20 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     return [images count] + [[self fileList] count];
 }
 
+#ifdef DEBUG
+#define ALLIMAGES 1
+#endif
+
 - (id)init {
     self = [super init];
     if (self) {
+#ifdef ALLIMAGES
         images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"roman.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
             @"X-Cap", @"Y-Cap", @"Z-Cap", @"Quadrants", @"Stripes", @"Dots", @"Grid", nil];
+#else
+        images = [NSArray arrayWithObjects: @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
+            @"X-Cap", @"Y-Cap", @"Z-Cap", @"Quadrants", @"Stripes", @"Dots", @"Grid", nil];
+#endif
     }
     return self;
 }
