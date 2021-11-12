@@ -25,6 +25,9 @@
 }
 
 @property (readwrite) AppVector3 prerotation;
+#if DEBUG
+@property (readwrite) BOOL tabearoman;
+#endif
 
 - (void)setImage: (UIImage *)image;
 - (void)setImageInternal: (UIImage *)image;

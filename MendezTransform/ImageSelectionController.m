@@ -89,6 +89,9 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+#if DEBUG
+    ((ViewController*)viewController).tabearoman = (1 == indexPath.row);
+#endif
     [viewController setImage: [data imageAtIndexPath: indexPath]];
     [self dismissViewControllerAnimated: YES completion: nil];
 }

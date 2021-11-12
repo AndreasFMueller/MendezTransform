@@ -92,6 +92,9 @@
 }
 
 - (void)setImageInternal:(UIImage *)image {
+#ifdef DEBUG
+    mendezView.tabearoman = self.tabearoman;
+#endif
     [mendezView setImage: image];
     [leftFunction setImage: image];
     [rightFunction setImage: image];
@@ -172,7 +175,7 @@
     HelpViewController  *helpviewcontroller = [[HelpViewController alloc] init];
     helpviewcontroller.modalPresentationStyle = UIModalPresentationPageSheet;
     helpviewcontroller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController: helpviewcontroller animated: YES completion:nil];
+    [self presentViewController: helpviewcontroller animated: YES completion: nil];
 }
 
 @end

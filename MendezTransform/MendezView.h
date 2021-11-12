@@ -32,6 +32,9 @@
 
 @property (readwrite) AppVector3 axis;
 @property (readwrite) AppVector3 prerotation;
+#ifdef DEBUG
+@property (readwrite) BOOL tabearoman;
+#endif
 
 - (void)setupSubviews;
 - (void)layoutSubviews;

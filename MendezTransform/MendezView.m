@@ -101,6 +101,9 @@
     if (self) {
         NSLog(@"bounds: %fx%f", frame.size.width, frame.size.height);
         [self setupSubviews];
+#ifdef DEBUG
+        self.tabearoman = NO;
+#endif
     }
     return self;
 }
@@ -110,6 +113,9 @@
     if (self) {
         NSLog(@"bounds: %fx%f", self.bounds.size.width, self.bounds.size.height);
         [self setupSubviews];
+#ifdef DEBUG
+        self.tabearoman = NO;
+#endif
     }
     return self;
 }
@@ -144,12 +150,16 @@
 
 #ifdef DEBUG
 #define ROMAN
-//#undef ROMAN
+#undef ROMAN
 #endif
 
 - (void)setImage: (UIImage*) image {
 #ifdef ROMAN
-    [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
+    if (self.tabearoman) {
+        [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
+    } else {
+        [spheresView setLeftImage: image];
+    }
 #else
     [spheresView setLeftImage: image];
 #endif
