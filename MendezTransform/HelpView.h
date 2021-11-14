@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @interface HelpView : UIView {
-    UIWebView  *textView;
+    WKWebView  *textView;
     UIButton   *dismissButton;
 }
 

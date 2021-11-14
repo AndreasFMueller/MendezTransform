@@ -90,6 +90,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 #if DEBUG
+    NSLog(@"setting tabearoman because indexPath.row=%ld", indexPath.row);
     ((ViewController*)viewController).tabearoman = (1 == indexPath.row);
 #endif
     [viewController setImage: [data imageAtIndexPath: indexPath]];

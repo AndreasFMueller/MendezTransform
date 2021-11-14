@@ -71,10 +71,10 @@
     MendezTransformResult __block  *left = nil;
     MendezTransformResult __block   *right = nil;
     dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        left = [mtransform transformVector: axis function: leftFunction];
+        left = [self->mtransform transformVector: axis function: self->leftFunction];
     });
     dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        right = [mtransform transformVector: axis function: rightFunction];
+        right = [self->mtransform transformVector: axis function: self->rightFunction];
     });
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 

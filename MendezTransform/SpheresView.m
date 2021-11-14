@@ -287,8 +287,8 @@
         leftArrow.position = SCNVector3Make(0, 0, 0);
         prerotateArrow.position = SCNVector3Make(0, 0, 0);
         [SCNTransaction setCompletionBlock:^{
-            material.transparent.contents = transparentImage;
-            rightArrow.hidden = YES;
+            material.transparent.contents = self->transparentImage;
+            self->rightArrow.hidden = YES;
         }];
         [SCNTransaction commit];
     } else {
@@ -365,7 +365,11 @@
     
     // send action
     if ([axisChangedTarget respondsToSelector: axisChangedAction]) {
-        [axisChangedTarget performSelector:axisChangedAction withObject: self];
+        SEL selector = NSSelectorFromString(@"axisChangedAction");
+        IMP imp = [axisChangedTarget methodForSelector: selector];
+        void (*func)(id, SEL) = (void *)imp;
+        func(axisChangedTarget, selector);
+        //[axisChangedTarget performSelector: axisChangedAction withObject: self];
     }
 }
 

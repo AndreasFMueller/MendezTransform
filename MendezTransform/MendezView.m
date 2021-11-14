@@ -148,21 +148,12 @@
     }
 }
 
-#ifdef DEBUG
-#define ROMAN
-#undef ROMAN
-#endif
-
 - (void)setImage: (UIImage*) image {
-#ifdef ROMAN
     if (self.tabearoman) {
         [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
     } else {
         [spheresView setLeftImage: image];
     }
-#else
-    [spheresView setLeftImage: image];
-#endif
     [spheresView setRightImage: image];
 }
 
@@ -193,7 +184,14 @@
     } else {
         [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
     }
-    [colorTarget performSelector: colorAction withObject: self];
+    if (!colorTarget) { return; }
+    SEL selector = NSSelectorFromString(@"colorAction");
+    IMP imp = [colorTarget methodForSelector: selector];
+    void    (*func)(id, SEL) = (void *)imp;
+    func(colorTarget, selector);
+    // see https://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+    // for why this is a good fix for the warning caused by the following code
+    //[colorTarget performSelector: colorAction withObject: self];
 }
 
 - (AppVector3)prerotation {

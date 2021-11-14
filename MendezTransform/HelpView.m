@@ -32,7 +32,7 @@
 }
 
 - (void)setupSubviews {
-    textView = [[UIWebView alloc] init];
+    textView = [[WKWebView alloc] init];
     [self addSubview: textView];
     dismissButton = [UIButton buttonWithType: UIButtonTypeSystem];
     [self addSubview: dismissButton];
