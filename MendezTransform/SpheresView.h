@@ -8,6 +8,7 @@
 
 #import <SceneKit/SceneKit.h>
 #import "VectorTypes.h"
+#import "AxisChanged.h"
 
 @interface SpheresView : SCNView {
     SCNScene    *scene;
@@ -64,7 +65,7 @@
 - (void)setRightImage: (UIImage *)image;
 - (SCNNode*)arrow: (UIColor*)color;
 
-- (void)addAxisChangedTarget: (id)target action: (SEL)action;
+- (void)addAxisChangedTarget: (id<AxisChanged>)target action: (SEL)action;
 
 - (SCNVector4)rotationToAxis: (SCNVector3)_axis;
 

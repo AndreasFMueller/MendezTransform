@@ -12,6 +12,7 @@
 #import "SpheresView.h"
 #import "MendezTransformResult.h"
 #import "VectorTypes.h"
+#import "AxisChanged.h"
 
 @interface MendezView : UIView {
     IBOutlet UIButton   *comparingButton;
@@ -53,7 +54,7 @@
 - (void)addSelectionTarget: (id)target action: (SEL)action;
 
 // stuff related to the touch interactions to determine the axis
-- (void)addAxisChangedTarget: (id)target action: (SEL)action;
+- (void)addAxisChangedTarget: (id<AxisChanged>)target action: (SEL)action;
 - (void)setTransformsLeft: (MendezTransformResult*)left right: (MendezTransformResult*)right;
 - (void)toggleFine:(id)sender;
 

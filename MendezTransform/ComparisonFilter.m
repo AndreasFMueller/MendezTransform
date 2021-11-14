@@ -36,10 +36,17 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 - (id)init {
     NSLog(@"create a filter instance");
     if (comparisonFilterKernel == nil) {
-        NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
         NSError* error = nil;
+#if 0
+        NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
         NSString    *code = [NSString stringWithContentsOfFile: [bundle pathForResource: @"ComparisonFilter" ofType:@"cikernel"] encoding: NSUTF8StringEncoding error:&error];
         comparisonFilterKernel = [CIKernel kernelWithString: code];
+#else
+        NSURL   *url = [[NSBundle mainBundle] URLForResource: @"default" withExtension: @"metallib"];
+        NSLog(@"URL for metal library: %@", [url description]);
+        NSData  *data = [NSData dataWithContentsOfURL: url];
+        comparisonFilterKernel = [CIKernel kernelWithFunctionName: @"comparisonMask" fromMetalLibraryData: data error: &error];
+#endif
     }
     self = [super init];
     if (self) {

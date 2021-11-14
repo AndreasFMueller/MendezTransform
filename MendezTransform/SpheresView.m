@@ -364,13 +364,7 @@
     [SCNTransaction flush];
     
     // send action
-    if ([axisChangedTarget respondsToSelector: axisChangedAction]) {
-        SEL selector = NSSelectorFromString(@"axisChangedAction");
-        IMP imp = [axisChangedTarget methodForSelector: selector];
-        void (*func)(id, SEL) = (void *)imp;
-        func(axisChangedTarget, selector);
-        //[axisChangedTarget performSelector: axisChangedAction withObject: self];
-    }
+    [axisChangedTarget axisChanged: self];
 }
 
 - (void)toggleTail:(id)sender {

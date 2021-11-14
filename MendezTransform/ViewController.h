@@ -11,8 +11,9 @@
 #import "MendezView.h"
 #import "SphereFunction.h"
 #import "Mtransform.h"
+#import "AxisChanged.h"
 
-@interface ViewController : UIViewController {
+@interface ViewController : UIViewController<AxisChanged> {
     IBOutlet    MendezView  *mendezView;
     SphereFunction  *leftFunction;
     SphereFunction  *rightFunction;

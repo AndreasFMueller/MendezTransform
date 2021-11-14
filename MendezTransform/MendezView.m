@@ -161,7 +161,7 @@
     [imageSelectionButton addTarget:target action:action forControlEvents: UIControlEventTouchUpInside];
 }
 
-- (void)addAxisChangedTarget: (id)_target action: (SEL)_action {
+- (void)addAxisChangedTarget: (id<AxisChanged>)_target action: (SEL)_action {
     [spheresView addAxisChangedTarget:_target action: _action];
 }
 

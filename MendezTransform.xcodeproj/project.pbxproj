@@ -50,6 +50,7 @@
 		909CC0381F11427C005172C3 /* SphereFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC0371F11427C005172C3 /* SphereFunction.m */; };
 		909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC03A1F114C1E005172C3 /* Mtransform.m */; };
 		90AEF0DC1F27685700C7E73A /* Buchtitel.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AEF0DB1F27685700C7E73A /* Buchtitel.png */; };
+		90C70CCE274103F600B52868 /* comparisonFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = 90C70CCD274103F600B52868 /* comparisonFilter.metal */; };
 		90FC19D32381504700E480DB /* QuadrantImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D22381504700E480DB /* QuadrantImage.m */; };
 		90FC19D623815C2D00E480DB /* AxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D523815C2D00E480DB /* AxisImage.m */; };
 		90FC19D923815E7300E480DB /* XAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D823815E7300E480DB /* XAxisImage.m */; };
@@ -152,6 +153,8 @@
 		909CC03A1F114C1E005172C3 /* Mtransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mtransform.m; sourceTree = "<group>"; };
 		909CC03C1F114C93005172C3 /* Mtransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mtransform.h; sourceTree = "<group>"; };
 		90AEF0DB1F27685700C7E73A /* Buchtitel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Buchtitel.png; sourceTree = "<group>"; };
+		90C70CCD274103F600B52868 /* comparisonFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = comparisonFilter.metal; sourceTree = "<group>"; };
+		90C70CCF2741174B00B52868 /* AxisChanged.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisChanged.h; sourceTree = "<group>"; };
 		90FC19D12381504700E480DB /* QuadrantImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadrantImage.h; sourceTree = "<group>"; };
 		90FC19D22381504700E480DB /* QuadrantImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuadrantImage.m; sourceTree = "<group>"; };
 		90FC19D423815C2D00E480DB /* AxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisImage.h; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 				906BDEFC1F20DAEC00778F44 /* SpheresView.h */,
 				906BDEFD1F20DAEC00778F44 /* SpheresView.m */,
 				905B94921F233539004AA9BF /* ComparisonFilter.cikernel */,
+				90C70CCD274103F600B52868 /* comparisonFilter.metal */,
 				905B94961F234492004AA9BF /* ComparisonFilter.h */,
 				905B94971F234492004AA9BF /* ComparisonFilter.m */,
 				905B94991F234E1C004AA9BF /* ComparisonFilterGenerator.h */,
@@ -302,6 +306,7 @@
 				909CBFFA1F0E8E6F005172C3 /* AppDelegate.m */,
 				909CBFFC1F0E8E6F005172C3 /* ViewController.h */,
 				909CBFFD1F0E8E6F005172C3 /* ViewController.m */,
+				90C70CCF2741174B00B52868 /* AxisChanged.h */,
 				906BDF0C1F20FB1200778F44 /* Main View */,
 				909CBFFF1F0E8E6F005172C3 /* Main.storyboard */,
 				909CC0021F0E8E6F005172C3 /* Assets.xcassets */,
@@ -540,6 +545,7 @@
 				90FC19D32381504700E480DB /* QuadrantImage.m in Sources */,
 				909CC02E1F0EAC88005172C3 /* SpherePoint.m in Sources */,
 				906BDF011F20E14F00778F44 /* ImageSelectionDatasource.m in Sources */,
+				90C70CCE274103F600B52868 /* comparisonFilter.metal in Sources */,
 				909CBFFB1F0E8E6F005172C3 /* AppDelegate.m in Sources */,
 				905B949B1F234E1C004AA9BF /* ComparisonFilterGenerator.m in Sources */,
 				905B948E1F229C25004AA9BF /* DotsImage.m in Sources */,
@@ -647,6 +653,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTLLINKER_FLAGS = "-fcikernel";
+				MTL_COMPILER_FLAGS = "-fcikernel";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -700,6 +708,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTLLINKER_FLAGS = "-fcikernel";
+				MTL_COMPILER_FLAGS = "-fcikernel";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
