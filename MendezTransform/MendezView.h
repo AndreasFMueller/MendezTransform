@@ -13,6 +13,7 @@
 #import "MendezTransformResult.h"
 #import "VectorTypes.h"
 #import "AxisChanged.h"
+#import "ToggleColor.h"
 
 @interface MendezView : UIView {
     IBOutlet UIButton   *comparingButton;
@@ -26,13 +27,16 @@
     IBOutlet UIButton   *smoothButton;
     IBOutlet UIButton   *tailButton;
     IBOutlet UIButton   *helpButton;
-    id  colorTarget;
+    id<ToggleColor>  colorTarget;
     SEL colorAction;
     SCNVector3 axis;
 }
 
 @property (readwrite) AppVector3 axis;
 @property (readwrite) AppVector3 prerotation;
+// This property is identical in meaning to the tabearoman
+// property of the ViewController class. See the documentation
+// there for more information
 #ifdef DEBUG
 @property (readwrite) BOOL tabearoman;
 #endif
@@ -59,7 +63,7 @@
 - (void)toggleFine:(id)sender;
 
 // color
-- (void)addColorTarget: (id)target action: (SEL)action;
+- (void)addColorTarget: (id<ToggleColor>)target action: (SEL)action;
 - (void)colorPressed: (id)sender;
 
 // random button

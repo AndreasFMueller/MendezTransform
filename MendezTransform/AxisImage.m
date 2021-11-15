@@ -7,6 +7,7 @@
 //
 
 #import "AxisImage.h"
+#import "Debug.h"
 
 @implementation AxisImage
 
@@ -30,7 +31,7 @@
                 float   x = s * cosf(phi);
                 float   y = s * sinf(phi);
                 float   z = cosf(theta);
-                //NSLog(@"%d %d %d", x, y, z);
+                //NSDebug(@"%d %d %d", x, y, z);
                 switch (_direction) {
                     case DIRECTION_X:
                         w[0] = (x >= 0) ? 255 : 0;

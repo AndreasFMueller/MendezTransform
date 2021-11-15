@@ -51,6 +51,7 @@
 		909CC03B1F114C1E005172C3 /* Mtransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 909CC03A1F114C1E005172C3 /* Mtransform.m */; };
 		90AEF0DC1F27685700C7E73A /* Buchtitel.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AEF0DB1F27685700C7E73A /* Buchtitel.png */; };
 		90C70CCE274103F600B52868 /* comparisonFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = 90C70CCD274103F600B52868 /* comparisonFilter.metal */; };
+		90C70CD327424DDC00B52868 /* Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C70CD227424DDC00B52868 /* Debug.m */; };
 		90FC19D32381504700E480DB /* QuadrantImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D22381504700E480DB /* QuadrantImage.m */; };
 		90FC19D623815C2D00E480DB /* AxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D523815C2D00E480DB /* AxisImage.m */; };
 		90FC19D923815E7300E480DB /* XAxisImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC19D823815E7300E480DB /* XAxisImage.m */; };
@@ -155,6 +156,9 @@
 		90AEF0DB1F27685700C7E73A /* Buchtitel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Buchtitel.png; sourceTree = "<group>"; };
 		90C70CCD274103F600B52868 /* comparisonFilter.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = comparisonFilter.metal; sourceTree = "<group>"; };
 		90C70CCF2741174B00B52868 /* AxisChanged.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisChanged.h; sourceTree = "<group>"; };
+		90C70CD027411D4F00B52868 /* ToggleColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToggleColor.h; sourceTree = "<group>"; };
+		90C70CD127424DDC00B52868 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		90C70CD227424DDC00B52868 /* Debug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Debug.m; sourceTree = "<group>"; };
 		90FC19D12381504700E480DB /* QuadrantImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuadrantImage.h; sourceTree = "<group>"; };
 		90FC19D22381504700E480DB /* QuadrantImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuadrantImage.m; sourceTree = "<group>"; };
 		90FC19D423815C2D00E480DB /* AxisImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisImage.h; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				909CC0301F11305F005172C3 /* SphereGrid.m */,
 				909CC0391F114300005172C3 /* SphereFunction.h */,
 				909CC0371F11427C005172C3 /* SphereFunction.m */,
+				90C70CD127424DDC00B52868 /* Debug.h */,
+				90C70CD227424DDC00B52868 /* Debug.m */,
 				909CC03C1F114C93005172C3 /* Mtransform.h */,
 				909CC03A1F114C1E005172C3 /* Mtransform.m */,
 				903772391F120F10005F1A2B /* MendezTransformView.h */,
@@ -246,8 +252,8 @@
 				905B949E1F236D1A004AA9BF /* hsr.jpg */,
 				905B949C1F236BB3004AA9BF /* eth-main-building.jpg */,
 				905B94841F223DFB004AA9BF /* m42-smooth.jpg */,
-				905B947F1F215836004AA9BF /* ImageSelectionController.m */,
 				905B947E1F21581F004AA9BF /* ImageSelectionController.h */,
+				905B947F1F215836004AA9BF /* ImageSelectionController.m */,
 				906BDEFF1F20E14F00778F44 /* ImageSelectionDatasource.h */,
 				906BDF001F20E14F00778F44 /* ImageSelectionDatasource.m */,
 				906BDF0D1F210CC700778F44 /* tabea.jpg */,
@@ -307,6 +313,7 @@
 				909CBFFC1F0E8E6F005172C3 /* ViewController.h */,
 				909CBFFD1F0E8E6F005172C3 /* ViewController.m */,
 				90C70CCF2741174B00B52868 /* AxisChanged.h */,
+				90C70CD027411D4F00B52868 /* ToggleColor.h */,
 				906BDF0C1F20FB1200778F44 /* Main View */,
 				909CBFFF1F0E8E6F005172C3 /* Main.storyboard */,
 				909CC0021F0E8E6F005172C3 /* Assets.xcassets */,
@@ -528,6 +535,7 @@
 				905B94981F234492004AA9BF /* ComparisonFilter.m in Sources */,
 				90FC19D923815E7300E480DB /* XAxisImage.m in Sources */,
 				905B94B31F249706004AA9BF /* HelpView.m in Sources */,
+				90C70CD327424DDC00B52868 /* Debug.m in Sources */,
 				90FC19DF23815F5000E480DB /* ZAxisImage.m in Sources */,
 				906BDEFE1F20DAEC00778F44 /* SpheresView.m in Sources */,
 				90FC19DC23815F0200E480DB /* YAxisImage.m in Sources */,

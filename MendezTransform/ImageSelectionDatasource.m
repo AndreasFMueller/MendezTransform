@@ -14,6 +14,7 @@
 #import "ZAxisImage.h"
 #import "DotsImage.h"
 #import "GridImage.h"
+#import "Debug.h"
 
 @implementation ImageSelectionDatasource
 
@@ -69,6 +70,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     self = [super init];
     if (self) {
 #ifdef ALLIMAGES
+        // in debug mode, we have some additional images that are not published in public version
         images = [NSArray arrayWithObjects: @"afm.jpg", @"tabea.jpg", @"roman.jpg", @"m42-final.jpg", @"m42-smooth.jpg", @"eth-main-building.jpg", @"hsr.jpg", @"blackwhite.png",
             @"X-Cap", @"Y-Cap", @"Z-Cap", @"Quadrants", @"Stripes", @"Dots", @"Grid", nil];
 #else
@@ -116,7 +118,7 @@ static NSString *imageSelectionReuseIdentifier = @"imageselection";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString    *imagename = [documentsDirectory stringByAppendingPathComponent: [self imageNameAtIndexPath: indexPath]];
-    NSLog(@"loading image %@", imagename);
+    NSDebug(@"loading image %@", imagename);
     NSData      *imageData = [NSData dataWithContentsOfFile: imagename];
     UIImage     *image = [UIImage imageWithData: imageData];
     return image;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SphereGrid.h"
+#import "Debug.h"
 
 @implementation SphereGrid
 
@@ -26,7 +27,7 @@
     height = _height;
     width = _width;
     if (0 != (_width % 8)) {
-        NSLog(@"width is not divisible by 4");
+        NSDebug1(@"width is not divisible by 4");
     }
     
     // allocate data arrays
@@ -92,7 +93,7 @@
 }
 
 static NSUInteger findinterval(float *r, float R, NSUInteger min, NSUInteger max) {
-    //NSLog(@"look for %f between %d (%f) and %d (%f)", R, min, r[min], max, r[max]);
+    //NSDebug(@"look for %f between %d (%f) and %d (%f)", R, min, r[min], max, r[max]);
     if (1 == (max - min)) {
         return min;
     }
@@ -102,12 +103,12 @@ static NSUInteger findinterval(float *r, float R, NSUInteger min, NSUInteger max
         return findinterval(r, R, min, mid);
     }
     NSUInteger result = findinterval(r, R, mid, max);
-    //NSLog(@"result index: %d (%f)", result, r[result]);
+    //NSDebug(@"result index: %d (%f)", result, r[result]);
     return result;
 }
 
 static NSUInteger rfindinterval(float *r, float R, NSUInteger min, NSUInteger max) {
-    //NSLog(@"look for %f between %d (%f) and %d (%f) (reverse)", R, min, r[min], max, r[max]);
+    //NSDebug(@"look for %f between %d (%f) and %d (%f) (reverse)", R, min, r[min], max, r[max]);
 
     if (1 == (max - min)) {
         return min;
@@ -118,55 +119,55 @@ static NSUInteger rfindinterval(float *r, float R, NSUInteger min, NSUInteger ma
         return rfindinterval(r, R, min, mid);
     }
     NSUInteger result = rfindinterval(r, R, mid, max);
-    //NSLog(@"result index: %d (%f)", result, r[result]);
+    //NSDebug(@"result index: %d (%f)", result, r[result]);
     return result;
 }
 
 - (NSUInteger)hoffsetV: (float[3])vec {
     float   w[3];
     [self prepare: vec to: w];
-    //NSLog(@"find hoffset for %f,%f,%f", vec[0], vec[1], vec[2]);
+    //NSDebug(@"find hoffset for %f,%f,%f", vec[0], vec[1], vec[2]);
     float l = hypotf(w[0], w[1]);
     if (0 == l) {
         return 0;
     }
     float xx = w[0] / l;
     float yy = w[1] / l;
-    //NSLog(@"xx = %f, yy = %f", xx, yy);
+    //NSDebug(@"xx = %f, yy = %f", xx, yy);
     //
     if ((xx >= 0) && (yy >= 0) && (yy <= xx)) {
-        //NSLog(@"0 - 45 Grad");
+        //NSDebug1(@"0 - 45 Grad");
         return findinterval(yvalues, yy, 0, self.width / 8);
     }
     
     if ((yy >= 0) && (yy >= xx) && (yy >= -xx)) {
-        //NSLog(@"45 - 135 Grad");
+        //NSDebug(@"45 - 135 Grad");
         return rfindinterval(xvalues, xx, self.width / 8, 3 * self.width / 8);
     }
     
     if ((xx <= 0) && (xx <= yy) && (yy <= -xx)) {
-        //NSLog(@"135 - 215 Grad");
+        //NSDebug(@"135 - 215 Grad");
         return rfindinterval(yvalues, yy, 3 * self.width / 8, 5 * self.width / 8);
     }
     
     if ((yy <= 0) && (yy <= xx) && (xx <= -yy)) {
-        //NSLog(@"215 - 305 Grad");
+        //NSDebug(@"215 - 305 Grad");
         return findinterval(xvalues, xx, 5 * self.width / 8, 7 * self.width / 8);
     }
     
     if ((yy <= 0) && (xx >= 0) && (-yy <= xx)) {
-        //NSLog(@"305 - 360 Grad");
+        //NSDebug(@"305 - 360 Grad");
         return findinterval(yvalues, yy, 7 * self.width / 8, self.width);
     }
     
-    NSLog(@"point not found: xx = %f, yy = %f", xx, yy);
+    NSDebug(@"point not found: xx = %f, yy = %f", xx, yy);
     return 0;
 }
 
 - (NSUInteger)voffsetV: (float[3])vec {
     float   w[3];
     [self prepare: vec to: w];
-    //NSLog(@"find the voffset for %f,%f,%f", vec[0], vec[1], vec[2]);
+    //NSDebug(@"find the voffset for %f,%f,%f", vec[0], vec[1], vec[2]);
     float zz = w[2];
     return height - 1 - rfindinterval(z, zz, 0, height);
 }

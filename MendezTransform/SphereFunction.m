@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SphereFunction.h"
+#import "AppDelegate.h"
+#import "Debug.h"
 
 @implementation SphereFunction
 
@@ -15,10 +17,7 @@
     return image;
 }
 
-- (void)setImage: (UIImage *)_image {
-    NSLog(@"new image");
-    image = _image;
-    CGImageRef  imageRef = [_image CGImage];
+- (void)setCGImage: (CGImageRef)imageRef {
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -26,6 +25,7 @@
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
     
+    setenv("CG_CONTEXT_SHOW_BACKTRACE", "1", 1);
     // resize the parent class
     [self resizeWidth: width height: height];
     
@@ -34,6 +34,19 @@
     CGColorSpaceRelease(colorSpace);
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
+}
+
+- (void)setImage: (UIImage *)_image {
+    NSDebug(@"SphereFunction new image: %@", [_image description]);
+    image = _image;
+    // try to set the image from the CGImage that we may have included in the UIImage
+    CGImageRef  imageRef = [_image CGImage];
+    if (nil != imageRef) {
+        NSDebug1(@"has CGImage");
+        [self setCGImage: imageRef];
+        return;
+    }
+    NSDebug(@"cannot work with image: %@", [_image description]);
 }
 
 - (id)init {

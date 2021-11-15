@@ -9,6 +9,7 @@
 #import "SpheresView.h"
 #import "VectorTypes.h"
 #import "simd/quaternion.h"
+#import "Debug.h"
 
 @implementation SpheresView
 
@@ -20,6 +21,9 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        opaqueImage = nil;
+        transparentImage = nil;
+        
         fine = NO;
         showAxis = YES;
         tail = 1;
@@ -49,15 +53,20 @@
 }
 
 - (void)setSphere: (SCNSphere*)sphere image: (UIImage*) image transparent:(UIImage*)transparent {
+    NSDebug(@"setting the image on the sphere=%@ image=%@, transparent=%@", [sphere description], [image description], [transparent description]);
     SCNMaterial *material = [SCNMaterial material];
     material.diffuse.contents = image;
+    NSDebug1(@"diffuse image set");
     if (comparing) {
+        NSDebug(@"setting the transparent image: %@", [transparent description]);
         material.transparent.contents = transparent;
     } else {
+        NSDebug1(@"setting no transparent image");
         material.transparent.contents = nil;
     }
     [sphere removeMaterialAtIndex: 0];
     sphere.materials = @[material];
+    NSDebug1(@"material set");
 }
 
 - (SCNNode *)arrow: (UIColor*)color {
@@ -87,23 +96,31 @@
 }
 
 - (void)setLeftImage: (UIImage*)image {
+    NSDebug(@"setLeftImage called with %p", image);
     opaqueImage = image;
+    if (opaqueImage == nil) {
+        NSDebug1(@"no image found");
+        return;
+    }
     
     // convert this image to have the right alpha channel
     CIImage *inputImage = nil;
     CIContext *context = [CIContext contextWithOptions:nil];
-    if (opaqueImage.CIImage != nil) {
+    if (image.CIImage != nil) {
+        NSDebug1(@"have CIImage already");
         inputImage = opaqueImage.CIImage;
+    } else if (image.CGImage != nil) {
+        // convert the CGImage to a CIImage
+        NSDebug1(@"have to convert CGImage data");
+        //inputImage = [CIImage imageWithCGImage: image.CGImage];
+        inputImage = [[CIImage alloc] initWithCGImage: image.CGImage];
     }
-    if (opaqueImage.CGImage != nil) {
-        NSLog(@"have CGImage data");
-        inputImage = [CIImage imageWithCGImage: opaqueImage.CGImage];
-    }
+
     CIFilter *comparisonFilter = [CIFilter filterWithName: @"ComparisonFilter" keysAndValues: kCIInputImageKey, inputImage, nil ];
     CIImage *outputImage = [comparisonFilter outputImage];
     CGImageRef  outputCGImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
     transparentImage = [UIImage imageWithCGImage: outputCGImage];
-    NSLog(@"image converted to monochrome");
+    NSDebug1(@"constructed the transparentImage");
     
     [self setSphere: leftSphere image: opaqueImage transparent: transparentImage];
     //[self setSphere: rightSphere image: opaqueImage transparent: nil];
@@ -184,7 +201,7 @@
 // this currently works correctly, but the image is not displayed correctly, probably
 // has to do with the internal Node rotation
 - (void)rotate: (SCNVector4)rotation {
-    NSLog(@"rotate: %f, %f, %f, %f", rotation.x, rotation.y, rotation.z, rotation.w);
+    NSDebug(@"rotate: %f, %f, %f, %f", rotation.x, rotation.y, rotation.z, rotation.w);
 #if 0
     SCNVector4  fixOrientation = SCNVector4Make(0, 1, 0, M_PI/2);
     simd_quatf  f = simd_quaternion(fixOrientation.x, fixOrientation.y, fixOrientation.z, fixOrientation.w);
@@ -270,14 +287,14 @@
 #define ANIMATION_TIME 2.0
 
 - (void)setComparing: (BOOL)_comparing {
-    NSLog(@"toggle comparison mode");
+    NSDebug1(@"toggle comparison mode");
     if (comparing == _comparing) {
         return;
     }
     comparing = _comparing;
     SCNMaterial *material = [leftSphere firstMaterial];
     if (comparing) {
-        NSLog(@"comparing");
+        NSDebug1(@"comparing");
         [SCNTransaction begin];
         [SCNTransaction setAnimationDuration: ANIMATION_TIME];
         leftSphere.radius = SPHERE_RADIUS * 1.004;
@@ -292,7 +309,7 @@
         }];
         [SCNTransaction commit];
     } else {
-        NSLog(@"not comparing");
+        NSDebug1(@"not comparing");
         rightArrow.hidden = NO;
         material.transparent.contents = nil;
         [SCNTransaction begin];
@@ -321,7 +338,7 @@
 
 // prerotation only affects the internal node
 - (void)setPrerotation:(SCNVector3)p {
-    NSLog(@"setting prerotation in SpheresView: %.2f, %.2f, %.2f", p.x, p.y, p.z);
+    NSDebug(@"setting prerotation in SpheresView: %.2f, %.2f, %.2f", p.x, p.y, p.z);
     prerotation = p;
     
     // quaternion for the rotation around
@@ -329,13 +346,13 @@
     
     // compute rotation angle
     float angle = SCNVector3Length(p);
-    NSLog(@"rotation angle = %f", angle);
+    NSDebug(@"rotation angle = %f", angle);
     
     // compute the quaternion product
     float   s = -sinf(angle/2) / angle;
     simd_quatf  r = simd_quaternion(s * p.x, s * p.y, s * p.z, cosf(angle/2));
     simd_quatf  prod = simd_mul(r, f);
-    NSLog(@"rotation quaternion: %f, %f, %f, %f", prod.vector[0], prod.vector[1], prod.vector[2], prod.vector[3]);
+    NSDebug(@"rotation quaternion: %f, %f, %f, %f", prod.vector[0], prod.vector[1], prod.vector[2], prod.vector[3]);
     SCNVector3  axis2 = SCNVector3Make(prod.vector[0], prod.vector[1], prod.vector[2]);
     float angle2 = 2 * acosf(prod.vector[3]);
     leftInternalNode.rotation = SCNVector4RotationMake(axis2, angle2);
@@ -356,7 +373,7 @@
 
 - (void)setAxis:(SCNVector3)_axis {
     axis = SCNVector3Multiply(_axis, tail);
-    NSLog(@"axis. %.2f,%.2f,%.2f", axis.x, axis.y, axis.z);
+    NSDebug(@"axis. %.2f,%.2f,%.2f", axis.x, axis.y, axis.z);
     
     // redisplay the axis
     leftArrow.rotation = [self rotationToAxis: axis];

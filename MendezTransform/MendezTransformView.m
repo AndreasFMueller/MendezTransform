@@ -7,6 +7,7 @@
 //
 
 #import "MendezTransformView.h"
+#import "Debug.h"
 
 @implementation MendezTransformView
 
@@ -89,7 +90,7 @@
 }
 
 float   between(float y, float minvalue, float maxvalue) {
-    //NSLog(@"between(%f, %f, %f)", y, minvalue, maxvalue);
+    //NSDebug(@"between(%f, %f, %f)", y, minvalue, maxvalue);
     if (y < minvalue) {
         return minvalue;
     }
@@ -135,7 +136,7 @@ float   between(float y, float minvalue, float maxvalue) {
         CGContextAddLineToPoint(ctx, X(self.length-1), Y(0));
         CGContextFillPath(ctx);
     } else {
-        NSLog(@"no data to draw");
+        NSDebug1(@"no data to draw");
     }
     
     CGContextBeginPath(ctx);

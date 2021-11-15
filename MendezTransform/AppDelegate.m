@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ComparisonFilter.h"
 #import "ViewController.h"
+#import "Debug.h"
 
 @interface AppDelegate ()
 
@@ -42,22 +43,22 @@
     
     UIAlertController   *alert = [UIAlertController alertControllerWithTitle: @"New image" message: @"A new image was opened. Shall we keep this image for future use?" preferredStyle: UIAlertControllerStyleAlert];
     UIAlertAction   *keepAction = [UIAlertAction actionWithTitle: @"Keep" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"keep image");
+        NSDebug1(@"keep image");
         NSError *error;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
         NSString *targetfile = [documentsDirectory stringByAppendingPathComponent: [imagefile lastPathComponent]];
-        NSLog(@"writing file to: %@", targetfile);
+        NSDebug(@"writing file to: %@", targetfile);
         if (![[NSFileManager defaultManager] fileExistsAtPath: imagefile]) {
             BOOL    rc = [[NSFileManager defaultManager] copyItemAtPath: imagefile toPath: targetfile error: &error];
             if (!rc) {
-                NSLog(@"file not copied: %@", error.description);
+                NSDebug(@"file not copied: %@", error.description);
             }
         }
         [[NSFileManager defaultManager] removeItemAtURL: url error: &error];
     }];
     UIAlertAction   *forgetAction = [UIAlertAction actionWithTitle: @"Ignore" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"delete image: %@", imagefile);
+        NSDebug(@"delete image: %@", imagefile);
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtPath: imagefile error: &error];
     }];
@@ -94,5 +95,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (ViewController*)viewcontroller {
+    return (ViewController*)self.window.rootViewController;
+}
 
 @end

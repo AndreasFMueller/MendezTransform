@@ -7,6 +7,7 @@
 //
 
 #import "ComputedImage.h"
+#import "Debug.h"
 
 @implementation ComputedImage
 
@@ -15,6 +16,7 @@
 -(id)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
+        NSDebug(@"iniatialize computed %d x %d image", size.width, size.height);
         width = size.width;
         height = size.height;
         image = nil;
@@ -23,6 +25,7 @@
 }
 
 - (void)imageFromData:(unsigned char*)data {
+    NSDebug(@"constructing %d x %d images from data", self.width, self.height);
     int l = self.width * self.height * 4;
     CFDataRef   cfdata = CFDataCreate(nil, data, l);
     CGDataProviderRef provider = CGDataProviderCreateWithCFData(cfdata);
@@ -36,6 +39,10 @@
                                         bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef,
                                         bitmapInfo,
                                         provider, NULL, NO, renderingIntent);
+    if (nil == imageRef) {
+        NSDebug1(@"cannot construct an CGIImageRef");
+        return;
+    }
     image = [UIImage imageWithCGImage: imageRef];
 }
 

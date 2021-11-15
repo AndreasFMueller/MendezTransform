@@ -7,6 +7,7 @@
 //
 
 #import "QuadrantImage.h"
+#import "Debug.h"
 
 @implementation QuadrantImage
 
@@ -29,7 +30,7 @@
                 float   x = s * cosf(phi);
                 float   y = s * sinf(phi);
                 float   z = cosf(theta);
-                //NSLog(@"%d %d %d", x, y, z);
+                //NSDebug(@"%d %d %d", x, y, z);
                 *(w++) = (x >= 0) ? 255 : 0;
                 *(w++) = (y >= 0) ? 255 : 0;
                 *(w++) = (z >= 0) ? 255 : 0;

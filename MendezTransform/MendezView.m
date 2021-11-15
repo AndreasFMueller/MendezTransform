@@ -8,6 +8,7 @@
 
 #import "MendezView.h"
 #import "ImageSelectionController.h"
+#import "Debug.h"
 
 @implementation MendezView
 
@@ -99,9 +100,10 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:(CGRect)frame];
     if (self) {
-        NSLog(@"bounds: %fx%f", frame.size.width, frame.size.height);
+        NSDebug(@"bounds: %fx%f", frame.size.width, frame.size.height);
         [self setupSubviews];
 #ifdef DEBUG
+        // conditionally initialize the tabearoman property
         self.tabearoman = NO;
 #endif
     }
@@ -111,9 +113,10 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder: aDecoder];
     if (self) {
-        NSLog(@"bounds: %fx%f", self.bounds.size.width, self.bounds.size.height);
+        NSDebug(@"bounds: %fx%f", self.bounds.size.width, self.bounds.size.height);
         [self setupSubviews];
 #ifdef DEBUG
+        // conditionally initialize the tabearoman property
         self.tabearoman = NO;
 #endif
     }
@@ -149,12 +152,16 @@
 }
 
 - (void)setImage: (UIImage*) image {
+    [spheresView setRightImage: image];
+#ifdef DEBUG
+    // conditionally evaluate the tabearoman property
     if (self.tabearoman) {
         [spheresView setLeftImage: [UIImage imageNamed: @"roman.jpg"]];
-    } else {
-        [spheresView setLeftImage: image];
+        return;
     }
-    [spheresView setRightImage: image];
+#endif
+    [spheresView setLeftImage: image];
+    
 }
 
 - (void)addSelectionTarget: (id)target action: (SEL)action {
@@ -173,7 +180,7 @@
     return [transformsView recommendedTransformSize];
 }
 
-- (void)addColorTarget: (id)target action: (SEL)action {
+- (void)addColorTarget: (id<ToggleColor>)target action: (SEL)action {
     colorTarget = target;
     colorAction = action;
 }
@@ -185,13 +192,7 @@
         [colorButton setTitle: @"Mono" forState: UIControlStateNormal];
     }
     if (!colorTarget) { return; }
-    SEL selector = NSSelectorFromString(@"colorAction");
-    IMP imp = [colorTarget methodForSelector: selector];
-    void    (*func)(id, SEL) = (void *)imp;
-    func(colorTarget, selector);
-    // see https://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-    // for why this is a good fix for the warning caused by the following code
-    //[colorTarget performSelector: colorAction withObject: self];
+    [colorTarget toggleColor: self];
 }
 
 - (AppVector3)prerotation {

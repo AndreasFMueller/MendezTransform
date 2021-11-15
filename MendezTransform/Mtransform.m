@@ -13,6 +13,7 @@
 #include <mach/mach_init.h>
 #include <mach/thread_act.h>
 #include <mach/thread_info.h>
+#include "Debug.h"
 
 @implementation Mtransform
 
@@ -109,7 +110,7 @@ static thread_time_t thread_time_sub(thread_time_t const a, thread_time_t const 
     }
     thread_time_t   end = thread_time();
     thread_time_t   total = thread_time_sub(end, start);
-    NSLog(@"Mendez-Transform computation complete user: %llu system: %llu", total.user_time_us, total.system_time_us);
+    NSDebug(@"Mendez-Transform computation complete user: %llu system: %llu", total.user_time_us, total.system_time_us);
 }
 
 - (MendezTransformResult *)transform: (float[3])axis function: (SphereFunction*)f {

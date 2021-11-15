@@ -14,6 +14,7 @@
 #import "ImageSelectionController.h"
 #import "VectorTypes.h"
 #import "HelpViewController.h"
+#import "Debug.h"
 
 @interface ViewController ()
 
@@ -93,6 +94,7 @@
 
 - (void)setImageInternal:(UIImage *)image {
 #ifdef DEBUG
+    // conditionally initialize the tabearoman property
     mendezView.tabearoman = self.tabearoman;
 #endif
     [mendezView setImage: image];
@@ -120,6 +122,8 @@
     [self recompute];
 }
 
+// random rotation is the normal situation, turning this off allows
+// to control the rotation to be applied for debugging purposes
 #define RANDOM_ROTATION 1
 
 - (void)randomAction:(id)sender {
@@ -143,14 +147,14 @@
     smooth = !smooth;
     if (smooth) {
         if (nil == smoothImage) {
-            NSLog(@"make smooth");
+            NSDebug1(@"make smooth");
             CIImage *inputImage = nil;
             CIContext *context = [CIContext contextWithOptions:nil];
             if (normalImage.CIImage != nil) {
                 inputImage = normalImage.CIImage;
             }
             if (normalImage.CGImage != nil) {
-                NSLog(@"have CGImage data");
+                NSDebug1(@"have CGImage data");
                 inputImage = [CIImage imageWithCGImage: normalImage.CGImage];
             }
             CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];

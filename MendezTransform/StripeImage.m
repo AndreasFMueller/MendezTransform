@@ -7,6 +7,7 @@
 //
 
 #import "StripeImage.h"
+#import "Debug.h"
 
 @implementation StripeImage
 
@@ -32,7 +33,7 @@
                 int   x = roundf(s * cosf(phi));
                 int   y = roundf(s * sinf(phi));
                 int   z = roundf(stripes * cosf(theta));
-                //NSLog(@"%d %d %d", x, y, z);
+                //NSDebug(@"%d %d %d", x, y, z);
                 *(w++) = 255 * ((2 * stripes + x) % 2);
                 *(w++) = 255 * ((2 * stripes + y) % 2);
                 *(w++) = 255 * ((2 * stripes + z) % 2);

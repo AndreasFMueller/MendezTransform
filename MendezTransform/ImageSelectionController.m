@@ -8,6 +8,7 @@
 
 #import "ImageSelectionController.h"
 #import "ImageSelectionDatasource.h"
+#import "Debug.h"
 
 @interface ImageSelectionController ()
 
@@ -90,9 +91,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 #if DEBUG
-    NSLog(@"setting tabearoman because indexPath.row=%ld", indexPath.row);
-    ((ViewController*)viewController).tabearoman = (1 == indexPath.row);
+    // set the special tabearoman mode but only if you are debugging and only if the
+    // image selected is that of Tabea
+    BOOL    tr = (1 == indexPath.row);
+    NSDebug(@"setting tabearoman to (indexPath.row == %ld) = %@", indexPath.row, (tr) ? @"YES" : @"NO");
+    ((ViewController*)viewController).tabearoman = tr;
 #endif
+    // do the common stuff needed when selecting an image
     [viewController setImage: [data imageAtIndexPath: indexPath]];
     [self dismissViewControllerAnimated: YES completion: nil];
 }

@@ -8,6 +8,7 @@
 
 #import "ComparisonFilter.h"
 #import "ComparisonFilterGenerator.h"
+#import "Debug.h"
 
 @implementation ComparisonFilter
 
@@ -17,7 +18,7 @@ static CIKernel     *comparisonFilterKernel = nil;
 static ComparisonFilterGenerator    *filterGenerator = nil;
 
 + (void)initialize {
-    NSLog(@"filter initialization");
+    NSDebug1(@"filter initialization");
     if (nil != filterGenerator) {
         return;
     }
@@ -34,19 +35,13 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 - (id)init {
-    NSLog(@"create a filter instance");
+    NSDebug1(@"create a filter instance");
     if (comparisonFilterKernel == nil) {
         NSError* error = nil;
-#if 0
-        NSBundle    *bundle = [NSBundle bundleForClass: [self class]];
-        NSString    *code = [NSString stringWithContentsOfFile: [bundle pathForResource: @"ComparisonFilter" ofType:@"cikernel"] encoding: NSUTF8StringEncoding error:&error];
-        comparisonFilterKernel = [CIKernel kernelWithString: code];
-#else
         NSURL   *url = [[NSBundle mainBundle] URLForResource: @"default" withExtension: @"metallib"];
-        NSLog(@"URL for metal library: %@", [url description]);
+        NSDebug(@"URL for metal library: %@", [url description]);
         NSData  *data = [NSData dataWithContentsOfURL: url];
         comparisonFilterKernel = [CIKernel kernelWithFunctionName: @"comparisonMask" fromMetalLibraryData: data error: &error];
-#endif
     }
     self = [super init];
     if (self) {
@@ -57,7 +52,7 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 + (NSDictionary*)customAttributes {
-    NSLog(@"customAttributes");
+    NSDebug1(@"customAttributes");
     return @{
              @"level" : @{
                      kCIAttributeMin: @0.0,
@@ -81,9 +76,9 @@ static ComparisonFilterGenerator    *filterGenerator = nil;
 }
 
 - (CIImage*)outputImage {
-    NSLog(@"applying the filter");
+    NSDebug1(@"applying the filter");
     CISampler *src = [CISampler samplerWithImage: inputImage];
-    NSLog(@"input image: %p", src);
+    NSDebug(@"input image: %p", src);
     NSNumber *l = [[NSNumber alloc] initWithFloat: self.level];
     NSNumber *a = [[NSNumber alloc] initWithFloat: self.alpha];
     NSArray *arguments = [NSArray arrayWithObjects: src, l, a, nil];
