@@ -29,7 +29,7 @@ static int64_t time_value_to_us(time_value_t const t) {
     return (int64_t)t.seconds * 1000000 + t.microseconds;
 }
 
-static thread_time_t thread_time() {
+static thread_time_t thread_time(void) {
     thread_basic_info_data_t basic_info;
     mach_msg_type_number_t count = THREAD_BASIC_INFO_COUNT;
     kern_return_t const result = thread_info(mach_thread_self(), THREAD_BASIC_INFO, (thread_info_t)&basic_info, &count);

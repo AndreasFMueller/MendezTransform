@@ -1,0 +1,19 @@
+#! /bin/bash
+#
+# stripimages
+#
+# (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+#
+
+convert -extract 2608x1948+61+50 find_misaligned.png \
+	-density 300 -units PixelsPerInch find_misaligned.png
+
+convert -extract 2608x1948+61+50 find_aligned.png \
+	-density 300 -units PixelsPerInch find_aligned.png
+
+convert -extract 2608x1948+61+50 rotate_almost.png \
+	-density 300 -units PixelsPerInch rotate_almost.png
+
+convert -extract 2608x1948+61+50 rotate_exact.png \
+	-density 300 -units PixelsPerInch rotate_exact.png
+
